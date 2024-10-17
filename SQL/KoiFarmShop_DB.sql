@@ -195,6 +195,59 @@ values
 	(2,2,300000,1,300000);
 
 
+CREATE TABLE roles 
+(
+    ID INT PRIMARY KEY IDENTITY(1,1),  -- Khóa chính tự tăng
+    role_name NVARCHAR(50) NOT NULL    -- Tên vai trò (customer, staff, admin)
+);
+GO
+
+CREATE TABLE customer 
+(
+    ID INT PRIMARY KEY IDENTITY(1,1),  -- Khóa chính tự tăng
+    Fullname NVARCHAR(100) NOT NULL,   -- Tên đầy đủ
+    Username NVARCHAR(50) NOT NULL,    -- Tên đăng nhập
+    Email VARCHAR(100) NOT NULL UNIQUE, -- Email duy nhất
+    Phone VARCHAR(15) NOT NULL UNIQUE, -- Số điện thoại duy nhất
+    Address NVARCHAR(255),             -- Địa chỉ
+    Password VARCHAR(255) NOT NULL,    -- Mật khẩu
+    Role_ID INT,                       -- Khóa ngoại tham chiếu đến bảng roles
+    FOREIGN KEY (Role_ID) REFERENCES roles(ID)
+);
+GO
+
+CREATE TABLE contact 
+(
+    ID INT PRIMARY KEY IDENTITY(1,1),  -- Khóa chính tự tăng
+    Name NVARCHAR(100) NOT NULL,       -- Tên người liên hệ
+    Email VARCHAR(100) NOT NULL,       -- Email
+    Message NVARCHAR(1000),            -- Tin nhắn
+    isRead BIT DEFAULT 0,              -- Trạng thái đã đọc hay chưa, mặc định là chưa đọc (0)
+    Created_date DATE DEFAULT GETDATE(), -- Ngày tạo mặc định là ngày hiện tại
+    Created_by NVARCHAR(100)           -- Người tạo
+);
+GO
+
+INSERT INTO roles (role_name) 
+VALUES 
+    ('customer'), 
+    ('staff'), 
+    ('admin');
+GO
+
+INSERT INTO customer (Fullname, Username, Email, Phone, Address, Password, Role_ID)
+VALUES 
+    ('Nguyen Van A', 'nguyenvana', 'nguyenvana@gmail.com', '0989898989', '123 Nguyen Trai, Ha Noi', 'password123', 1),  -- customer
+    ('Tran Thi B', 'tranthib', 'tranthib@gmail.com', '0999999999', '456 Le Loi, Ho Chi Minh', 'password456', 2),        -- staff
+    ('Le Thi C', 'lethic', 'lethic@gmail.com', '0909090909', '789 Tran Hung Dao, Da Nang', 'password789', 3);           -- admin
+GO
+
+INSERT INTO contact (Name, Email, Message, isRead, Created_by)
+VALUES 
+    ('Nguyen Van A', 'nguyenvana@gmail.com', 'Toi muon biet gia cua ca Koi.', 0, 'nguyenvana'),
+    ('Tran Thi B', 'tranthib@gmail.com', 'Khi nao co hang moi?', 1, 'tranthib'),
+    ('Le Thi C', 'lethic@gmail.com', 'Lien he de nhan bao gia.', 0, 'lethic');
+GO
 
 
 
