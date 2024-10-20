@@ -7,6 +7,7 @@ public partial class Contact
 {
     public int ContactId { get; set; }
 
+    public int? CateId { get; set; }
     public int? UserId { get; set; }
 
     public string? Report { get; set; }

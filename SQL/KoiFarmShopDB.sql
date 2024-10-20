@@ -255,6 +255,7 @@ GO
 
 CREATE TABLE [Contact](
 	[ContactId] int PRIMARY KEY IDENTITY(1,1),
+	[CateId] int FOREIGN KEY ([CateId]) REFERENCES [Category] ([CategoryId]),
 	[UserId] int FOREIGN KEY ([UserId]) REFERENCES [User] ([UserId]),
 	[Report] nvarchar (max),
 	[Status] int default (0), --0: chưa đọc,1:đã đọc
