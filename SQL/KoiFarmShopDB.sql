@@ -256,7 +256,7 @@ GO
 CREATE TABLE [Contact](
 	[ContactId] int PRIMARY KEY IDENTITY(1,1),
 	[UserId] int FOREIGN KEY ([UserId]) REFERENCES [User] ([UserId]),
-	[Repost] nvarchar (max),
+	[Report] nvarchar (max),
 	[Status] int default (0), --0: chưa đọc,1:đã đọc
 	[CreatedDay] date default GETDATE()
 )
