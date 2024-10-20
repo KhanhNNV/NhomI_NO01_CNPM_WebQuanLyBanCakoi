@@ -9,7 +9,7 @@ public partial class Contact
 
     public int? UserId { get; set; }
 
-    public string? Repost { get; set; }
+    public string? Report { get; set; }
 
     public int? Status { get; set; }
 
