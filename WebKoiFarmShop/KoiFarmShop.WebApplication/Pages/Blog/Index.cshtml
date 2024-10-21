@@ -1,0 +1,72 @@
+@page
+@model KoiFarmShop.WebApplication.Pages.Account.IndexModel
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].CreatedDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].UpdateDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Cate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].CreatedByNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].UpdateByNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Blog) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cate.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByNavigation.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateByNavigation.FullName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.BlogId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BlogId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BlogId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

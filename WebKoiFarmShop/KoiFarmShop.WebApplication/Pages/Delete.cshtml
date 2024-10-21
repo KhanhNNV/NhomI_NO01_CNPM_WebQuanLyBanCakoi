@@ -1,0 +1,52 @@
+@page
+@model KoiFarmShop.WebApplication.Pages.DeleteModel
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CommentBlog</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentBlog.Content)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentBlog.Content)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentBlog.CreatedDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentBlog.CreatedDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentBlog.UpdateDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentBlog.UpdateDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentBlog.Blog)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentBlog.Blog.BlogId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentBlog.CreatedByNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentBlog.CreatedByNavigation.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentBlog.UpdateByNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommentBlog.UpdateByNavigation.FullName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="CommentBlog.CmtBlogId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
