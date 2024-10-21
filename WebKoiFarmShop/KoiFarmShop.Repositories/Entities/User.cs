@@ -27,6 +27,8 @@ public partial class User
 
     public virtual ICollection<Blog> BlogUpdateByNavigations { get; set; } = new List<Blog>();
 
+    public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+
     public virtual ICollection<CommentBlog> CommentBlogCreatedByNavigations { get; set; } = new List<CommentBlog>();
 
     public virtual ICollection<CommentBlog> CommentBlogUpdateByNavigations { get; set; } = new List<CommentBlog>();
@@ -48,12 +50,4 @@ public partial class User
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Role? Role { get; set; }
-
-    public Order Order
-    {
-        get => default;
-        set
-        {
-        }
-    }
 }

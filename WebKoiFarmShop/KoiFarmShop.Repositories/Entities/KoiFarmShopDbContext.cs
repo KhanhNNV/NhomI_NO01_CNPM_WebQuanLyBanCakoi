@@ -17,6 +17,8 @@ public partial class KoiFarmShopDbContext : DbContext
 
     public virtual DbSet<Blog> Blogs { get; set; }
 
+    public virtual DbSet<Booking> Bookings { get; set; }
+
     public virtual DbSet<Category> Categories { get; set; }
 
     public virtual DbSet<CommentBlog> CommentBlogs { get; set; }
@@ -77,6 +79,33 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasOne(d => d.UpdateByNavigation).WithMany(p => p.BlogUpdateByNavigations)
                 .HasForeignKey(d => d.UpdateBy)
                 .HasConstraintName("FK__Blog__UpdateBy__160F4887");
+        });
+
+        modelBuilder.Entity<Booking>(entity =>
+        {
+            entity.HasKey(e => e.BookingId).HasName("PK__Booking__73951AEDEAE4B598");
+
+            entity.ToTable("Booking");
+
+            entity.Property(e => e.Breed).HasMaxLength(32);
+            entity.Property(e => e.CateId).HasColumnName("CateID");
+            entity.Property(e => e.CreatedDay).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.Image)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Koiname).HasMaxLength(32);
+            entity.Property(e => e.Origin).HasMaxLength(32);
+            entity.Property(e => e.Status).HasDefaultValue(0);
+            entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
+
+            entity.HasOne(d => d.Cate).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.CateId)
+                .HasConstraintName("FK__Booking__CateID__4F47C5E3");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Bookings)
+                .HasForeignKey(d => d.CustomerId)
+                .HasConstraintName("FK__Booking__Custome__503BEA1C");
         });
 
         modelBuilder.Entity<Category>(entity =>
@@ -160,16 +189,20 @@ public partial class KoiFarmShopDbContext : DbContext
 
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.ContactId).HasName("PK__Contact__5C66259B2DF0A4E4");
+            entity.HasKey(e => e.ContactId).HasName("PK__Contact__5C66259BC3730F7F");
 
             entity.ToTable("Contact");
 
             entity.Property(e => e.CreatedDay).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.Status).HasDefaultValue(0);
 
+            entity.HasOne(d => d.Cate).WithMany(p => p.Contacts)
+                .HasForeignKey(d => d.CateId)
+                .HasConstraintName("FK__Contact__CateId__3C34F16F");
+
             entity.HasOne(d => d.User).WithMany(p => p.Contacts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Contact__UserId__1BC821DD");
+                .HasConstraintName("FK__Contact__UserId__3D2915A8");
         });
 
         modelBuilder.Entity<Discount>(entity =>
