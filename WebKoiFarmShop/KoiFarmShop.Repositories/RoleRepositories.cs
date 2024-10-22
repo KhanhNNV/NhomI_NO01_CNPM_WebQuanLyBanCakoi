@@ -16,12 +16,6 @@ namespace KoiFarmShop.Repositories
         {
             _dbContext = dbContext;
         }
-
-        public void Add(Role role)
-        {
-            _dbContext.Roles.Add(role);
-        }
-
         public bool AddRole(Role RoleName)
         {
             try
@@ -34,12 +28,6 @@ namespace KoiFarmShop.Repositories
                 throw new NotImplementedException();
             }
         }
-
-        public void Delete(Role role)
-        {
-            _dbContext.Roles.Remove(role);
-        }
-
         public bool DelRole(int RoleId)
         {
             try
@@ -81,17 +69,6 @@ namespace KoiFarmShop.Repositories
         {
             return await _dbContext.Roles.Where(p => p.RoleId.Equals(RoleId)).FirstOrDefaultAsync(); ;
         }
-
-        public async Task SaveChangesAsync()
-        {
-            await _dbContext.SaveChangesAsync();
-        }
-
-        public void Update(Role role)
-        {
-            _dbContext.Roles.Update(role);
-        }
-
         public bool UpRole(Role role)
         {
             try

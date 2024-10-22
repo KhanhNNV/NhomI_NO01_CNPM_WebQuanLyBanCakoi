@@ -13,15 +13,17 @@ namespace KoiFarmShop.WebApplication.Pages.Role
     public class IndexModel : PageModel
     {
         private readonly IRoleServices _services;
+
         public IndexModel(IRoleServices services)
         {
-            _services = services;
+           _services = services;
         }
-        public IList<IRoleServices> Role { get;set; } = default!;
+
+        public IList<Role> Role_ { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Role = (IList<IRoleServices>)await _services.Role();
+            Role_ = await _services.Role();
         }
     }
 }

@@ -7,22 +7,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
-using KoiFarmShop.Services.Interface;
-using KoiFarmShop.Services;
 
 namespace KoiFarmShop.WebApplication.Pages.Role
 {
     public class EditModel : PageModel
     {
-        private readonly IRoleServices _services;
+        private readonly KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext _context;
 
-        public EditModel(IRoleServices services)
+        public EditModel(KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext context)
         {
-            _services = services;
+            _context = context;
         }
 
         [BindProperty]
-        public KoiFarmShop.Services.RoleServices Role { get; set; } = default!;
+        public Role Role { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,12 +29,12 @@ namespace KoiFarmShop.WebApplication.Pages.Role
                 return NotFound();
             }
 
-            var role =  await _services.GetRoleById(id.Value);
+            var role =  await _context.Roles.FirstOrDefaultAsync(m => m.RoleId == id);
             if (role == null)
             {
                 return NotFound();
             }
-            Role = Role;
+            Role = role;
             return Page();
         }
 
@@ -48,9 +46,12 @@ namespace KoiFarmShop.WebApplication.Pages.Role
             {
                 return Page();
             }
+
+            _context.Attach(Role).State = EntityState.Modified;
+
             try
             {
-                await _services.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,15 +68,9 @@ namespace KoiFarmShop.WebApplication.Pages.Role
             return RedirectToPage("./Index");
         }
 
-        private bool RoleExists(object roleId)
+        private bool RoleExists(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        private async Task<bool> RoleExists(int id)
-        {
-            var role = await _services.GetRoleById(id);
-            return role != null;
+            return _context.Roles.Any(e => e.RoleId == id);
         }
     }
 }

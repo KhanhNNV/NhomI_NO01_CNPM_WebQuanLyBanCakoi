@@ -24,30 +24,6 @@ namespace KoiFarmShop.Services
             return _repositories.AddRole(RoleName);
 
         }
-
-        public async Task AddRoleAsync(Role role)
-        {
-            _repositories.Add(role);
-            await _repositories.SaveChangesAsync();
-        }
-
-        public Task AddRoleAsync(RoleServices role)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task AddRoles(Role role)
-        {
-            _repositories.Add(role);
-            await _repositories.SaveChangesAsync();
-        }
-
-        public async Task DeleteRole(Role role)
-        {
-            _repositories.Delete(role);
-            await _repositories.SaveChangesAsync();
-        }
-
         public bool DelRole(int RoleId)
         {
             return _repositories.DelRole(RoleId);
@@ -67,28 +43,6 @@ namespace KoiFarmShop.Services
         {
             return _repositories.GetAllRole();
         }
-
-        public bool RoleExists(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task SaveChangesAsync()
-        {
-            await _repositories.SaveChangesAsync();
-        }
-
-        public async Task UpdateRole(Role role)
-        {
-            _repositories.Update(role);
-            await _repositories.SaveChangesAsync();
-        }
-
-        public Task UpdateRoleAsync(Role role)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool UpRole(Role role)
         {
             return _repositories.UpRole(role);

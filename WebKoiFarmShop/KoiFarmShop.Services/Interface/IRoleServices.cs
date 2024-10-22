@@ -15,13 +15,5 @@ namespace KoiFarmShop.Services.Interface
         Boolean AddRole(Role RoleName);
         Boolean UpRole(Role role);
         Task<Role> GetRoleById(int RoleId);
-        Task UpdateRoleAsync(Role role);
-        bool RoleExists(int id);
-        Task AddRoleAsync(Role role);
-        Task SaveChangesAsync();
-        Task AddRoleAsync(RoleServices role);
-        Task AddRoles(Role role);
-        Task UpdateRole(Role role);
-        Task DeleteRole(Role role);
     }
 }

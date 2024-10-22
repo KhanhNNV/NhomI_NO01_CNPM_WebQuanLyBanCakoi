@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.Interface;
 
-namespace KoiFarmShop.WebApplication.Pages.Role
+namespace KoiFarmShop.WebApplication.Pages.Rolehtml
 {
     public class CreateModel : PageModel
     {
         private readonly IRoleServices _services;
+
         public CreateModel(IRoleServices services)
         {
             _services = services;
@@ -24,7 +25,7 @@ namespace KoiFarmShop.WebApplication.Pages.Role
         }
 
         [BindProperty]
-        public KoiFarmShop.Services.RoleServices Role { get; set; } = default!;
+        public Role Role_ { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -33,7 +34,8 @@ namespace KoiFarmShop.WebApplication.Pages.Role
             {
                 return Page();
             }
-            await _services.AddRoleAsync(Role);
+
+            _services.AddRole(Role_);
             return RedirectToPage("./Index");
         }
     }
