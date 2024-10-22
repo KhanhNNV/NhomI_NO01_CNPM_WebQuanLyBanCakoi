@@ -10,6 +10,11 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
     public interface IOrderRepository
     {
         Task<List<Order>> GetAllOrder();
+        Boolean DeleteOrder(int id);
+        Boolean DeleteOrder(Order order);
+        Boolean UpdateOrder(Order order);
+        Boolean AddOrder(Order order);
+        Task<Order> GetAllOrdersById(int id);
 
     }
 }

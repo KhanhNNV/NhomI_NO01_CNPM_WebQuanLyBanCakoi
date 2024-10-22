@@ -16,9 +16,35 @@ namespace KoiFarmShop.Services.Services
         { 
             _orderRepository = orderRepository;
         }
+
+        public bool AddOrder(Order order)
+        {
+            return _orderRepository.AddOrder(order);
+        }
+
+        public bool DeleteOrder(int id)
+        {
+            return _orderRepository.DeleteOrder(id);
+        }
+
+        public bool DeleteOrder(Order order)
+        {
+            return _orderRepository.DeleteOrder(order) ;
+        }
+
+        public Task<Order> GetAllOrdersById(int id)
+        {
+            return _orderRepository.GetAllOrdersById(id) ;
+        }
+
         public Task<List<Order>> GetOrder()
         {
             return _orderRepository.GetAllOrder();
+        }
+
+        public bool UpdateOrder(Order order)
+        {
+            return _orderRepository.UpdateOrder(order) ;
         }
     }
 }

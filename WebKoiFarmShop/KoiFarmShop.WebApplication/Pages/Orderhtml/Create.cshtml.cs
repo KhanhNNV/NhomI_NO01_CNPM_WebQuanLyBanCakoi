@@ -6,26 +6,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Services.InterfaceService;
 
 namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 {
     public class CreateModel : PageModel
     {
-        private readonly KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext _context;
-
-        public CreateModel(KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext context)
+        private readonly IOrderService _orderService;
+        private readonly KoiFarmShopDbContext _context;
+        public CreateModel(IOrderService orderService)
         {
-            _context = context;
+            _orderService = orderService;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["CustomerId"] = new SelectList(_context.Users, "UserId", "FullName");
+            var users = new List<User>
+            {
+                new User { UserId = 1, FullName = "Nguyễn Văn A" },
+                new User { UserId = 2, FullName = "Trần Thị B" },
+                new User { UserId = 3, FullName = "Lê Văn C" }
+            };
+
+            ViewData["CustomerId"] = new SelectList(users, "UserId", "FullName");
             return Page();
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
+        public Order Order_ { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,8 +43,8 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return Page();
             }
 
-            _context.Orders.Add(Order);
-            await _context.SaveChangesAsync();
+            _orderService.AddOrder(Order_);
+            
 
             return RedirectToPage("./Index");
         }

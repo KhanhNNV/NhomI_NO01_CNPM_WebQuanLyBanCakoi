@@ -6,16 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Services.InterfaceService;
 
 namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 {
     public class DeleteModel : PageModel
     {
-        private readonly KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext _context;
+        private readonly IOrderService _orderService;
 
-        public DeleteModel(KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext context)
+        public DeleteModel(IOrderService orderService)
         {
-            _context = context;
+            _orderService = orderService;
         }
 
         [BindProperty]
@@ -28,7 +29,7 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return NotFound();
             }
 
-            var order = await _context.Orders.FirstOrDefaultAsync(m => m.OrderId == id);
+            var order = await _orderService.GetAllOrdersById((int)id);
 
             if (order == null)
             {
@@ -47,14 +48,8 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
             {
                 return NotFound();
             }
-
-            var order = await _context.Orders.FindAsync(id);
-            if (order != null)
-            {
-                Order = order;
-                _context.Orders.Remove(Order);
-                await _context.SaveChangesAsync();
-            }
+   
+            _orderService.DeleteOrder((int)id);
 
             return RedirectToPage("./Index");
         }
