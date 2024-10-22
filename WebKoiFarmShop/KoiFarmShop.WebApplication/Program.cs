@@ -1,8 +1,19 @@
+using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Repositories.Interface;
+using KoiFarmShop.Repositories;
+using KoiFarmShop.Services.Interface;
+using KoiFarmShop.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+//DI
+builder.Services.AddDbContext<KoiFarmShopDbContext>();
+//DI repositories
+builder.Services.AddScoped<IRoleRepositories, RoleRepositories>();
+//DI services
+builder.Services.AddScoped<IRoleServices, RoleServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
