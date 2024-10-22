@@ -285,6 +285,7 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BCF3012034B");
 
             entity.Property(e => e.CreatedDay).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.ShipAddress).HasMaxLength(64);
 
