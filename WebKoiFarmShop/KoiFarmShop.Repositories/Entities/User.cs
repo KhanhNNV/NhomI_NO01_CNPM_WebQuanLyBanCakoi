@@ -23,9 +23,9 @@ public partial class User
 
     public DateOnly? UpdateDay { get; set; }
 
-    public virtual ICollection<Blog> BlogCreatedByNavigations { get; set; } = new List<Blog>();
+    public virtual ICollection<BlogRepository> BlogCreatedByNavigations { get; set; } = new List<BlogRepository>();
 
-    public virtual ICollection<Blog> BlogUpdateByNavigations { get; set; } = new List<Blog>();
+    public virtual ICollection<BlogRepository> BlogUpdateByNavigations { get; set; } = new List<BlogRepository>();
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 

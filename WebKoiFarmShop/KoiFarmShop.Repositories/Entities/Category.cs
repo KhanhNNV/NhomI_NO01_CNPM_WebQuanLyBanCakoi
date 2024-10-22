@@ -9,7 +9,7 @@ public partial class Category
 
     public string? Title { get; set; }
 
-    public virtual ICollection<Blog> Blogs { get; set; } = new List<Blog>();
+    public virtual ICollection<BlogRepository> Blogs { get; set; } = new List<BlogRepository>();
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 

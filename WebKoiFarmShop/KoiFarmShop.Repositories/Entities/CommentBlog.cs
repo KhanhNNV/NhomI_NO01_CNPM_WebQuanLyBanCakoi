@@ -19,7 +19,7 @@ public partial class CommentBlog
 
     public int? UpdateBy { get; set; }
 
-    public virtual Blog? Blog { get; set; }
+    public virtual BlogRepository? Blog { get; set; }
 
     public virtual User? CreatedByNavigation { get; set; }
 

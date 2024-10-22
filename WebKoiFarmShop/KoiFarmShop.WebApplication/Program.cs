@@ -1,20 +1,8 @@
-using KoiFarmShop.Repositories;
-using KoiFarmShop.Repositories.Entities;
-using KoiFarmShop.Repositories.InterfaceRepository;
-using KoiFarmShop.Services.InterfaceService;
-using Microsoft.EntityFrameworkCore;
-using BlogRepository = KoiFarmShop.Repositories.BlogRepository;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-//DI
-builder.Services.AddDbContext<KoiFarmShopDbContext>();
-//DI Repository
-builder.Services.AddScoped<IBlogRepository, BlogRepository>();
-//DI Services
-builder.Services.AddScoped<IBlogRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

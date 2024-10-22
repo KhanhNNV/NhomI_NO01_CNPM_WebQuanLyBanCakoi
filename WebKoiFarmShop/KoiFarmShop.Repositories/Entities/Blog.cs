@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace KoiFarmShop.Repositories.Entities;
 
-public partial class Blog
+public partial class BlogRepository
 {
+    internal object? BlogID;
+
     public int BlogId { get; set; }
 
     public int? CateId { get; set; }
@@ -30,4 +32,9 @@ public partial class Blog
     public virtual User? CreatedByNavigation { get; set; }
 
     public virtual User? UpdateByNavigation { get; set; }
+
+    internal BlogRepository FirstOrDefault()
+    {
+        throw new NotImplementedException();
+    }
 }

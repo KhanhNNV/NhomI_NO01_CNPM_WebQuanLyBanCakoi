@@ -24,4 +24,7 @@
     <Folder Include="Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="InterfaceRepository\ICommentBlogRepository" />
+  </ItemGroup>
 </Project>
