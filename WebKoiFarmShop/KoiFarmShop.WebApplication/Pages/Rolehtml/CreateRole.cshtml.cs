@@ -25,7 +25,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
         }
 
         [BindProperty]
-        public Role Role_ { get; set; } = default!;
+        public KoiFarmShop.Repositories.Entities.Role Role { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
                 return Page();
             }
 
-            _services.AddRole(Role_);
+            _services.AddRole(Role);
             return RedirectToPage("./Index");
         }
     }
