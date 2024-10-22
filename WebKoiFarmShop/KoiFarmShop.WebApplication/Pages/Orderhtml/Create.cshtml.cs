@@ -13,24 +13,17 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
     public class CreateModel : PageModel
     {
         private readonly IOrderService _orderService;
-        private readonly KoiFarmShopDbContext _context;
         public CreateModel(IOrderService orderService)
         {
             _orderService = orderService;
         }
 
-        public IActionResult OnGet()
-        {
-            var users = new List<User>
-            {
-                new User { UserId = 1, FullName = "Nguyễn Văn A" },
-                new User { UserId = 2, FullName = "Trần Thị B" },
-                new User { UserId = 3, FullName = "Lê Văn C" }
-            };
-
-            ViewData["CustomerId"] = new SelectList(users, "UserId", "FullName");
-            return Page();
-        }
+        //public IActionResult OnGet()
+        //{
+           
+        //    ViewData["CustomerId"] = new SelectList(_context.Users, "UserId", "FullName");
+        //    return Page();
+        //}
 
         [BindProperty]
         public Order Order_ { get; set; } = default!;
@@ -43,8 +36,7 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return Page();
             }
 
-            _orderService.AddOrder(Order_);
-            
+             _orderService.AddOrder(Order_);
 
             return RedirectToPage("./Index");
         }

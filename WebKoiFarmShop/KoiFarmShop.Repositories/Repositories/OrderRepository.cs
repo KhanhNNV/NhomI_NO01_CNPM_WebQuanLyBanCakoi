@@ -27,7 +27,8 @@ namespace KoiFarmShop.Repositories.Repositories
             }
             catch (Exception ex) 
             {
-                throw new NotImplementedException(ex.ToString());
+                Console.WriteLine($"Database update error: {ex.Message}");
+                return false;
             }
         }
 
@@ -77,11 +78,13 @@ namespace KoiFarmShop.Repositories.Repositories
                 => p.OrderId.Equals(id)).FirstOrDefaultAsync();
         }
 
+
         public bool UpdateOrder(Order order)
         {
             try
             {
                 _dbContext.Orders.Update(order);
+                _dbContext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -89,6 +92,26 @@ namespace KoiFarmShop.Repositories.Repositories
                 throw new NotImplementedException(ex.ToString());
             }
 
+        }
+
+        public bool UpdateOrder(int id)
+        {
+            try
+            {
+                var objDel = _dbContext.Orders.Where(p
+                    => p.OrderId.Equals(id)).FirstOrDefault();
+                if (objDel != null)
+                {
+                    _dbContext.Orders.Update(objDel);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
         }
     }
 }

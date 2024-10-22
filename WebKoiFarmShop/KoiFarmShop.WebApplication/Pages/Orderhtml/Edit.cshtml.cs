@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Services.InterfaceService;
 
 namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 {
     public class EditModel : PageModel
     {
-        private readonly KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext _context;
+        private readonly IOrderService _orderService;
 
-        public EditModel(KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext context)
+        public EditModel(IOrderService orderService)
         {
-            _context = context;
+            _orderService = orderService;
         }
 
         [BindProperty]
@@ -29,12 +30,13 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return NotFound();
             }
 
-            var order =  await _context.Orders.FirstOrDefaultAsync(m => m.OrderId == id);
+            var order =  await _orderService.GetAllOrdersById((int)id);
             if (order == null)
             {
                 return NotFound();
             }
             Order = order;
+
            ViewData["CustomerId"] = new SelectList(_context.Users, "UserId", "FullName");
             return Page();
         }
