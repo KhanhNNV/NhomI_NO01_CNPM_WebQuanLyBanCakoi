@@ -83,6 +83,7 @@ namespace KoiFarmShop.Repositories.Repositories
         {
             try
             {
+                _dbContext.Attach(order).State = EntityState.Modified;
                 _dbContext.Orders.Update(order);
                 _dbContext.SaveChanges();
                 return true;

@@ -6,16 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Services.InterfaceService;
 
 namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 {
     public class DetailsModel : PageModel
     {
-        private readonly KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext _context;
+        private readonly IOrderService _orderService;
 
-        public DetailsModel(KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext context)
+        public DetailsModel(IOrderService orderService)
         {
-            _context = context;
+            _orderService=orderService;
         }
 
         public Order Order { get; set; } = default!;
@@ -27,7 +28,7 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return NotFound();
             }
 
-            var order = await _context.Orders.FirstOrDefaultAsync(m => m.OrderId == id);
+            var order = await _orderService.GetAllOrdersById((int)id);
             if (order == null)
             {
                 return NotFound();

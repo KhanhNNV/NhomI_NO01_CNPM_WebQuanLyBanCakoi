@@ -37,8 +37,8 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
             }
             Order = order;
 
-           ViewData["CustomerId"] = new SelectList(_context.Users, "UserId", "FullName");
-            return Page();
+           //ViewData["CustomerId"] = new SelectList(_context.Users, "UserId", "FullName");
+           return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -50,30 +50,15 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return Page();
             }
 
-            _context.Attach(Order).State = EntityState.Modified;
+            _orderService.UpdateOrder(Order);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderExists(Order.OrderId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
             return RedirectToPage("./Index");
         }
 
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.OrderId == id);
-        }
+        //private bool OrderExists(int id)
+        //{
+        //    return _context.Orders.Any(e => e.OrderId == id);
+        //}
     }
 }
