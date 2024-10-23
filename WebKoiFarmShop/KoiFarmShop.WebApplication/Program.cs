@@ -22,12 +22,16 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ICaragoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IKoiCateRepository, KoiCateRepository>();
+builder.Services.AddScoped<IKoiRepository, KoiRepository>();
+builder.Services.AddScoped<ICmtKoiRepository, CmtKoiRepository>();
 //DI services
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IKoiCateService, KoiCateService>();
+builder.Services.AddScoped<IKoiService, KoiService>();
+builder.Services.AddScoped<ICmtKoiService, CmtKoiService>();
 
 
 
