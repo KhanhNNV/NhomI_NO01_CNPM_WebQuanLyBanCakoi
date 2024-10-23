@@ -7,20 +7,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Services.Interface;
 
 namespace KoiFarmShop.WebApplication.Pages.Role
 {
     public class EditModel : PageModel
     {
-        private readonly KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext _context;
+        private readonly IRoleServices _services;
 
-        public EditModel(KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext context)
+        public EditModel(IRoleServices services)
         {
-            _context = context;
+            _services = services;
         }
 
         [BindProperty]
-        public Role Role { get; set; } = default!;
+        public KoiFarmShop.Repositories.Entities.Role Role { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,7 +30,7 @@ namespace KoiFarmShop.WebApplication.Pages.Role
                 return NotFound();
             }
 
-            var role =  await _context.Roles.FirstOrDefaultAsync(m => m.RoleId == id);
+            var role =  await _services.GetRoleById(id.Value);
             if (role == null)
             {
                 return NotFound();
@@ -46,12 +47,9 @@ namespace KoiFarmShop.WebApplication.Pages.Role
             {
                 return Page();
             }
-
-            _context.Attach(Role).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _services.Role();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -68,9 +66,9 @@ namespace KoiFarmShop.WebApplication.Pages.Role
             return RedirectToPage("./Index");
         }
 
-        private bool RoleExists(int id)
+        private bool RoleExists(int roleId)
         {
-            return _context.Roles.Any(e => e.RoleId == id);
+            throw new NotImplementedException();
         }
     }
 }

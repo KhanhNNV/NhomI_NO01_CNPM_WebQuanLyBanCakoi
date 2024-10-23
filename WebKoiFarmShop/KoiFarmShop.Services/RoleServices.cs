@@ -19,6 +19,8 @@ namespace KoiFarmShop.Services
             _repositories = repositories;
         }
 
+        public object Roles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public bool AddRole(Role RoleName)
         {
             return _repositories.AddRole(RoleName);

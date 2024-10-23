@@ -6,19 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Services.Interface;
+using KoiFarmShop.Services;
 
 namespace KoiFarmShop.WebApplication.Pages.Role
 {
     public class DetailsModel : PageModel
     {
-        private readonly KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext _context;
+        private readonly IRoleServices _services;
 
-        public DetailsModel(KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext context)
+        public DetailsModel(IRoleServices services)
         {
-            _context = context;
+            _services = services;
         }
 
-        public Role Role { get; set; } = default!;
+        public KoiFarmShop.Repositories.Entities.Role Role { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -26,15 +28,14 @@ namespace KoiFarmShop.WebApplication.Pages.Role
             {
                 return NotFound();
             }
-
-            var role = await _context.Roles.FirstOrDefaultAsync(m => m.RoleId == id);
-            if (role == null)
+            var role = await _services.GetRoleById(id.Value);
+            if (Role == null)
             {
                 return NotFound();
             }
             else
             {
-                Role = role;
+                Role = Role;
             }
             return Page();
         }

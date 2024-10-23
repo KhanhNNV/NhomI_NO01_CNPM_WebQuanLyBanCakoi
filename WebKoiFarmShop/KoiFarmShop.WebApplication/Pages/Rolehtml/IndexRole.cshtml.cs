@@ -19,11 +19,11 @@ namespace KoiFarmShop.WebApplication.Pages.Role
            _services = services;
         }
 
-        public IList<Role> Role_ { get; set; } = default!;
+        public IList<IRoleServices> Role_ { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Role_ = await _services.Role();
+            Role_ = (IList<IRoleServices>)await _services.Role();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace KoiFarmShop.Services.Interface
 {
     public interface IRoleServices
     {
+        object Roles { get; set; }
+
         Task<List<Role>> Role();
         Boolean DelRole(int RoleId);
         Boolean DelRole(Role RoleName);

@@ -20,7 +20,7 @@ namespace KoiFarmShop.WebApplication.Pages.Role
         }
 
         [BindProperty]
-        public Role Role_ { get; set; } = default!;
+        public KoiFarmShop.Repositories.Entities.Role Role_ { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -39,7 +39,7 @@ namespace KoiFarmShop.WebApplication.Pages.Role
             }
             else
             {
-                Role = Role;
+                role = role;
             }
             return Page();
         }
