@@ -1,0 +1,72 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.Userhtml.IndexModel
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].UserAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].CreatedDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].UpdateDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.User) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.RoleId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

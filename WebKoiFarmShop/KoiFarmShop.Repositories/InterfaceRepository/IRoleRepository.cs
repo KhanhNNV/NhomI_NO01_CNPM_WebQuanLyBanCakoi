@@ -10,10 +10,10 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
     public interface IRoleRepository
     {
         Task<List<Role>> GetAllRole();
-        Boolean DelRole(int RoleId);
-        Boolean DelRole(Role RoleName);
-        Boolean AddRole(Role RoleName);
+        Boolean DelRole(int Id);
+        Boolean DelRole(Role role);
+        Boolean AddRole(Role role);
         Boolean UpRole(Role role);
-        Task<Role> GetRoleById(int RoleId);
+        Task<Role> GetRoleById(int Id);
     }
 }

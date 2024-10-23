@@ -1,5 +1,6 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories.InterfaceRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace KoiFarmShop.Repositories.Repositories
         {
             _dbContext = dbContext;
         }
-        public bool AddUser(User UserName)
+        public bool AddUser(User user)
         {
             try
             {
-                _dbContext.Users.Add(UserName);
+                _dbContext.Users.Add(user);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -29,14 +30,14 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public bool DelUser(int UserId)
+        public bool DelUser(int id)
         {
             try
             {
-                var objDel = _dbContext.Roles.Where(p => p.RoleId.Equals(UserId)).FirstOrDefault();
+                var objDel = _dbContext.Users.Where(p => p.UserId.Equals(id)).FirstOrDefault();
                 if (objDel != null)
                 {
-                    _dbContext.Roles.Remove(objDel);
+                    _dbContext.Users.Remove(objDel);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -64,12 +65,12 @@ namespace KoiFarmShop.Repositories.Repositories
 
         public async Task<List<User>> GetAllUser()
         {
-            return await _dbContext.Users.ToListAsync();
+            return await _dbContext.Users.Include(u => u.Role).ToListAsync();
         }
 
-        public async Task<User> GetUserById(int UserId)
+        public async Task<User> GetUserById(int id)
         {
-            return await _dbContext.Users.Where(p => p.RoleId.Equals(UserId)).FirstOrDefaultAsync();
+            return await _dbContext.Users.Where(p => p.UserId.Equals(id)).FirstOrDefaultAsync();
         }
 
         public bool UpUser(User User)
@@ -77,6 +78,7 @@ namespace KoiFarmShop.Repositories.Repositories
             try
             {
                 _dbContext.Users.Update(User);
+                _dbContext.SaveChanges();
                 return true;
             }
             catch (Exception ex)

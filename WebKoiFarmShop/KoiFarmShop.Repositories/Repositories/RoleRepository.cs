@@ -16,11 +16,11 @@ namespace KoiFarmShop.Repositories.Repositories
         {
             _dbContext = dbContext;
         }
-        public bool AddRole(Role RoleName)
+        public bool AddRole(Role role)
         {
             try
             {
-                _dbContext.Roles.Add(RoleName);
+                _dbContext.Roles.Add(role);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -29,11 +29,11 @@ namespace KoiFarmShop.Repositories.Repositories
                 throw new NotImplementedException();
             }
         }
-        public bool DelRole(int RoleId)
+        public bool DelRole(int id)
         {
             try
             {
-                var objDel = _dbContext.Roles.Where(p => p.RoleId.Equals(RoleId)).FirstOrDefault();
+                var objDel = _dbContext.Roles.Where(p => p.RoleId.Equals(id)).FirstOrDefault();
                 if (objDel != null)
                 {
                     _dbContext.Roles.Remove(objDel);
@@ -48,11 +48,11 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public bool DelRole(Role RoleName)
+        public bool DelRole(Role role)
         {
             try
             {
-                _dbContext.Roles.Remove(RoleName);
+                _dbContext.Roles.Remove(role);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -67,9 +67,9 @@ namespace KoiFarmShop.Repositories.Repositories
             return await _dbContext.Roles.ToListAsync();
         }
 
-        public async Task<Role> GetRoleById(int RoleId)
+        public async Task<Role> GetRoleById(int id)
         {
-            return await _dbContext.Roles.Where(p => p.RoleId.Equals(RoleId)).FirstOrDefaultAsync();
+            return await _dbContext.Roles.Where(p => p.RoleId.Equals(id)).FirstOrDefaultAsync();
         }
         public bool UpRole(Role role)
         {

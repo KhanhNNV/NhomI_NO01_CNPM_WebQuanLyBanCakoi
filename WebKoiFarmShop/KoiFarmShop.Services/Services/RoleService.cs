@@ -38,9 +38,9 @@ namespace KoiFarmShop.Services.Services
             return await _repositories.GetRoleById(roleId);
         }
 
-        public Task<List<Role>> GetAllRole()
+        public async Task<List<Role>> GetAllRole()
         {
-            return _repositories.GetAllRole();
+            return await _repositories.GetAllRole();
         }
         public bool UpRole(Role role)
         {
@@ -49,4 +49,4 @@ namespace KoiFarmShop.Services.Services
 
     }
 }
-}
+

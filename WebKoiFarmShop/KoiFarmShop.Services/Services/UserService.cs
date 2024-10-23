@@ -42,9 +42,9 @@ namespace KoiFarmShop.Services.Services
             return _userRepositories.UpUser(user);
         }
 
-        public Task<List<User>> GetAllUser()
+        public async Task<List<User>> GetAllUser()
         {
-            return _userRepositories.GetAllUser();
+            return await _userRepositories.GetAllUser();
         }
     }
 }

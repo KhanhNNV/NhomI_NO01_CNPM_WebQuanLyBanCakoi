@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Userhtml\**" />
-    <Content Remove="Pages\Userhtml\**" />
-    <EmbeddedResource Remove="Pages\Userhtml\**" />
-    <None Remove="Pages\Userhtml\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\KoiFarmShop.Services\KoiFarmShop.Services.csproj" />
   </ItemGroup>
 
@@ -23,10 +16,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Rolehtml\" />
   </ItemGroup>
 
 </Project>

@@ -10,10 +10,10 @@ namespace KoiFarmShop.Services.InterfaceService
     public interface IUserService
     {
         Task<List<User>> GetAllUser();
-        Boolean DelUser(int UserId);
-        Boolean DelUser(User UserName);
-        Boolean AddUser(User UserName);
+        Boolean DelUser(int Id);
+        Boolean DelUser(User user);
+        Boolean AddUser(User user);
         Boolean UpUser(User user);
-        Task<User> GetUserById(int UserId);
+        Task<User> GetUserById(int Id);
     }
 }

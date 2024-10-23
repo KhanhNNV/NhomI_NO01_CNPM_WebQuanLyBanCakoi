@@ -10,10 +10,10 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
     public interface IUserRepository
     {
         Task<List<User>> GetAllUser();
-        Boolean DelUser(int UserId);
-        Boolean DelUser(User UserName);
-        Boolean AddUser(User UserName);
-        Boolean UpUser(User User);
-        Task<User> GetUserById(int UserId);
+        Boolean DelUser(int Id);
+        Boolean DelUser(User user);
+        Boolean AddUser(User user);
+        Boolean UpUser(User user);
+        Task<User> GetUserById(int Id);
     }
 }

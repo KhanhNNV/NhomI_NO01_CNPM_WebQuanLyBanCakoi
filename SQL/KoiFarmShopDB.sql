@@ -167,6 +167,7 @@ CREATE TABLE [Orders]
   [UpdateDay] date
 )
 GO
+ALTER TABLE [Orders] ADD DEFAULT GETDATE() FOR [UpdateDay];
 
 
 CREATE TABLE [OrderDetail] 
