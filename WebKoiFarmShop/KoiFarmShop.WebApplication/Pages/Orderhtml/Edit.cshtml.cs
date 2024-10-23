@@ -56,9 +56,9 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
             return RedirectToPage("./Index");
         }
 
-        //private bool OrderExists(int id)
-        //{
-        //    return _context.Orders.Any(e => e.OrderId == id);
-        //}
+        private bool OrderExists(int id)
+        {
+            return _orderService.GetAllOrdersById(id) != null;
+        }
     }
 }
