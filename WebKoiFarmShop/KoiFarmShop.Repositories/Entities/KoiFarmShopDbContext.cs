@@ -389,4 +389,6 @@ public partial class KoiFarmShopDbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    public DbSet<KoiCategory> KoiCategories { get; set; }
+
 }

@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KoiFarmShop.Repositories.Entities;
-
-public partial class Category
+namespace KoiFarmShop.Repositories.Entities
 {
-    public int CategoryId { get; set; }
+    public partial class Category
+    {
+        public int CateId { get; set; } // ID của danh mục
+        public string CateName { get; set; } = null!; // Tên danh mục
+        public string? Description { get; set; } // Mô tả danh mục
+        public DateTime CreatedDay { get; set; } // Ngày tạo
+        public DateTime? UpdateDay { get; set; } // Ngày cập nhật (nếu có)
 
-    public string? Title { get; set; }
-
-    public virtual ICollection<Blog> Blogs { get; set; } = new List<Blog>();
-
-    public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
-
-    public virtual ICollection<Contact> Contacts { get; set; } = new List<Contact>();
-
-    public virtual ICollection<KoiCategory> KoiCategories { get; set; } = new List<KoiCategory>();
-
-    public virtual ICollection<News> News { get; set; } = new List<News>();
+        // Liên kết đến danh sách Koi
+        public virtual ICollection<Koi> Koi { get; set; } = new List<Koi>();
+    }
 }
