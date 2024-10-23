@@ -3,13 +3,17 @@ using KoiFarmShop.Repositories.InterfaceRepository;
 using KoiFarmShop.Repositories.Repositories;
 using KoiFarmShop.Services.InterfaceService;
 using KoiFarmShop.Services.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 //DI
-builder.Services.AddDbContext<KoiFarmShopDbContext>();
+builder.Services.AddDbContext<KoiFarmShopDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbContext"));
+});
 //DI repositories
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 //DI services
