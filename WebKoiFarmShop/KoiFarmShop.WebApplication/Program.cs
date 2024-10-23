@@ -1,8 +1,23 @@
+using KoiFarmShop.Repositories;
+using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Repositories.InterfaceRepository;
+using KoiFarmShop.Services;
+using KoiFarmShop.Services.InterfaceService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+//DI
+builder.Services.AddDbContext<KoiFarmShopDbContext>();
+//DI repository
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+//DI service
+builder.Services.AddScoped<IBookingServices, BookingServices>();
+//DI repository
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+//DI service
+builder.Services.AddScoped<IContactServices, ContactServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

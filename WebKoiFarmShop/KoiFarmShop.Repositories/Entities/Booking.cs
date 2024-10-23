@@ -44,4 +44,9 @@ public partial class Booking
     public virtual Category? Cate { get; set; }
 
     public virtual User? Customer { get; set; }
+
+    public static implicit operator Booking(List<Booking> v)
+    {
+        throw new NotImplementedException();
+    }
 }
