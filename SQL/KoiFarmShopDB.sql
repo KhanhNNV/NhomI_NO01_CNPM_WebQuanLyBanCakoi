@@ -1,4 +1,4 @@
-﻿create database KoiFarmShopDB
+﻿﻿create database KoiFarmShopDB
 go
 
 use KoiFarmShopDB

@@ -389,5 +389,10 @@ public partial class KoiFarmShopDbContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+    internal void Remove(object bookinghtml)
+    {
+        throw new NotImplementedException();
+    }
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
