@@ -5,16 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoiFarmShop.Services.Interface
+namespace KoiFarmShop.Repositories.InterfaceRepository
 {
-    public interface IUserServices
+    public interface IUserRepository
     {
-        object Roles { get; set; }
-        Task<List<User>> User();
+        Task<List<User>> GetAllUser();
         Boolean DelUser(int UserId);
         Boolean DelUser(User UserName);
         Boolean AddUser(User UserName);
-        Boolean UpUser(User user);
+        Boolean UpUser(User User);
         Task<User> GetUserById(int UserId);
     }
 }

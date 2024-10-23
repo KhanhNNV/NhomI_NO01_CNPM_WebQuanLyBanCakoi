@@ -1,28 +1,26 @@
 ﻿using KoiFarmShop.Repositories.Entities;
-using KoiFarmShop.Repositories.Interface;
-using KoiFarmShop.Services.Interface;
+using KoiFarmShop.Repositories.InterfaceRepository;
+using KoiFarmShop.Services.InterfaceService;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoiFarmShop.Services
+namespace KoiFarmShop.Services.Services
 {
-    public class UserServices : IUserServices
+    public class UserService : IUserService
     {
-        private readonly IUserRepositories _userRepositories;
-        public UserServices(IUserRepositories userRepositories)
+        private readonly IUserRepository _userRepositories;
+        public UserService(IUserRepository userRepositories)
         {
             _userRepositories = userRepositories;
         }
 
-        public object Roles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public bool AddUser(User UserName)
         {
-           return _userRepositories.AddUser(UserName);
+            return _userRepositories.AddUser(UserName);
         }
 
         public bool DelUser(int UserId)
@@ -44,7 +42,7 @@ namespace KoiFarmShop.Services
             return _userRepositories.UpUser(user);
         }
 
-        public Task<List<User>> User()
+        public Task<List<User>> GetAllUser()
         {
             return _userRepositories.GetAllUser();
         }

@@ -1,13 +1,13 @@
-﻿using System;
+﻿using KoiFarmShop.Repositories.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KoiFarmShop.Repositories.Entities;
 
-namespace KoiFarmShop.Repositories.Interface
+namespace KoiFarmShop.Services.InterfaceService
 {
-    public interface IRoleRepositories
+    public interface IRoleService
     {
         Task<List<Role>> GetAllRole();
         Boolean DelRole(int RoleId);

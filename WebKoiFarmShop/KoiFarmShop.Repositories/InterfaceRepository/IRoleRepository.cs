@@ -5,13 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoiFarmShop.Services.Interface
+namespace KoiFarmShop.Repositories.InterfaceRepository
 {
-    public interface IRoleServices
+    public interface IRoleRepository
     {
-        object Roles { get; set; }
-
-        Task<List<Role>> Role();
+        Task<List<Role>> GetAllRole();
         Boolean DelRole(int RoleId);
         Boolean DelRole(Role RoleName);
         Boolean AddRole(Role RoleName);

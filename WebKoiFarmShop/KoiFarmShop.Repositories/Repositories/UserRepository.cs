@@ -1,56 +1,58 @@
-﻿using System;
+﻿using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Repositories.InterfaceRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KoiFarmShop.Repositories.Entities;
-using KoiFarmShop.Repositories.Interface;
-using Microsoft.EntityFrameworkCore;
 
-namespace KoiFarmShop.Repositories
+namespace KoiFarmShop.Repositories.Repositories
 {
-    public class RoleRepositories : IRoleRepositories
+    public class UserRepository :IUserRepository
     {
         private readonly KoiFarmShopDbContext _dbContext;
-        public RoleRepositories(KoiFarmShopDbContext dbContext)
+        public UserRepository(KoiFarmShopDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public bool AddRole(Role RoleName)
+        public bool AddUser(User UserName)
         {
             try
             {
-                _dbContext.Roles.Add(RoleName);
+                _dbContext.Users.Add(UserName);
                 _dbContext.SaveChanges();
                 return true;
-            }catch (Exception ex)
-            {            
+            }
+            catch (Exception ex)
+            {
                 throw new NotImplementedException();
             }
         }
-        public bool DelRole(int RoleId)
+
+        public bool DelUser(int UserId)
         {
             try
             {
-                var objDel = _dbContext.Roles.Where(p => p.RoleId.Equals(RoleId)).FirstOrDefault();
-                if(objDel != null)
+                var objDel = _dbContext.Roles.Where(p => p.RoleId.Equals(UserId)).FirstOrDefault();
+                if (objDel != null)
                 {
                     _dbContext.Roles.Remove(objDel);
                     _dbContext.SaveChanges();
                     return true;
                 }
                 return false;
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new NotImplementedException(ex.ToString());
             }
         }
 
-        public bool DelRole(Role RoleName)
+        public bool DelUser(User UserName)
         {
             try
             {
-                _dbContext.Roles.Remove(RoleName);
+                _dbContext.Users.Remove(UserName);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -60,22 +62,24 @@ namespace KoiFarmShop.Repositories
             }
         }
 
-        public async Task<List<Role>> GetAllRole()
+        public async Task<List<User>> GetAllUser()
         {
-            return await _dbContext.Roles.ToListAsync();
+            return await _dbContext.Users.ToListAsync();
         }
 
-        public async Task<Role> GetRoleById(int RoleId)
+        public async Task<User> GetUserById(int UserId)
         {
-            return await _dbContext.Roles.Where(p => p.RoleId.Equals(RoleId)).FirstOrDefaultAsync();
+            return await _dbContext.Users.Where(p => p.RoleId.Equals(UserId)).FirstOrDefaultAsync();
         }
-        public bool UpRole(Role role)
+
+        public bool UpUser(User User)
         {
             try
             {
-                _dbContext.Roles.Update(role);
+                _dbContext.Users.Update(User);
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }

@@ -1,25 +1,22 @@
-﻿using System;
+﻿using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Repositories.InterfaceRepository;
+using KoiFarmShop.Services.InterfaceService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KoiFarmShop.Repositories.Entities;
-using KoiFarmShop.Repositories.Interface;
-using KoiFarmShop.Services.Interface;
 
-namespace KoiFarmShop.Services
+namespace KoiFarmShop.Services.Services
 {
-    public class RoleServices : IRoleServices
+    public class RoleService : IRoleService
     {
-        private readonly IRoleRepositories _repositories;
-        public object RoleId;
-
-        public RoleServices(IRoleRepositories repositories)
+        private readonly IRoleRepository _repositories;
+       
+        public RoleService(IRoleRepository repositories)
         {
             _repositories = repositories;
         }
-
-        public object Roles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public bool AddRole(Role RoleName)
         {
@@ -41,7 +38,7 @@ namespace KoiFarmShop.Services
             return await _repositories.GetRoleById(roleId);
         }
 
-        public Task<List<Role>> Role()
+        public Task<List<Role>> GetAllRole()
         {
             return _repositories.GetAllRole();
         }
@@ -52,4 +49,4 @@ namespace KoiFarmShop.Services
 
     }
 }
-
+}
