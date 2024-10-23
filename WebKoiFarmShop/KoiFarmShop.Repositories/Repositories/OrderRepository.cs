@@ -69,13 +69,12 @@ namespace KoiFarmShop.Repositories.Repositories
 
         public async Task<List<Order>> GetAllOrder()
         {
-            return await _dbContext.Orders.ToListAsync();
+            return await _dbContext.Orders.Include(o => o.Customer).ToListAsync();
         }
 
         public async Task<Order> GetAllOrdersById(int id)
         {
-            return await _dbContext.Orders.Where(p
-                => p.OrderId.Equals(id)).FirstOrDefaultAsync();
+            return await _dbContext.Orders.Include(o => o.Customer).FirstOrDefaultAsync(o => o.OrderId == id);
         }
 
 
