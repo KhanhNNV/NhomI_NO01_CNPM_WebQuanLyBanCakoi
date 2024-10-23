@@ -1,4 +1,6 @@
 using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Repositories;
+using KoiFarmShop.Services;
 using KoiFarmShop.Repositories.InterfaceRepository;
 using KoiFarmShop.Repositories.Repositories;
 using KoiFarmShop.Services.InterfaceService;
@@ -15,9 +17,13 @@ builder.Services.AddDbContext<KoiFarmShopDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbContext"));
 });
 //DI repositories
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 //DI services
-builder.Services.AddScoped<IOrderService,OrderService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+
 
 var app = builder.Build();
 
