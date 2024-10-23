@@ -26,7 +26,7 @@ namespace KoiFarmShop.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(ex.ToString());
             }
         }
 
@@ -70,20 +70,21 @@ namespace KoiFarmShop.Repositories.Repositories
 
         public async Task<User> GetUserById(int id)
         {
-            return await _dbContext.Users.Where(p => p.UserId.Equals(id)).FirstOrDefaultAsync();
+            return await _dbContext.Users.Include(o => o.Role).FirstOrDefaultAsync(o => o.UserId == id);
         }
 
         public bool UpUser(User User)
         {
             try
             {
+                _dbContext.Attach(User).State = EntityState.Modified;
                 _dbContext.Users.Update(User);
                 _dbContext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-                return false;
+                throw new NotImplementedException(ex.ToString());
             }
         }
     }

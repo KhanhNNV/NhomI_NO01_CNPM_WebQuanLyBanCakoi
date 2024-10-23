@@ -94,24 +94,6 @@ namespace KoiFarmShop.Repositories.Repositories
 
         }
 
-        public bool UpdateOrder(int id)
-        {
-            try
-            {
-                var objDel = _dbContext.Orders.Where(p
-                    => p.OrderId.Equals(id)).FirstOrDefault();
-                if (objDel != null)
-                {
-                    _dbContext.Orders.Update(objDel);
-                    _dbContext.SaveChanges();
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                throw new NotImplementedException(ex.ToString());
-            }
-        }
+      
     }
 }

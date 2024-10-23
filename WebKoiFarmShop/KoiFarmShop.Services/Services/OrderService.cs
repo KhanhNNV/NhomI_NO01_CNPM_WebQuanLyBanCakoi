@@ -47,10 +47,5 @@ namespace KoiFarmShop.Services.Services
         {
             return _orderRepository.UpdateOrder(order) ;
         }
-
-        public bool UpdateOrder(int id)
-        {
-            return _orderRepository.UpdateOrder(id);
-        }
     }
 }

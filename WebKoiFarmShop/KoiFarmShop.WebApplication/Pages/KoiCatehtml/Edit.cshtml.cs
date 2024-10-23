@@ -8,22 +8,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
-using KoiFarmShop.Services.Services;
 
-namespace KoiFarmShop.WebApplication.Pages.Orderhtml
+namespace KoiFarmShop.WebApplication.Pages.KoiCatehtml
 {
     public class EditModel : PageModel
     {
-        private readonly IOrderService _orderService;
-        private readonly IUserService _userService;
-        public EditModel(IOrderService orderService, IUserService userService)
+        private readonly IKoiCateService _koiCateService;
+        private readonly ICategoryService _categoryService;
+
+        public EditModel(IKoiCateService koiCateService, ICategoryService categoryService)
         {
-            _orderService = orderService;
-            _userService = userService;
+            _koiCateService = koiCateService;
+            _categoryService = categoryService; 
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
+        public KoiCategory KoiCategory { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,15 +32,14 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return NotFound();
             }
 
-            var order =  await _orderService.GetAllOrdersById((int)id);
-            if (order == null)
+            var koicategory =  await _koiCateService.GetKoiCateById((int)id);
+            if (koicategory == null)
             {
                 return NotFound();
             }
-            Order = order;
-
-            var users = await _userService.GetAllUser();
-            ViewData["CustomerId"] = new SelectList(users, "UserId", "FullName");
+            KoiCategory = koicategory;
+            var cates = await _categoryService.GetAllCategory();
+           ViewData["CateId"] = new SelectList(cates, "CategoryId", "Title");
             return Page();
         }
 
@@ -53,15 +52,14 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return Page();
             }
 
-            _orderService.UpdateOrder(Order);
-
+            _koiCateService.UpdateKoiCate(KoiCategory);
 
             return RedirectToPage("./Index");
         }
 
-        private bool OrderExists(int id)
+        private bool KoiCategoryExists(int id)
         {
-            return _orderService.GetAllOrdersById(id) != null;
+            return _koiCateService.GetKoiCateById(id) != null;
         }
     }
 }

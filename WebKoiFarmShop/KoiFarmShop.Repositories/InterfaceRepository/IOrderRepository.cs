@@ -13,7 +13,6 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
         Boolean DeleteOrder(int id);
         Boolean DeleteOrder(Order order);
         Boolean UpdateOrder(Order order);
-        Boolean UpdateOrder(int id);
         Boolean AddOrder(Order order);
         Task<Order> GetAllOrdersById(int id);
 

@@ -8,22 +8,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
-using KoiFarmShop.Services.Services;
 
-namespace KoiFarmShop.WebApplication.Pages.Orderhtml
+namespace KoiFarmShop.WebApplication.Pages.Categoryhtml
 {
     public class EditModel : PageModel
     {
-        private readonly IOrderService _orderService;
-        private readonly IUserService _userService;
-        public EditModel(IOrderService orderService, IUserService userService)
+        private readonly ICategoryService _categoryService;
+
+        public EditModel(ICategoryService categoryService)
         {
-            _orderService = orderService;
-            _userService = userService;
+            _categoryService    = categoryService;
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
+        public Category Category { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,15 +30,12 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return NotFound();
             }
 
-            var order =  await _orderService.GetAllOrdersById((int)id);
-            if (order == null)
+            var category =  await _categoryService.GetCategoryById((int)id);
+            if (category == null)
             {
                 return NotFound();
             }
-            Order = order;
-
-            var users = await _userService.GetAllUser();
-            ViewData["CustomerId"] = new SelectList(users, "UserId", "FullName");
+            Category = category;
             return Page();
         }
 
@@ -53,15 +48,14 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return Page();
             }
 
-            _orderService.UpdateOrder(Order);
-
+            _categoryService.UpdateCategory(Category);
 
             return RedirectToPage("./Index");
         }
 
-        private bool OrderExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _orderService.GetAllOrdersById(id) != null;
+            return _categoryService.GetCategoryById(id) != null;
         }
     }
 }

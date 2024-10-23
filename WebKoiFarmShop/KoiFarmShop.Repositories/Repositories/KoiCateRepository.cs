@@ -9,34 +9,36 @@ using System.Threading.Tasks;
 
 namespace KoiFarmShop.Repositories.Repositories
 {
-    public class RoleRepository : IRoleRepository
+    public class KoiCateRepository : IKoiCateRepository
     {
         private readonly KoiFarmShopDbContext _dbContext;
-        public RoleRepository(KoiFarmShopDbContext dbContext)
+        public KoiCateRepository(KoiFarmShopDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public bool AddRole(Role role)
+
+        public bool AddKoiCate(KoiCategory koiCategory)
         {
             try
             {
-                _dbContext.Roles.Add(role);
+                _dbContext.KoiCategories.Add(koiCategory);
                 _dbContext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(ex.ToString());
             }
         }
-        public bool DelRole(int id)
+
+        public bool DeleteKoiCate(int id)
         {
             try
             {
-                var objDel = _dbContext.Roles.Where(p => p.RoleId.Equals(id)).FirstOrDefault();
+                var objDel = _dbContext.KoiCategories.Where(p => p.KoiCateId.Equals(id)).FirstOrDefault();
                 if (objDel != null)
                 {
-                    _dbContext.Roles.Remove(objDel);
+                    _dbContext.KoiCategories.Remove(objDel);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -48,11 +50,11 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public bool DelRole(Role role)
+        public bool DeleteKoiCate(KoiCategory koiCategory)
         {
             try
             {
-                _dbContext.Roles.Remove(role);
+                _dbContext.KoiCategories.Remove(koiCategory);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -62,21 +64,22 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public async Task<List<Role>> GetAllRole()
+        public async Task<List<KoiCategory>> GetAllKoiCate()
         {
-            return await _dbContext.Roles.ToListAsync();
+            return await _dbContext.KoiCategories.Include(u => u.Cate).ToListAsync();
         }
 
-        public async Task<Role> GetRoleById(int id)
+        public async Task<KoiCategory> GetKoiCateById(int id)
         {
-            return await _dbContext.Roles.Where(p => p.RoleId.Equals(id)).FirstOrDefaultAsync();
+            return await _dbContext.KoiCategories.Include(o => o.Cate).FirstOrDefaultAsync(o => o.KoiCateId == id);
         }
-        public bool UpRole(Role role)
+
+        public bool UpdateKoiCate(KoiCategory koiCategory)
         {
             try
             {
-                _dbContext.Attach(role).State = EntityState.Modified;
-                _dbContext.Roles.Update(role);
+                _dbContext.Attach(koiCategory).State = EntityState.Modified;
+                _dbContext.KoiCategories.Update(koiCategory);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -87,4 +90,3 @@ namespace KoiFarmShop.Repositories.Repositories
         }
     }
 }
-

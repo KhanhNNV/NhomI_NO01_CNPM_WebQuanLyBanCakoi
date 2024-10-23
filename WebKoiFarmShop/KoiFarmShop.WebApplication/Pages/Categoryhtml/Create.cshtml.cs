@@ -8,27 +8,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 
-namespace KoiFarmShop.WebApplication.Pages.Orderhtml
+namespace KoiFarmShop.WebApplication.Pages.Categoryhtml
 {
     public class CreateModel : PageModel
     {
-        private readonly IOrderService _orderService;
-        private readonly IUserService _userService;
-        public CreateModel(IOrderService orderService, IUserService userService)
+        private readonly ICategoryService _categoryService;
+
+        public CreateModel(ICategoryService categoryService)
         {
-            _orderService = orderService;
-            _userService= userService;
+            _categoryService    = categoryService;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
-            var users = await _userService.GetAllUser();
-            ViewData["CustomerId"] = new SelectList(users, "UserId", "FullName");
             return Page();
         }
 
         [BindProperty]
-        public Order Order_ { get; set; } = default!;
+        public Category Category { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +35,7 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
                 return Page();
             }
 
-             _orderService.AddOrder(Order_);
+            _categoryService.AddCategory(Category);
 
             return RedirectToPage("./Index");
         }
