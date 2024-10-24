@@ -1,3 +1,9 @@
+using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Repositories.Interface;
+using KoiFarmShop.Repositories;
+using KoiFarmShop.Services.Interface;
+using KoiFarmShop.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,3 +29,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
