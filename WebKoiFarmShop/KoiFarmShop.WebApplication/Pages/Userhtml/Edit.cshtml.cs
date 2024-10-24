@@ -39,7 +39,7 @@ namespace KoiFarmShop.WebApplication.Pages.Userhtml
             }
             User = user;
             var roles = await _roleService.GetAllRole();
-            ViewData["RoleId"] = new SelectList(roles, "RoleId", "RoleId");
+            ViewData["RoleId"] = new SelectList(roles, "RoleId", "RoleName");
             return Page();
         }
 
