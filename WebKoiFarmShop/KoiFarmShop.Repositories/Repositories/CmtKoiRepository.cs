@@ -35,7 +35,7 @@ namespace KoiFarmShop.Repositories.Repositories
         {
             try
             {
-                var objDel = _dbContext.CommentKois.Where(p => p.KoiId.Equals(Id)).FirstOrDefault();
+                var objDel = _dbContext.CommentKois.Where(p => p.CmtKoiId.Equals(Id)).FirstOrDefault();
                 if (objDel != null)
                 {
                     _dbContext.CommentKois.Remove(objDel);

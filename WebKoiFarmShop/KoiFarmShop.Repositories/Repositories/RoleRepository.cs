@@ -26,7 +26,7 @@ namespace KoiFarmShop.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(ex.ToString());
             }
         }
         public bool DelRole(int id)

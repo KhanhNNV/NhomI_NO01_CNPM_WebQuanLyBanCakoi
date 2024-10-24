@@ -27,8 +27,7 @@ namespace KoiFarmShop.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Database update error: {ex.Message}");
-                return false;
+                throw new NotImplementedException(ex.ToString());
             }
         }
 

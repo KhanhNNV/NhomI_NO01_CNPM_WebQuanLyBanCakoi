@@ -4,85 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KoiFarmShop.Repositories.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class NewsRepository : INewRepository
     {
         private readonly KoiFarmShopDbContext _dbContext;
-        public OrderRepository(KoiFarmShopDbContext dbContext) 
+        public NewsRepository(KoiFarmShopDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public bool AddOrder(Order order)
+        public bool AddNews(News news)
         {
             try
             {
-                _dbContext.Orders.Add(order);
-                _dbContext.SaveChanges();
-                return true;
-            }
-            catch (Exception ex) 
-            {
-                throw new NotImplementedException(ex.ToString());
-            }
-        }
-
-        public bool DeleteOrder(int id)
-        {
-            try
-            {
-                var objDel = _dbContext.Orders.Where(p
-                    => p.OrderId.Equals(id)).FirstOrDefault();
-                if (objDel != null)
-                {
-                    _dbContext.Orders.Remove(objDel);
-                    _dbContext.SaveChanges();
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception ex) 
-            {
-                throw new NotImplementedException(ex.ToString());
-            }
-        }
-
-        public bool DeleteOrder(Order order)
-        {
-            try
-            {
-                _dbContext.Orders.Remove(order);
-                _dbContext.SaveChanges();
-                return true;
-            }
-            catch(Exception ex)
-            {
-                throw new NotImplementedException(ex.ToString());
-                   
-            }
-        }
-
-        public async Task<List<Order>> GetAllOrder()
-        {
-            return await _dbContext.Orders.Include(o => o.Customer).ToListAsync();
-        }
-
-        public async Task<Order> GetAllOrdersById(int id)
-        {
-            return await _dbContext.Orders.Include(o => o.Customer).FirstOrDefaultAsync(o => o.OrderId == id);
-        }
-
-
-        public bool UpdateOrder(Order order)
-        {
-            try
-            {
-                _dbContext.Attach(order).State = EntityState.Modified;
-                _dbContext.Orders.Update(order);
+                _dbContext.News.Add(news);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -90,9 +30,70 @@ namespace KoiFarmShop.Repositories.Repositories
             {
                 throw new NotImplementedException(ex.ToString());
             }
-
         }
 
-      
+        public bool DeleteNews(int id)
+        {
+            try
+            {
+                var objDel = _dbContext.News.Where(p => p.NewId.Equals(id)).FirstOrDefault();
+                if (objDel != null)
+                {
+                    _dbContext.News.Remove(objDel);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
+        }
+
+        public bool DeleteNews(News news)
+        {
+            try
+            {
+                _dbContext.News.Remove(news);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
+        }
+
+        public async Task<List<News>> GetAllNews()
+        {
+            return await _dbContext.News
+                .Include(n => n.Cate)
+                .Include(n => n.CreatedByNavigation)
+                .Include(n => n.UpdateByNavigation).ToListAsync();
+        }
+
+        public async Task<News> GetNewsById(int id)
+        {
+            return await _dbContext.News
+                .Include(n => n.Cate)
+                .Include(n => n.CreatedByNavigation)
+                .Include(n => n.UpdateByNavigation).FirstOrDefaultAsync(o => o.NewId == id);
+        }
+
+        public bool UpdateNews(News news)
+        {
+            try
+            {
+                _dbContext.Attach(news).State = EntityState.Modified;
+                _dbContext.News.Update(news);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
+        }
     }
 }

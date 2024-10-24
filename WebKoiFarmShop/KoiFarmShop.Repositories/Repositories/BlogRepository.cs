@@ -9,80 +9,19 @@ using System.Threading.Tasks;
 
 namespace KoiFarmShop.Repositories.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class BlogRepository : IBlogRepository
     {
         private readonly KoiFarmShopDbContext _dbContext;
-        public OrderRepository(KoiFarmShopDbContext dbContext) 
+        public BlogRepository(KoiFarmShopDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public bool AddOrder(Order order)
+        public bool AddBlog(Blog blog)
         {
             try
             {
-                _dbContext.Orders.Add(order);
-                _dbContext.SaveChanges();
-                return true;
-            }
-            catch (Exception ex) 
-            {
-                throw new NotImplementedException(ex.ToString());
-            }
-        }
-
-        public bool DeleteOrder(int id)
-        {
-            try
-            {
-                var objDel = _dbContext.Orders.Where(p
-                    => p.OrderId.Equals(id)).FirstOrDefault();
-                if (objDel != null)
-                {
-                    _dbContext.Orders.Remove(objDel);
-                    _dbContext.SaveChanges();
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception ex) 
-            {
-                throw new NotImplementedException(ex.ToString());
-            }
-        }
-
-        public bool DeleteOrder(Order order)
-        {
-            try
-            {
-                _dbContext.Orders.Remove(order);
-                _dbContext.SaveChanges();
-                return true;
-            }
-            catch(Exception ex)
-            {
-                throw new NotImplementedException(ex.ToString());
-                   
-            }
-        }
-
-        public async Task<List<Order>> GetAllOrder()
-        {
-            return await _dbContext.Orders.Include(o => o.Customer).ToListAsync();
-        }
-
-        public async Task<Order> GetAllOrdersById(int id)
-        {
-            return await _dbContext.Orders.Include(o => o.Customer).FirstOrDefaultAsync(o => o.OrderId == id);
-        }
-
-
-        public bool UpdateOrder(Order order)
-        {
-            try
-            {
-                _dbContext.Attach(order).State = EntityState.Modified;
-                _dbContext.Orders.Update(order);
+                _dbContext.Blogs.Add(blog);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -90,9 +29,70 @@ namespace KoiFarmShop.Repositories.Repositories
             {
                 throw new NotImplementedException(ex.ToString());
             }
-
         }
 
-      
+        public bool DeleteBlog(int id)
+        {
+            try
+            {
+                var objDel = _dbContext.Blogs.Where(p => p.BlogId.Equals(id)).FirstOrDefault();
+                if (objDel != null)
+                {
+                    _dbContext.Blogs.Remove(objDel);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
+        }
+
+        public bool DeleteBlog(Blog blog)
+        {
+            try
+            {
+                _dbContext.Blogs.Remove(blog);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
+        }
+
+        public async Task<List<Blog>> GetAllBlog()
+        {
+            return await _dbContext.Blogs
+                .Include(b => b.Cate)
+                .Include(b => b.CreatedByNavigation)
+                .Include(b => b.UpdateByNavigation).ToListAsync();
+        }
+
+        public async Task<Blog> GetBlogById(int id)
+        {
+            return await _dbContext.Blogs
+                .Include(b => b.Cate)
+                .Include(b => b.CreatedByNavigation)
+                .Include(b => b.UpdateByNavigation).FirstOrDefaultAsync(o => o.BlogId == id);
+        }
+
+        public bool UpdateBlog(Blog blog)
+        {
+            try
+            {
+                _dbContext.Attach(blog).State = EntityState.Modified;
+                _dbContext.Blogs.Update(blog);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
+        }
     }
 }

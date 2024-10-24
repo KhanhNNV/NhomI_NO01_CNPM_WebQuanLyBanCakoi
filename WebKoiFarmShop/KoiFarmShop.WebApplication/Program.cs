@@ -24,6 +24,10 @@ builder.Services.AddScoped<ICaragoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IKoiCateRepository, KoiCateRepository>();
 builder.Services.AddScoped<IKoiRepository, KoiRepository>();
 builder.Services.AddScoped<ICmtKoiRepository, CmtKoiRepository>();
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<ICmtBlogRepository, CmtBlogRepository>();
+builder.Services.AddScoped<INewRepository, NewsRepository>();
+builder.Services.AddScoped<ICmtNewsRepository, CmtNewsRepository>();
 //DI services
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -32,6 +36,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IKoiCateService, KoiCateService>();
 builder.Services.AddScoped<IKoiService, KoiService>();
 builder.Services.AddScoped<ICmtKoiService, CmtKoiService>();
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<ICmtBlogService, CmtBlogService>();
+builder.Services.AddScoped<INewsService, NewsService>();
+builder.Services.AddScoped<ICmtNewsService, CmtNewsService>();
 
 
 
