@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KoiFarmShop.Repositories.InterfaceRepository
 {
-    public interface ICaragoryRepository
+    public interface ICategoryRepository
     {
         Task<List<Category>> GetAllCategory();
         Boolean DeleteCategory(int id);
