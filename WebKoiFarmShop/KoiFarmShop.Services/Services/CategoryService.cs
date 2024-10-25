@@ -11,8 +11,8 @@ namespace KoiFarmShop.Services.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly ICaragoryRepository _categoryRepository;
-        public CategoryService(ICaragoryRepository caragoryRepository)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryService(ICategoryRepository caragoryRepository)
         {
             _categoryRepository = caragoryRepository;
         }

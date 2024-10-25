@@ -20,7 +20,7 @@ builder.Services.AddDbContext<KoiFarmShopDbContext>(options =>
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<ICaragoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IKoiCateRepository, KoiCateRepository>();
 builder.Services.AddScoped<IKoiRepository, KoiRepository>();
 builder.Services.AddScoped<ICmtKoiRepository, CmtKoiRepository>();
@@ -28,6 +28,7 @@ builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<ICmtBlogRepository, CmtBlogRepository>();
 builder.Services.AddScoped<INewRepository, NewsRepository>();
 builder.Services.AddScoped<ICmtNewsRepository, CmtNewsRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 //DI services
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -40,6 +41,7 @@ builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<ICmtBlogService, CmtBlogService>();
 builder.Services.AddScoped<INewsService, NewsService>();
 builder.Services.AddScoped<ICmtNewsService, CmtNewsService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 
 
