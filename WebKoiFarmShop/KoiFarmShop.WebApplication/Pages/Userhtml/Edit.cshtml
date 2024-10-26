@@ -9,7 +9,7 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Create</h5>
-                    <small class="text-muted float-end">Default label</small>
+                    
                 </div>
                 <div class="card-body">
 
@@ -46,20 +46,20 @@
                             <input asp-for="User.UserAddress" class="form-control" />
                             <span asp-validation-for="User.UserAddress" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label asp-for="User.CreatedDay" class="control-label"></label>
                             <input class="form-control" asp-for="User.CreatedDay" type="date" id="html5-date-input" />
 
                             <span asp-validation-for="User.CreatedDay" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label asp-for="User.UpdateDay" class="control-label"></label>
                             <input class="form-control" asp-for="User.UpdateDay" type="date" id="html5-date-input" />
 
                             <span asp-validation-for="User.UpdateDay" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <input type="submit" value="Save" class="btn btn-primary" />
                         </div>
                         <div class="mb-3">
                             <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
