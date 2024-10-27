@@ -12,17 +12,23 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
 {
     public class CreateModel : PageModel
     {
-        private readonly IBookingServices _services;
+        private readonly IBookingService _bookingService;
+        private readonly ICategoryService _categoryService;
+        private readonly IUserService _userService;
 
-        public CreateModel(IBookingServices services)
+        public CreateModel(IBookingService bookingService, ICategoryService categoryService, IUserService userService)
         {
-            _services = services;
+            _bookingService = bookingService;
+            _categoryService = categoryService;
+            _userService = userService;
         }
 
-        public IActionResult OnGet()
+        public async Task <IActionResult> OnGetAsync()
         {
-        ViewData["CateId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
-        ViewData["CustomerId"] = new SelectList(_context.Users, "UserId", "FullName");
+            var cate= await _categoryService.GetAllCategory();
+            var user= await _userService.GetAllUser();
+            ViewData["CateId"] = new SelectList(cate, "CategoryId", "Title");
+            ViewData["CustomerId"] = new SelectList(user, "UserId", "FullName");
             return Page();
         }
 
@@ -37,8 +43,7 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
                 return Page();
             }
 
-            _context.Bookings.Add(Booking);
-            await _context.SaveChangesAsync();
+           _bookingService.AddBooking(Booking);
 
             return RedirectToPage("./Index");
         }

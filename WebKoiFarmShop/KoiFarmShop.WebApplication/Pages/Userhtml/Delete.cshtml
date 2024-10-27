@@ -1,0 +1,77 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.Userhtml.DeleteModel
+
+<div class="card mb-4">
+    <h5 class="card-header"><strong>Are you sure you want to delete this?</strong></h5>
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.User.FullName)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.FullName)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.User.Phone)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.Phone)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.User.Password)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.Password)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.User.RoleId)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.RoleId)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.User.Email)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.Email)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.User.UserAddress)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.UserAddress)</p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="html5-date-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.User.CreatedDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Model.User.CreatedDay?.ToString("yyyy-MM-dd")</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-date-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.User.UpdateDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Model.User.UpdateDay?.ToString("yyyy-MM-dd")</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.User.CreatedDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.CreatedDay)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.User.UpdateDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.User.UpdateDay)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <form method="post">
+                <input type="hidden" asp-for="User.UserId" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <button type="button" class="btn btn-secondary"> <a asp-page="./Index" style="color:white">Back to List</a></button>
+
+            </form>            
+        </div>
+    </div>
+</div>

@@ -10,8 +10,4 @@
     <ProjectReference Include="..\KoiFarmShop.Repositories\KoiFarmShop.Repositories.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

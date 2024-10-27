@@ -12,26 +12,23 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
 {
     public class DetailsModel : PageModel
     {
-        private readonly IBookingServices _services;
+        private readonly IBookingService _bookingService;
 
-        public DetailsModel(IBookingServices services)
+        public DetailsModel(IBookingService bookingService)
         {
-            _services = services;
+            _bookingService = bookingService;
         }
 
         public Booking Booking { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            int Id = 0;
             if (id == null)
             {
-                Id = 0;
                 return NotFound();
             }
-            Id = (int)id;
 
-            var booking = await _services.GetBookingbyId(Id);
+            var booking = await _bookingService.GetBookingById((int)id);
             if (booking == null)
             {
                 return NotFound();

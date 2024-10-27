@@ -12,19 +12,18 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
 {
     public class IndexModel : PageModel
     {
-        private readonly IBookingServices _services;
+        private readonly IBookingService _bookingService;
 
-        public IndexModel(IBookingServices services)
+        public IndexModel(IBookingService bookingService)
         {
-            _services = services;
+            _bookingService = bookingService;
         }
 
         public IList<Booking> Booking { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Booking = await _services.Bookings();
+            Booking = await _bookingService.GetAllBooking();
         }
-
     }
 }

@@ -12,11 +12,11 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
 {
     public class DeleteModel : PageModel
     {
-        private readonly IBookingServices _services;    
+        private readonly IBookingService _bookingService;
 
-        public DeleteModel(IBookingServices services)
+        public DeleteModel(IBookingService bookingService)
         {
-            _services = services;   
+            _bookingService = bookingService;
         }
 
         [BindProperty]
@@ -24,18 +24,15 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            int Id = 0;
             if (id == null)
             {
-                Id = 0;
                 return NotFound();
             }
-            Id=(int)id;
 
-            var booking = await _services.GetBookingbyId(Id);
+            var booking = await _bookingService.GetBookingById((int)id);
 
             if (booking == null)
-            {   
+            {
                 return NotFound();
             }
             else
@@ -51,9 +48,10 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
             {
                 return NotFound();
             }
-             _services.DelBooking((int)id); 
+
+           _bookingService.DeleteBooking((int)id);
+
             return RedirectToPage("./Index");
         }
     }
 }
-    
