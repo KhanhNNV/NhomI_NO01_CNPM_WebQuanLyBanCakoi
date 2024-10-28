@@ -88,9 +88,6 @@
                             @Html.DisplayNameFor(model => model.Order[0].OrderId)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Order[0].CustomerId)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.Order[0].Total)
                         </th>
                         <th>
@@ -123,7 +120,7 @@
                             </td>
                             <td>
                                 <strong>
-                                    @Html.DisplayFor(modelItem => item.CustomerId)
+                                    @Html.DisplayFor(modelItem => item.Customer.FullName)
                                 </strong>
                             </td>
                             <td>
@@ -138,11 +135,11 @@
                                 </span>
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CustomerId)
+                                @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td>
+                           @* <td>
                                 @Html.DisplayFor(modelItem => item.Customer)
-                            </td>
+                            </td>  *@
                             <td>
                                 @Html.DisplayFor(modelItem => item.CreatedDay)
                             </td>
