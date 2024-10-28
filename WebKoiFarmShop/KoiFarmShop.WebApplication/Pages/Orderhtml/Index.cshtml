@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Orderhtml.IndexModel
 
-<p>
+@* <p>
     <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
@@ -69,4 +69,105 @@
         </tr>
 }
     </tbody>
-</table>
+</table> *@
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Order</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">
+            <button type="button" class="btn btn-dark"><a asp-page="Create" style="color:white">Create New</a></button>
+        </h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].OrderId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].CustomerId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].Total)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].ShipAddress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].PaymentMethod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].Customer)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].CreatedDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].UpdateDay)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Order)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderId)
+                            </td>
+                            <td>
+                                <strong>
+                                    @Html.DisplayFor(modelItem => item.CustomerId)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShipAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Total)
+                            </td>
+                            <td>
+                                <span class="badge bg-label-primary me-1">
+                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                </span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdateDay)
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Edit" asp-route-id="@item.OrderId" style="color:white">Edit</a>
+                                </button>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Details" asp-route-id="@item.OrderId" style="color:white">Details</a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="./Delete" asp-route-id="@item.OrderId" style="color:white">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+

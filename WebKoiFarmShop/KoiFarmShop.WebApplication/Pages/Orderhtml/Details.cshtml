@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Orderhtml.DetailsModel
 
-<div>
+@* <div>
     <h4>Order</h4>
     <hr />
     <dl class="row">
@@ -52,4 +52,75 @@
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Order.OrderId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
+</div>
+ *@
+
+<div class="card mb-4">
+    <h5 class="card-header"><strong>Order</strong></h5>
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.Order.OrderId)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.OrderId)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.CustomerId)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.CustomerId)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.Total)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Total)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.Status)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Status)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.ShipAddress)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.ShipAddress)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.PaymentMethod)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.PaymentMethod)</p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.Customer)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Customer)</p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="html5-date-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.Order.CreatedDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Model.Order.CreatedDay?.ToString("yyyy-MM-dd")</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-date-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.Order.UpdateDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Model.Order.UpdateDay?.ToString("yyyy-MM-dd")</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary"> <a asp-page="./Edit" asp-route-id="@Model.Order.OrderId" style="color:white">Edit</a></button>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-secondary"> <a asp-page="./Index" style="color:white">Back to List</a></button>
+            </div>
+        </div>
+    </div>
 </div>

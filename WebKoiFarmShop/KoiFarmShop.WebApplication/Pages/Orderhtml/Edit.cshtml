@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Orderhtml.EditModel
 
-<h4>Order</h4>
+@* <h4>Order</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -53,6 +53,78 @@
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
+ *@
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Create Order</h4>
+    <!-- Basic Layout -->
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Order</h5>
+                    <small class="text-muted float-end">Default label</small>
+                </div>
+                <div class="card-body">
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="Order.OrderId" class="control-label"></label>
+                            <select asp-for="Order.OrderId" class="form-control" asp-items="ViewBag.OrderId"></select>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order.CustomerId" class="control-label"></label>
+                            <input asp-for="Order.CustomerId" class="form-control" />
+                            <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order.Total" class="control-label"></label>
+                            <input asp-for="Order.Total" class="form-control" />
+                            <span asp-validation-for="Order.Total" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order.Status" class="control-label"></label>
+                            <input asp-for="Order.Status" class="form-control" />
+                            <span asp-validation-for="Order.Status" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order.ShipAddress" class="control-label"></label>
+                            <input asp-for="Order.ShipAddress" class="form-control" />
+                            <span asp-validation-for="Order.ShipAddress" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order.PaymentMethod" class="control-label"></label>
+                            <input asp-for="Order.PaymentMethod" class="form-control" />
+                            <span asp-validation-for="Order.PaymentMethod" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order.CreatedDay" class="control-label"></label>
+                            <input class="form-control" asp-for="Order.CreatedDay" type="date" id="html5-date-input" />
+
+                            <span asp-validation-for="Order.CreatedDay" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order.UpdateDay" class="control-label"></label>
+                            <input class="form-control" asp-for="Order.UpdateDay" type="date" id="html5-date-input" />
+
+                            <span asp-validation-for="Order.UpdateDay" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
