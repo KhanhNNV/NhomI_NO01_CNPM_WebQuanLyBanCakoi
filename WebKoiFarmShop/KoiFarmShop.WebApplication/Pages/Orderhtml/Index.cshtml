@@ -100,13 +100,13 @@
                             @Html.DisplayNameFor(model => model.Order[0].PaymentMethod)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Order[0].Customer)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.Order[0].CreatedDay)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Order[0].UpdateDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Order[0].Customer)
                         </th>
                         <th></th>
                     </tr>
@@ -118,34 +118,42 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.OrderId)
                             </td>
+
                             <td>
-                                <strong>
-                                    @Html.DisplayFor(modelItem => item.Customer.FullName)
-                                </strong>
+                                @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShipAddress)
-                            </td>
+
                             <td>
                                 @Html.DisplayFor(modelItem => item.Total)
                             </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShipAddress)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaymentMethod)
+                            </td>
+
                             <td>
                                 <span class="badge bg-label-primary me-1">
                                     @Html.DisplayFor(modelItem => item.OrderId)
                                 </span>
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                           @* <td>
-                                @Html.DisplayFor(modelItem => item.Customer)
-                            </td>  *@
+              
                             <td>
                                 @Html.DisplayFor(modelItem => item.CreatedDay)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.UpdateDay)
                             </td>
+
+                            <td>
+                                <strong>
+                                    @Html.DisplayFor(modelItem => item.Customer.FullName)
+                                </strong>
+                            </td>
+
                             <td>
                                 <button type="button" class="btn btn-info">
                                     <a asp-page="./Edit" asp-route-id="@item.OrderId" style="color:white">Edit</a>

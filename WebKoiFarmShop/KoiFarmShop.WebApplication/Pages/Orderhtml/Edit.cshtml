@@ -85,33 +85,37 @@
                             <input asp-for="Order.Total" class="form-control" />
                             <span asp-validation-for="Order.Total" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
                             <label asp-for="Order.Status" class="control-label"></label>
                             <input asp-for="Order.Status" class="form-control" />
                             <span asp-validation-for="Order.Status" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
                             <label asp-for="Order.ShipAddress" class="control-label"></label>
                             <input asp-for="Order.ShipAddress" class="form-control" />
                             <span asp-validation-for="Order.ShipAddress" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
                             <label asp-for="Order.PaymentMethod" class="control-label"></label>
                             <input asp-for="Order.PaymentMethod" class="form-control" />
                             <span asp-validation-for="Order.PaymentMethod" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
                             <label asp-for="Order.CreatedDay" class="control-label"></label>
                             <input class="form-control" asp-for="Order.CreatedDay" type="date" id="html5-date-input" />
-
                             <span asp-validation-for="Order.CreatedDay" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
                             <label asp-for="Order.UpdateDay" class="control-label"></label>
                             <input class="form-control" asp-for="Order.UpdateDay" type="date" id="html5-date-input" />
-
                             <span asp-validation-for="Order.UpdateDay" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
                             <input type="submit" value="Save" class="btn btn-primary" />
                         </div>

@@ -73,24 +73,19 @@
                 <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Status)</p>
             </div>
         </div>
-        <div class="mb-3 row">
+        @* <div class="mb-3 row">
             <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.Total)</label>
             <div class="col-md-10">
                 <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Total)</p>
             </div>
-        </div>
+        </div> *@
         <div class="mb-3 row">
             <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.ShipAddress)</label>
             <div class="col-md-10">
                 <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.ShipAddress)</p>
             </div>
         </div>
-        <div class="mb-3 row">
-            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.Customer)</label>
-            <div class="col-md-10">
-                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Customer.FullName)</p>
-            </div>
-        </div>
+        
         <div class="mb-3 row">
             <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.PaymentMethod)</label>
             <div class="col-md-10">
@@ -98,12 +93,12 @@
             </div>
         </div>
 
-        <div class="mb-3 row">
+        @* <div class="mb-3 row">
             <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.Status)</label>
             <div class="col-md-10">
                 <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Status)</p>
             </div>
-        </div>
+        </div> *@
 
         <div class="mb-3 row">
             <label for="html5-date-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.Order.CreatedDay)</label>
@@ -129,6 +124,14 @@
                 <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.UpdateDay)</p>
             </div>
         </div>
+
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Order.Customer)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Order.Customer.FullName)</p>
+            </div>
+        </div>
+
         <div class="mb-3 row">
             <form method="post">
                 <input type="hidden" asp-for="Order.OrderId" />
