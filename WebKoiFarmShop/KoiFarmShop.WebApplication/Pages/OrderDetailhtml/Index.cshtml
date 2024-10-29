@@ -95,27 +95,6 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Order.ShipAddress)
                             </td>
-
-                            @* <td>
-                                <span class="badge bg-label-primary me-1">
-                                    @Html.DisplayFor(modelItem => item.OrderDetailId)
-                                </span>
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedDay)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UpdateDay)
-                            </td>
-
-                            <td>
-                                <strong>
-                                    @Html.DisplayFor(modelItem => item.Customer.FullName)
-                                </strong>
-                            </td>
-
-                            <td> *@
                                 <button type="button" class="btn btn-info">
                                 <a asp-page="./Edit" asp-route-id="@item.OrderDetailId" style="color:white">Edit</a>
                                 </button>
@@ -125,8 +104,7 @@
                                 <button type="button" class="btn btn-danger">
                                 <a asp-page="./Delete" asp-route-id="@item.OrderDetailId" style="color:white">Delete</a>
                                 </button>
-                            </td>
-                        </tr>
+                                </tr>
                     }
                 </tbody>
             </table>

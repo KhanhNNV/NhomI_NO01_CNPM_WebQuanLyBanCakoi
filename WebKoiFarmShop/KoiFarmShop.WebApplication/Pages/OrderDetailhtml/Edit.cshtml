@@ -57,13 +57,13 @@
                         <input type="hidden" asp-for="OrderDetail.OrderDetailId" />
                         <div class="mb-3">
                             <label asp-for="OrderDetail.OrderId" class="control-label"></label>
-                            <select asp-for="OrderDetail.OrderId" class="form-control" asp-items="ViewBag.KoiId"></select>
+                            <select asp-for="OrderDetail.OrderId" class="form-control" asp-items="ViewBag.OrderId"></select>
                             <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
                             <label asp-for="OrderDetail.KoiId" class="control-label"></label>
-                            <select asp-for="OrderDetail.KoiId" class="form-control" asp-items="ViewBag.OrderId"></select>
+                            <select asp-for="OrderDetail.KoiId" class="form-control" asp-items="ViewBag.KoiId"></select>
                             <span asp-validation-for="OrderDetail.KoiId" class="text-danger"></span>
                         </div>
 
