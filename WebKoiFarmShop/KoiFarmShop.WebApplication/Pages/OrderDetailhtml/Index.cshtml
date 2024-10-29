@@ -95,6 +95,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Order.ShipAddress)
                             </td>
+                            <td>
                                 <button type="button" class="btn btn-info">
                                 <a asp-page="./Edit" asp-route-id="@item.OrderDetailId" style="color:white">Edit</a>
                                 </button>
@@ -104,6 +105,7 @@
                                 <button type="button" class="btn btn-danger">
                                 <a asp-page="./Delete" asp-route-id="@item.OrderDetailId" style="color:white">Delete</a>
                                 </button>
+                                </td>
                                 </tr>
                     }
                 </tbody>
