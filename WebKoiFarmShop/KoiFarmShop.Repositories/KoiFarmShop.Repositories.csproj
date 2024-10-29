@@ -19,12 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="InterfaceRepository\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="InterfaceRepository\ICommentBlogRepository" />
-  </ItemGroup>
 </Project>

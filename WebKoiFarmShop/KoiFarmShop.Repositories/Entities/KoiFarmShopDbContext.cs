@@ -49,10 +49,9 @@ public partial class KoiFarmShopDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Data Source=127.0.0.1,1433;Initial Catalog=KoiFarmShopDB;Persist Security Info=True;User ID=sa;Password=123@;MultipleActiveResultSets=True;TrustServerCertificate=True");
-    }
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseSqlServer("Data Source=127.0.0.1,1433;Initial Catalog=KoiFarmShopDB;Persist Security Info=True;User ID=sa;Password=123@;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -286,6 +285,7 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BCF3012034B");
 
             entity.Property(e => e.CreatedDay).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.ShipAddress).HasMaxLength(64);
 

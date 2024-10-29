@@ -1,0 +1,42 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.KoiCatehtml.CreateModel
+
+<h4>KoiCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.KoiCateId" class="control-label"></label>
+                <input asp-for="KoiCategory.KoiCateId" class="form-control" />
+                <span asp-validation-for="KoiCategory.KoiCateId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.CateId" class="control-label"></label>
+                <select asp-for="KoiCategory.CateId" class ="form-control" asp-items="ViewBag.CateId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.Title" class="control-label"></label>
+                <input asp-for="KoiCategory.Title" class="form-control" />
+                <span asp-validation-for="KoiCategory.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.Description" class="control-label"></label>
+                <input asp-for="KoiCategory.Description" class="form-control" />
+                <span asp-validation-for="KoiCategory.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

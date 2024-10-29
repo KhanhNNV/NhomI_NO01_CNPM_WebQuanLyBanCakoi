@@ -1,17 +1,19 @@
-﻿using System;
-using KoiFarmShop.Repositories.Entities;
+﻿using KoiFarmShop.Repositories.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace KoiFarmShop.Services.InterfaceService
 {
     public interface IBlogService
     {
-        Task<List<BlogRepository>> GetBlog();
-        Task<IList<BlogRepository>> Blog();
-        Task<List<BlogRepository>> GetAllBlog();
-        Boolean DelBlog(int blog);
-        Boolean DelBlog(BlogRepository b);
-        Boolean AddBlog(BlogRepository b);
-        Boolean UpDBlog(BlogRepository bl);
-        Task<BlogRepository> GetBlogByID(int b);
+        Task<List<Blog>> GetAllBlog();
+        Boolean DeleteBlog(int id);
+        Boolean DeleteBlog(Blog blog);
+        Boolean UpdateBlog(Blog blog);
+        Boolean AddBlog(Blog blog);
+        Task<Blog> GetBlogById(int id);
     }
 }
-

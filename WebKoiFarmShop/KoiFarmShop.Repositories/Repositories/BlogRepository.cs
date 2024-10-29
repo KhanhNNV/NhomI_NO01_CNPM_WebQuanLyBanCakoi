@@ -1,37 +1,41 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories.InterfaceRepository;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace KoiFarmShop.Repositories
+namespace KoiFarmShop.Repositories.Repositories
 {
     public class BlogRepository : IBlogRepository
     {
         private readonly KoiFarmShopDbContext _dbContext;
-        public BlogRepository(KoiFarmShopDbContext DbContext)
+        public BlogRepository(KoiFarmShopDbContext dbContext)
         {
-            _dbContext = DbContext;
+            _dbContext = dbContext;
         }
 
-        public bool AddBlog(Entities.BlogRepository id)
+        public bool AddBlog(Blog blog)
         {
             try
             {
-                _dbContext.Blogs.Add(id);
+                _dbContext.Blogs.Add(blog);
                 _dbContext.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw new NotImplementedException(ex.ToString());
             }
-            throw new NotFiniteNumberException();
         }
 
-        public bool DelBlog(int blogId)
+        public bool DeleteBlog(int id)
         {
             try
             {
-                var objDel = _dbContext.Blogs.Where(p =>p.BlogID.Equals(blogId)).FirstOrDefault();
+                var objDel = _dbContext.Blogs.Where(p => p.BlogId.Equals(id)).FirstOrDefault();
                 if (objDel != null)
                 {
                     _dbContext.Blogs.Remove(objDel);
@@ -41,66 +45,54 @@ namespace KoiFarmShop.Repositories
                 return false;
             }
             catch (Exception ex)
-            { 
-                return false; 
+            {
+                throw new NotImplementedException(ex.ToString());
             }
         }
 
-
-
-        public async Task<List<Entities.BlogRepository>> GetAllBlog()
-        {
-            return await _dbContext.Blogs.ToListAsync();
-        }
-
-        public async Task<Entities.BlogRepository> GetBlogByID(int Blog)
-        {
-            return await _dbContext.Blogs.Where(p => p.BlogID.Equals(Blog)).FirstOrDefaultAsync();
-        }
-
-        private bool UpDBlog(Entities.BlogRepository id)
+        public bool DeleteBlog(Blog blog)
         {
             try
             {
-                _dbContext.Blogs.Update(id);
+                _dbContext.Blogs.Remove(blog);
+                _dbContext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-                return false;
+                throw new NotImplementedException(ex.ToString());
             }
         }
 
-        bool IBlogRepository.AddBlog(Entities.BlogRepository blog)
+        public async Task<List<Blog>> GetAllBlog()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Blogs
+                .Include(b => b.Cate)
+                .Include(b => b.CreatedByNavigation)
+                .Include(b => b.UpdateByNavigation).ToListAsync();
         }
 
-        bool IBlogRepository.DelBlog(int id)
+        public async Task<Blog> GetBlogById(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Blogs
+                .Include(b => b.Cate)
+                .Include(b => b.CreatedByNavigation)
+                .Include(b => b.UpdateByNavigation).FirstOrDefaultAsync(o => o.BlogId == id);
         }
 
-        bool IBlogRepository.DelBlog(Entities.BlogRepository blog)
+        public bool UpdateBlog(Blog blog)
         {
-            throw new NotImplementedException();
-        }
-
-        Task<List<Entities.BlogRepository>> IBlogRepository.GetAllBlog()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Entities.BlogRepository> IBlogRepository.GetBlogByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        bool IBlogRepository.UpDBlog(Entities.BlogRepository blog)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.Attach(blog).State = EntityState.Modified;
+                _dbContext.Blogs.Update(blog);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
         }
     }
 }
-
-
