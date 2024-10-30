@@ -73,7 +73,7 @@ namespace KoiFarmShop.WebApplication.Controllers
                 return NotFound();
             }
 
-            await _newsService.DelNews(id);
+             _newsService.DelNews(id);
             return NoContent();
         }
     }

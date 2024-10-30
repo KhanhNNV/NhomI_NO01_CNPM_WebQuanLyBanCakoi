@@ -3,14 +3,14 @@ using KoiFarmShop.Repositories.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore;
 namespace KoiFarmShop.Repositories
 {
     public class NewsRepositories : INewsRepositories
     {
-        private readonly YourDbContext _context;
+        private readonly KoiFarmShopDbContext _context;
 
-        public NewsRepositories(YourDbContext context)
+        public NewsRepositories(KoiFarmShopDbContext context)
         {
             _context = context;
         }

@@ -3,14 +3,15 @@ using KoiFarmShop.Repositories.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace KoiFarmShop.Repositories
 {
     public class CommentNewsRepositories : ICommentNewsRepositories
     {
-        private readonly YourDbContext _context;
+        private readonly KoiFarmShopDbContext _context;
 
-        public CommentNewsRepositories(YourDbContext context)
+        public CommentNewsRepositories(KoiFarmShopDbContext context)
         {
             _context = context;
         }

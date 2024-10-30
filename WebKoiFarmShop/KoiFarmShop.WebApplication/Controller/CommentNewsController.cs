@@ -71,7 +71,7 @@ namespace KoiFarmShop.WebApplication.Controllers
                 return NotFound();
             }
 
-            await _commentService.DelComment(id);
+             _commentService.DelComment(id);
             return NoContent();
         }
     }
