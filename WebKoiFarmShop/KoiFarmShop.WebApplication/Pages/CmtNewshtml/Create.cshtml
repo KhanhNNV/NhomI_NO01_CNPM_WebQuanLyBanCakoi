@@ -1,23 +1,23 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.CmtNewshtml.CreateModel
 
-<h4>CommentNews</h4>
+<h4>Tạo Bình Luận mới</h4>
 <hr />
 <div class="col-xl">
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Basic Layout</h5>
+            <h5 class="mb-0">Tạo Bình luận tại đây</h5>
             <small class="text-muted float-end">Default label</small>
         </div>
         <div class="card-body">
             <form>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-fullname">Full Name</label>
+                    <label class="form-label" for="basic-default-fullname">Họ tên của bạn</label>
                     <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-company">Company</label>
-                    <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc." />
+                    <label class="form-label" for="basic-default-company">Biệt Danh</label>
+                    <input type="text" class="form-control" id="basic-default-company" placeholder="......." />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-email">Email</label>
@@ -30,29 +30,29 @@
                                aria-describedby="basic-default-email2" />
                         <span class="input-group-text" id="basic-default-email2">example.com</span>
                     </div>
-                    <div class="form-text">You can use letters, numbers & periods</div>
+                    <div class="form-text">điền email của bạn</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-phone">Phone No</label>
+                    <label class="form-label" for="basic-default-phone">Số điện thoại</label>
                     <input type="text"
                            id="basic-default-phone"
                            class="form-control phone-mask"
                            placeholder="658 799 8941" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-message">Message</label>
+                    <label class="form-label" for="basic-default-message">Bình luận của bạn</label>
                     <textarea id="basic-default-message"
                               class="form-control"
-                              placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+                              placeholder="Xin chào, bạn muốn nói gì nào ?"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="submit" class="btn btn-primary">Tạo</button>
             </form>
         </div>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Quay về trước</a>
 </div>
 
 @section Scripts {
