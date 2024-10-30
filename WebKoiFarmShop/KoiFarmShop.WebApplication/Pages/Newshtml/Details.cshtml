@@ -1,61 +1,96 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Newshtml.DetailsModel
 
+<dl class="row">
 <div>
-    <h4>News</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.Content)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.Content)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.Image)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.Image)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.CreatedDay)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.CreatedDay)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.UpdateDay)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.UpdateDay)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.Cate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.Cate.CategoryId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.CreatedByNavigation)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.CreatedByNavigation.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.News.UpdateByNavigation)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.News.UpdateByNavigation.FullName)
-        </dd>
-    </dl>
+    <a asp-page="./Edit" asp-route-id="@Model.News.NewId">Về trang chỉnh sửa</a> |
+    <a asp-page="./Index">Quay lại</a>
 </div>
+
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.News.NewId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <hr />
+    <div class="col-xl-6">
+        <!-- HTML5 Inputs -->
+        <div class="card mb-4">
+            <h5 class="card-header">Thông tin chi tiết</h5>
+            <div class="card-body">
+                <div class="mb-3 row">
+                    <label for="html5-text-input" class="col-md-2 col-form-label">Miêu tả</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" value="Sneat" id="html5-text-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-search-input" class="col-md-2 col-form-label">Tìm kiếm</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="search" value="Search ..." id="html5-search-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-email-input" class="col-md-2 col-form-label">Email</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="email" value="john@example.com" id="html5-email-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-url-input" class="col-md-2 col-form-label">Link đường dẫn</label>
+                    <div class="col-md-10">
+                        <input class="form-control"
+                               type="url"
+                               value="https://themeselection.com"
+                               id="html5-url-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-tel-input" class="col-md-2 col-form-label">Số điện thoại</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="tel" value="90-(164)-188-556" id="html5-tel-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-date-input" class="col-md-2 col-form-label">Ngày</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="date" value="2021-06-18" id="html5-date-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-month-input" class="col-md-2 col-form-label">Tháng</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="month" value="2021-06" id="html5-month-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-week-input" class="col-md-2 col-form-label">Tuần</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="week" value="2021-W25" id="html5-week-input" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="html5-time-input" class="col-md-2 col-form-label">Thời gian</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="time" value="12:30:00" id="html5-time-input" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- File input -->
+        <div class="card">
+            <h5 class="card-header">Nhập file</h5>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">File Thường</label>
+                    <input class="form-control" type="file" id="formFile" />
+                </div>
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Nhiều File</label>
+                    <input class="form-control" type="file" id="formFileMultiple" multiple />
+                </div>
+                <div>
+                    <label for="formFileDisabled" class="form-label">Tắt File</label>
+                    <input class="form-control" type="file" id="formFileDisabled" disabled />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
