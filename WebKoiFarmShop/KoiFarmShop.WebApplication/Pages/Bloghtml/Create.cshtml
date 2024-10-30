@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Bloghtml.CreateModel
 
-<h4>Blog</h4>
+@* <h4>Blog</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -38,7 +38,62 @@
 
 <div>
     <a asp-page="Index">Back to List</a>
+</div> *@
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Create Blog</h4>
+    <!-- Basic Layout -->
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Blog</h5>
+                    <small class="text-muted float-end">Default label</small>
+                </div>
+                <div class="card-body">
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="Blog.CateId" class="control-label"></label>
+                            <select asp-for="Blog.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Blog.Content" class="control-label"></label>
+                            <input asp-for="Blog.Content" class="form-control" />
+                            <span asp-validation-for="Blog.Content" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Blog.Image" class="control-label"></label>
+                            <input asp-for="Blog.Image" class="form-control" />
+                            <span asp-validation-for="Blog.Image" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Blog.CreatedBy" class="control-label"></label>
+                            <select asp-for="Blog.CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Blog.UpdateBy" class="control-label"></label>
+                            <select asp-for="Blog.UpdateBy" class="form-control" asp-items="ViewBag.UpdateBy"></select>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

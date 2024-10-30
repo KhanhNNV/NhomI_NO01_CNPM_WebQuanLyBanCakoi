@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.CmtBloghtml.DetailsModel
 
-<div>
+@* <div>
     <h4>CommentBlog</h4>
     <hr />
     <dl class="row">
@@ -46,4 +46,59 @@
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.CommentBlog.CmtBlogId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
+</div>
+ *@
+
+
+<div class="card mb-4">
+    <h5 class="card-header"><strong>CommentBlogg</strong></h5>
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.CommentBlog.Content)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.CommentBlog.Content)</p>
+            </div>
+        </div>
+        
+        <div class="mb-3 row">
+            <label for="html5-date-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.CommentBlog.CreatedDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Model.CommentBlog.CreatedDay?.ToString("yyyy-MM-dd")</p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="html5-date-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.CommentBlog.UpdateDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Model.CommentBlog.UpdateDay?.ToString("yyyy-MM-dd")</p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.CommentBlog.Blog)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.CommentBlog.Blog.BlogId)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.CommentBlog.CreatedByNavigation)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.CommentBlog.CreatedByNavigation.FullName)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.CommentBlog.UpdateByNavigation)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.CommentBlog.UpdateByNavigation.FullName)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary"> <a asp-page="./Edit" asp-route-id="@Model.CommentBlog.CmtBlogId" style="color:white">Edit</a></button>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-secondary"> <a asp-page="./Index" style="color:white">Back to List</a></button>
+            </div>
+        </div>
+    </div>
 </div>
