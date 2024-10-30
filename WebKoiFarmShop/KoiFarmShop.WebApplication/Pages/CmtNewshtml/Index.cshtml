@@ -1,0 +1,60 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.CmtNewshtml.IndexModel
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentNews[0].Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentNews[0].CreatedDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentNews[0].UpdateDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentNews[0].CreatedByNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentNews[0].News)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentNews[0].UpdateByNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CommentNews) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByNavigation.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.News.NewId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateByNavigation.FullName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CmtNewsId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CmtNewsId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CmtNewsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
