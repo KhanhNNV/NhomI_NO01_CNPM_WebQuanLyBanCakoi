@@ -10,13 +10,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Tiêu đề</th>
-                    <th>Tên Nguời Dùng</th>
-                    <th>Tình Trạng</th>
-                    <th>Chỉnh Sửa</th>
+                    <th>@Html.DisplayNameFor(model => model.CommentNews[0].Content)</th>
+                    <th>@Html.DisplayNameFor(model => model.CommentNews[0].CreatedDay)</th>
+                    <th>@Html.DisplayNameFor(model => model.CommentNews[0].UpdateDay)</th>
+                    <th>@Html.DisplayNameFor(model => model.CommentNews[0].CreatedByNavigation)</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+                @foreach (var item in Model.CommentNews)
+                {}
                 <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
                     <td>Albert Cook</td>
