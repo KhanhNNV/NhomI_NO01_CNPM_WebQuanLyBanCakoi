@@ -1,0 +1,30 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.Permissionhtml.IndexModel
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Permission[0].PermissionName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Permission) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PermissionName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PermissionId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PermissionId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PermissionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

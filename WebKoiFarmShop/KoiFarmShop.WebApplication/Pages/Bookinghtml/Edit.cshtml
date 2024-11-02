@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Bookinghtml.EditModel
 
-<h4>Booking</h4>
+@* <h4>Booking</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -106,4 +106,137 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ *@
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Create Booking</h4>
+    <!-- Basic Layout -->
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Create</h5>
+                </div>
+                <div class="card-body">
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Booking.BookingId" />
+                        <div class="mb-3">
+                            <label asp-for="Booking.CateId" class="control-label"></label>
+                            <select asp-for="Booking.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.CustomerId" class="control-label"></label>
+                            <select asp-for="Booking.CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Koiname" class="control-label"></label>
+                            <input asp-for="Booking.Koiname" class="form-control" />
+                            <span asp-validation-for="Booking.Koiname" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Description" class="control-label"></label>
+                            <input asp-for="Booking.Description" class="form-control" />
+                            <span asp-validation-for="Booking.Description" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Age" class="control-label"></label>
+                            <input asp-for="Booking.Age" class="form-control" />
+                            <span asp-validation-for="Booking.Age" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Size" class="control-label"></label>
+                            <input asp-for="Booking.Size" class="form-control" type="number" step="0.1" />
+                            <span asp-validation-for="Booking.Size" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Breed" class="control-label"></label>
+                            <input asp-for="Booking.Breed" class="form-control" />
+                            <span asp-validation-for="Booking.Breed" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Gender" class="control-label"></label>
+                            <input asp-for="Booking.Gender" class="form-control" />
+                            <span asp-validation-for="Booking.Gender" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Origin" class="control-label"></label>
+                            <input asp-for="Booking.Origin" class="form-control" />
+                            <span asp-validation-for="Booking.Origin" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Image" class="control-label"></label>
+                            <input asp-for="Booking.Image" class="form-control" />
+                            <span asp-validation-for="Booking.Image" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Quantity" class="control-label"></label>
+                            <input asp-for="Booking.Quantity" class="form-control" />
+                            <span asp-validation-for="Booking.Quantity" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.Status" class="control-label"></label>
+                            <input asp-for="Booking.Status" class="form-control" />
+                            <span asp-validation-for="Booking.Status" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Booking.Type" class="control-label"></label>
+                            <input asp-for="Booking.Type" class="form-control" />
+                            <span asp-validation-for="Booking.Type" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.DateSent" class="control-label"></label>
+                            <input class="form-control" asp-for="Booking.DateSent" type="date" id="html5-date-input" />
+                            <span asp-validation-for="Booking.DateSent" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.DateReceived" class="control-label"></label>
+                            <input class="form-control" asp-for="Booking.DateReceived" type="date" id="html5-date-input" />
+                            <span asp-validation-for="Booking.DateReceived" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.CreatedDay" class="control-label"></label>
+                            <input class="form-control" asp-for="Booking.CreatedDay" type="date" id="html5-date-input" />
+                            <span asp-validation-for="Booking.CreatedDay" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Booking.UpdateDay" class="control-label"></label>
+                            <input class="form-control" asp-for="Booking.UpdateDay" type="date" id="html5-date-input" />
+                            <span asp-validation-for="Booking.UpdateDay" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

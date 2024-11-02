@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Bookinghtml.DetailsModel
 
-<div>
+@* <div>
     <h4>Booking</h4>
     <hr />
     <dl class="row">
@@ -112,4 +112,122 @@
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Booking.BookingId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
+</div> *@
+
+
+<div class="card mb-4">
+    <h5 class="card-header"><strong>Booking</strong></h5>
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label">@Html.DisplayNameFor(model => model.Booking.Koiname)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Koiname)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Description)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Description)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Age)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Age)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Size)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Size)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Breed)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Breed)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Gender)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Gender)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Origin)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Origin)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Image)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Image)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Quantity)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Quantity)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Status)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Status)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Type)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Type)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.DateSent)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.DateSent)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.DateReceived)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.DateReceived)</p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.CreatedDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.CreatedDay)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.UpdateDay)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.UpdateDay)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Cate)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Cate.CategoryId)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="html5-text-input" class="col-md-2 col-form-label"> @Html.DisplayNameFor(model => model.Booking.Customer)</label>
+            <div class="col-md-10">
+                <p class="form-control" style="margin-bottom:0px">@Html.DisplayFor(model => model.Booking.Customer.FullName)</p>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary"> <a asp-page="./Edit" asp-route-id="@Model.Booking.BookingId" style="color:white">Edit</a></button>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-secondary"> <a asp-page="./Index" style="color:white">Back to List</a></button>
+            </div>
+        </div>
+    </div>
 </div>

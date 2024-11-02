@@ -7,35 +7,33 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
-using System.Configuration;
 
-namespace KoiFarmShop.WebApplication.Pages.Bloghtml
+namespace KoiFarmShop.WebApplication.Pages.Contacthtml
 {
     public class CreateModel : PageModel
     {
-        private readonly IBlogService _blogService;
-        private readonly ICategoryService _categoryService;
+        private readonly IContactService _contactService;
         private readonly IUserService _userService;
+        private readonly ICategoryService _categoryService;
 
-        public CreateModel(IBlogService blogService,ICategoryService categoryService,IUserService userService)
+        public CreateModel(IContactService contactService, IUserService userService, ICategoryService categoryService)
         {
-            _blogService = blogService;
-            _categoryService = categoryService;
+            _contactService = contactService;
             _userService = userService;
+            _categoryService = categoryService;
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var cates = await _categoryService.GetAllCategory();
-            var users = await _userService.GetAllUser();
-            ViewData["CateId"] = new SelectList(cates, "CategoryId", "Title"); 
-            ViewData["CreatedBy"] = new SelectList(users, "UserId", "FullName");
-            ViewData["UpdateBy"] = new SelectList(users, "UserId", "FullName");
+            var cate = await _categoryService.GetAllCategory();
+            var user = await _userService.GetAllUser(); 
+            ViewData["CateId"] = new SelectList(cate, "CategoryId", "Title");
+            ViewData["UserId"] = new SelectList(user, "UserId", "FullName");
             return Page();
         }
 
         [BindProperty]
-        public Blog Blog { get; set; } = default!;
+        public Contact Contact { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -45,7 +43,7 @@ namespace KoiFarmShop.WebApplication.Pages.Bloghtml
                 return Page();
             }
 
-           _blogService.AddBlog(Blog);
+            _contactService.AddContact(Contact);
 
             return RedirectToPage("./Index");
         }

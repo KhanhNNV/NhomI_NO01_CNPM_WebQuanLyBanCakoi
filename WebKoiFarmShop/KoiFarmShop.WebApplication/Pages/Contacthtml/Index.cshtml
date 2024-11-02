@@ -1,0 +1,127 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.Contacthtml.IndexModel
+
+@* <p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact[0].Report)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact[0].CreatedDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact[0].Cate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Contact) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Report)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cate.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ContactId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ContactId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Liên hệ</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">
+            <button type="button" class="btn btn-dark"><a asp-page="Create" style="color:white">Create New</a></button>
+        </h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].Report)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].CreatedDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].Cate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].User)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Contact)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Report)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cate.CategoryId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.FullName)
+                            </td>
+                           
+                            <td>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Edit" asp-route-id="@item.ContactId" style="color:white">Edit</a>
+                                </button>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Details" asp-route-id="@item.ContactId" style="color:white">Details</a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="./Delete" asp-route-id="@item.ContactId" style="color:white">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>

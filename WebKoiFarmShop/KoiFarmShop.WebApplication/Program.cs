@@ -29,6 +29,9 @@ builder.Services.AddScoped<ICmtBlogRepository, CmtBlogRepository>();
 builder.Services.AddScoped<INewRepository, NewsRepository>();
 builder.Services.AddScoped<ICmtNewsRepository, CmtNewsRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IPermissionReposirory, PermissionRepository>();
 //DI services
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -42,6 +45,9 @@ builder.Services.AddScoped<ICmtBlogService, CmtBlogService>();
 builder.Services.AddScoped<INewsService, NewsService>();
 builder.Services.AddScoped<ICmtNewsService, CmtNewsService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IPermissionService, PermissionService>();
 
 
 
