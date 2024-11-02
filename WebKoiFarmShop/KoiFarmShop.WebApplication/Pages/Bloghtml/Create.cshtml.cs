@@ -28,7 +28,7 @@ namespace KoiFarmShop.WebApplication.Pages.Bloghtml
         {
             var cates = await _categoryService.GetAllCategory();
             var users = await _userService.GetAllUser();
-            ViewData["CateId"] = new SelectList(cates, "CategoryId", "Title");
+            ViewData["CateId"] = new SelectList(cates, "CategoryId", "Title"); 
             ViewData["CreatedBy"] = new SelectList(users, "UserId", "FullName");
             ViewData["UpdateBy"] = new SelectList(users, "UserId", "FullName");
             return Page();
