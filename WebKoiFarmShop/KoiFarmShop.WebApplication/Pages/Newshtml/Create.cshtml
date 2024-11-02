@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Newshtml.CreateModel
 
-<h4>Tạo Tin Mới</h4>
+@* <h4>Tạo Tin Mới</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -38,6 +38,49 @@
                 <input type="submit" value="Tạo" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+</div> *@
+
+<h4>Tạo Tin mới</h4>
+<hr />
+<div class="col-xl">
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Tạo Tin mới tại đây</h5>
+            <small class="text-muted float-end">Default label</small>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label asp-for="News.CateId" class="control-label"></label>
+                    <select asp-for="News.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="News.Title" class="control-label"></label>
+                    <input asp-for="News.Title" class="form-control" />
+                    <span asp-validation-for="News.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="News.Content" class="control-label"></label>
+                    <input asp-for="News.Content" class="form-control" />
+                    <span asp-validation-for="News.Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="News.Image" class="control-label"></label>
+                    <input asp-for="News.Image" class="form-control" />
+                    <span asp-validation-for="News.Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="News.CreatedBy" class="control-label"></label>
+                    <select asp-for="News.CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="News.UpdateBy" class="control-label"></label>
+                    <select asp-for="News.UpdateBy" class="form-control" asp-items="ViewBag.UpdateBy"></select>
+                </div>
+                <button type="submit" class="btn btn-primary">Tạo</button>
+            </form>
+        </div>
     </div>
 </div>
 
