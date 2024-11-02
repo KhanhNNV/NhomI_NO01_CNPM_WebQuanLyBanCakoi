@@ -31,6 +31,8 @@ builder.Services.AddScoped<ICmtNewsRepository, CmtNewsRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
 //DI services
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -46,6 +48,8 @@ builder.Services.AddScoped<ICmtNewsService, CmtNewsService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
+builder.Services.AddScoped<IPromotionService, PromotionService>();
 
 
 
