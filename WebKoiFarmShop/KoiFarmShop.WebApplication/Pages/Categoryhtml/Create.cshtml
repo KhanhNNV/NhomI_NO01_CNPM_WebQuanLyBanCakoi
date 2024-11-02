@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Categoryhtml.CreateModel
 
-<h4>Category</h4>
+@* <h4>Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,4 +30,93 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+<h4>KoiCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.KoiCateId" class="control-label"></label>
+                <input asp-for="KoiCategory.KoiCateId" class="form-control" />
+                <span asp-validation-for="KoiCategory.KoiCateId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.CateId" class="control-label"></label>
+                <select asp-for="KoiCategory.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.Title" class="control-label"></label>
+                <input asp-for="KoiCategory.Title" class="form-control" />
+                <span asp-validation-for="KoiCategory.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KoiCategory.Description" class="control-label"></label>
+                <input asp-for="KoiCategory.Description" class="form-control" />
+                <span asp-validation-for="KoiCategory.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+<div class="col-xl">
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Basic Layout</h5>
+            <small class="text-muted float-end">Default label</small>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Full Name</label>
+                    <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-company">Company</label>
+                    <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc." />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-email">Email</label>
+                    <div class="input-group input-group-merge">
+                        <input type="text"
+                               id="basic-default-email"
+                               class="form-control"
+                               placeholder="john.doe"
+                               aria-label="john.doe"
+                               aria-describedby="basic-default-email2" />
+                        <span class="input-group-text" id="basic-default-email2">@example.com</span>
+                    </div>
+                    <div class="form-text">You can use letters, numbers & periods</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-phone">Phone No</label>
+                    <input type="text"
+                           id="basic-default-phone"
+                           class="form-control phone-mask"
+                           placeholder="658 799 8941" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-message">Message</label>
+                    <textarea id="basic-default-message"
+                              class="form-control"
+                              placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
