@@ -1,112 +1,43 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Categoryhtml.EditModel
 
-@* <h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Category.CategoryId" />
-            <div class="form-group">
-                <label asp-for="Category.Title" class="control-label"></label>
-                <input asp-for="Category.Title" class="form-control" />
-                <span asp-validation-for="Category.Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} *@
-
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Category.CategoryId" />
-            <div class="form-group">
-                <label asp-for="Category.Title" class="control-label"></label>
-                <input asp-for="Category.Title" class="form-control" />
-                <span asp-validation-for="Category.Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4">Edit Category</h4>
+    <h4 class="fw-bold py-3 mb-4">Edit Category </h4>
     <!-- Basic Layout -->
     <div class="row">
         <div class="col-xl">
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Edit</h5>
+                    <h5 class="mb-0">Create</h5>
+
                 </div>
                 <div class="card-body">
+
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Category.CategoryId" />
 
-                        <!-- Title Field -->
                         <div class="mb-3">
                             <label asp-for="Category.Title" class="control-label"></label>
                             <input asp-for="Category.Title" class="form-control" />
                             <span asp-validation-for="Category.Title" class="text-danger"></span>
                         </div>
-
-                        <!-- CreatedDay Field -->
-                        <div class="mb-3">
-                            <label asp-for="Category.CreatedDay" class="control-label"></label>
-                            <input asp-for="Category.CreatedDay" class="form-control" type="date" id="html5-date-input" />
-                            <span asp-validation-for="Category.CreatedDay" class="text-danger"></span>
-                        </div>
-
-                        <!-- UpdateDay Field -->
-                        <div class="mb-3">
-                            <label asp-for="Category.UpdateDay" class="control-label"></label>
-                            <input asp-for="Category.UpdateDay" class="form-control" type="date" id="html5-date-input" />
-                            <span asp-validation-for="Category.UpdateDay" class="text-danger"></span>
-                        </div>
-
-                        <!-- Save Button -->
                         <div class="mb-3">
                             <input type="submit" value="Save" class="btn btn-primary" />
                         </div>
-
-                        <!-- Back to List Button -->
                         <div class="mb-3">
                             <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
                         </div>
                     </form>
                 </div>
             </div>
-        </form>
         </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
