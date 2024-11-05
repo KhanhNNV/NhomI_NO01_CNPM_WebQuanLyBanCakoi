@@ -11,4 +11,7 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>KoiFarmShop.Repositories.Entities.KoiFarmShopDbContext</WebStackScaffolding_DbContextTypeFullName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>
