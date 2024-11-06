@@ -1,0 +1,101 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.Orderhtml.CreateModel
+
+@* <h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Order_.CustomerId" class="control-label"></label>
+                <select asp-for="Order_.CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order_.Total" class="control-label"></label>
+                <input asp-for="Order_.Total" class="form-control" />
+                <span asp-validation-for="Order_.Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order_.Status" class="control-label"></label>
+                <input asp-for="Order_.Status" class="form-control" />
+                <span asp-validation-for="Order_.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order_.ShipAddress" class="control-label"></label>
+                <input asp-for="Order_.ShipAddress" class="form-control" />
+                <span asp-validation-for="Order_.ShipAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order_.PaymentMethod" class="control-label"></label>
+                <input asp-for="Order_.PaymentMethod" class="form-control" />
+                <span asp-validation-for="Order_.PaymentMethod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div> *@
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Create Order</h4>
+    <!-- Basic Layout -->
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Order</h5>
+                    <small class="text-muted float-end">Default label</small>
+                </div>
+                <div class="card-body">
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="Order_.CustomerId" class="control-label"></label>
+                            <select asp-for="Order_.CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order_.Total" class="control-label"></label>
+                            <input asp-for="Order_.Total" class="form-control" />
+                            <span asp-validation-for="Order_.Total" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order_.Status" class="control-label"></label>
+                            <input asp-for="Order_.Status" class="form-control" />
+                            <span asp-validation-for="Order_.Status" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order_.ShipAddress" class="control-label"></label>
+                            <input asp-for="Order_.ShipAddress" class="form-control" />
+                            <span asp-validation-for="Order_.ShipAddress" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Order_.PaymentMethod" class="control-label"></label>
+                            <input asp-for="Order_.PaymentMethod" class="form-control" />
+                            <span asp-validation-for="Order_.PaymentMethod" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

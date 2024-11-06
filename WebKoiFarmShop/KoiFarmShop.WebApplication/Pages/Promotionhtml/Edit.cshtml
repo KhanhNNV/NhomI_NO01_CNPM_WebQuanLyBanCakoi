@@ -1,0 +1,39 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.Promotionhtml.EditModel
+
+<h4>Promotion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Promotion.ProId" />
+            <div class="form-group">
+                <label asp-for="Promotion.DayStart" class="control-label"></label>
+                <input asp-for="Promotion.DayStart" class="form-control" />
+                <span asp-validation-for="Promotion.DayStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.DayEnd" class="control-label"></label>
+                <input asp-for="Promotion.DayEnd" class="form-control" />
+                <span asp-validation-for="Promotion.DayEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.Percent" class="control-label"></label>
+                <input asp-for="Promotion.Percent" class="form-control" />
+                <span asp-validation-for="Promotion.Percent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
