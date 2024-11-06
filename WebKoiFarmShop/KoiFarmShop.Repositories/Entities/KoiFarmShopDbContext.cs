@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoiFarmShop.Repositories.Entities;
 
-public partial class KoiFarmShopDbContext : DbContext
+public partial class KoiFarmShopDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
 {
-    public KoiFarmShopDbContext()
-    {
-    }
+
 
     public KoiFarmShopDbContext(DbContextOptions<KoiFarmShopDbContext> options)
         : base(options)
@@ -55,6 +55,7 @@ public partial class KoiFarmShopDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Blog>(entity =>
         {
             entity.HasKey(e => e.BlogId).HasName("PK__Blog__54379E50E7DE9897");

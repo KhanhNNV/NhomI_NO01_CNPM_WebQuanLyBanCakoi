@@ -1,4 +1,4 @@
-using KoiFarmShop.Repositories.Entities;
+﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories;
 using KoiFarmShop.Services;
 using KoiFarmShop.Repositories.InterfaceRepository;
@@ -6,11 +6,49 @@ using KoiFarmShop.Repositories.Repositories;
 using KoiFarmShop.Services.InterfaceService;
 using KoiFarmShop.Services.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+IdentityUser user;
+IdentityDbContext context;
+//Dang ky idetity
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<KoiFarmShopDbContext>()
+    .AddDefaultTokenProviders();
+
+//builder.Services.AddDefaultIdentity<AppUser>()
+//    .AddEntityFrameworkStores<KoiFarmShopDbContext>()
+//    .AddDefaultTokenProviders();
+
+// Truy cập IdentityOptions
+builder.Services.Configure<IdentityOptions>(options => {
+    // Thiết lập về Password
+    options.Password.RequireDigit = false; // Không bắt phải có số
+    options.Password.RequireLowercase = false; // Không bắt phải có chữ thường
+    options.Password.RequireNonAlphanumeric = false; // Không bắt ký tự đặc biệt
+    options.Password.RequireUppercase = false; // Không bắt buộc chữ in
+    options.Password.RequiredLength = 3; // Số ký tự tối thiểu của password
+    options.Password.RequiredUniqueChars = 1; // Số ký tự riêng biệt
+
+    // Cấu hình Lockout - khóa user
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Khóa 5 phút
+    options.Lockout.MaxFailedAccessAttempts = 5; // Thất bại 5 lầ thì khóa
+    options.Lockout.AllowedForNewUsers = true;
+
+    // Cấu hình về User.
+    options.User.AllowedUserNameCharacters = // các ký tự đặt tên user
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;  // Email là duy nhất
+
+    // Cấu hình đăng nhập.
+    options.SignIn.RequireConfirmedEmail = false;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
+    options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+
+});
 //DI
 builder.Services.AddDbContext<KoiFarmShopDbContext>(options =>
 {
@@ -32,6 +70,7 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IPermissionReposirory, PermissionRepository>();
+builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
 //DI services
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -48,8 +87,10 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddScoped<IPermissionService, PermissionService>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -66,6 +107,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();    
 app.UseAuthorization();
 
 app.MapRazorPages();
