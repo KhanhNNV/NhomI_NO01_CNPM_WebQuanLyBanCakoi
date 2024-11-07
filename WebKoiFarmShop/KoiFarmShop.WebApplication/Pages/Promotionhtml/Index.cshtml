@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Promotionhtml.IndexModel
 
-<p>
+@* <p>
     <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
@@ -40,3 +40,67 @@
 }
     </tbody>
 </table>
+ *@
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Promotion</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">
+            <button type="button" class="btn btn-dark"><a asp-page="Create" style="color:white">Create New</a></button>
+        </h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Promotion[0].DayStart)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Promotion[0].DayEnd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Promotion[0].Percent)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Promotion)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DayStart)
+                            </td>
+                            <td>
+                                <strong>
+                                    @Html.DisplayFor(modelItem => item.DayEnd)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Percent)
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Edit" asp-route-id="@item.ProId" style="color:white">Edit</a>
+                                </button>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Details" asp-route-id="@item.ProId" style="color:white">Details</a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="./Delete" asp-route-id="@item.ProId" style="color:white">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
