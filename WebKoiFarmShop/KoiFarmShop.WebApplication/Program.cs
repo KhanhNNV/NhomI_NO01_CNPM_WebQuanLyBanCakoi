@@ -1,4 +1,4 @@
-﻿using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories;
 using KoiFarmShop.Services;
 using KoiFarmShop.Repositories.InterfaceRepository;
@@ -8,6 +8,8 @@ using KoiFarmShop.Services.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Configuration;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +18,16 @@ builder.Services.AddRazorPages();
 IdentityUser user;
 IdentityDbContext context;
 //Dang ky idetity
-builder.Services.AddIdentity<AppUser, IdentityRole>()
+builder.Services.AddIdentity<AppUser, IdentityRole<int>>()
     .AddEntityFrameworkStores<KoiFarmShopDbContext>()
     .AddDefaultTokenProviders();
 
-//builder.Services.AddDefaultIdentity<AppUser>()
-//    .AddEntityFrameworkStores<KoiFarmShopDbContext>()
-//    .AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/login/";
+    options.LogoutPath = "/logout/";
+    options.AccessDeniedPath = "/khongduoctruycap.html";
+});
 
 // Truy cập IdentityOptions
 builder.Services.Configure<IdentityOptions>(options => {
@@ -42,7 +47,7 @@ builder.Services.Configure<IdentityOptions>(options => {
     // Cấu hình về User.
     options.User.AllowedUserNameCharacters = // các ký tự đặt tên user
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    options.User.RequireUniqueEmail = true;  // Email là duy nhất
+    options.User.RequireUniqueEmail = false;  // Email là duy nhất
 
     // Cấu hình đăng nhập.
     options.SignIn.RequireConfirmedEmail = false;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
@@ -54,6 +59,17 @@ builder.Services.AddDbContext<KoiFarmShopDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbContext"));
 });
+
+builder.Services.AddAuthentication()
+    .AddGoogle(options =>
+    {
+        var gconfig = builder.Configuration.GetSection("Authentication:Google");
+        options.ClientId = gconfig["ClientId"];
+        options.ClientSecret = gconfig["ClientSecret"];
+
+        options.CallbackPath = "/dang-nhap-tu-google";
+
+    });
 //DI repositories
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -71,6 +87,7 @@ builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IPermissionReposirory, PermissionRepository>();
 builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
+//builder.Services.AddScoped<IdentityUser<int>, AppUser>();
 //DI services
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();

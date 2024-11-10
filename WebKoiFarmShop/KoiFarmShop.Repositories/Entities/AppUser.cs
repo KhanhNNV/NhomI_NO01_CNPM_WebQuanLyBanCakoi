@@ -12,8 +12,13 @@ namespace KoiFarmShop.Repositories.Entities
 {
     public class AppUser : IdentityUser<int>
     {
-        [Column(TypeName="nvarchar")]
-        [StringLength(256)]
-        public string? HomeAddress { get; set; }
+        [Column(TypeName = "nvarchar")]
+        [StringLength(400)]
+        public string? HomeAdress { get; set; }
+
+        // [Required]       
+        [DataType(DataType.Date)]
+        public DateTime? BirthDate { get; set; }
+
     }
 }
