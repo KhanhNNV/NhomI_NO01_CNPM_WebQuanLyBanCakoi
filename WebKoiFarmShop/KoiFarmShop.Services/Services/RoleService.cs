@@ -1,6 +1,7 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories.InterfaceRepository;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,33 +19,33 @@ namespace KoiFarmShop.Services.Services
             _repositories = repositories;
         }
 
-        public bool AddRole(Role RoleName)
+        public async Task<bool> AddRole(IdentityRole<int> RoleName)
         {
-            return _repositories.AddRole(RoleName);
+            return await _repositories.AddRole(RoleName);
 
         }
-        public bool DelRole(int RoleId)
+        public async Task<bool> DelRole(int RoleId)
         {
-            return _repositories.DelRole(RoleId);
+            return await _repositories.DelRole(RoleId);
         }
 
-        public bool DelRole(Role RoleName)
+        public async Task<bool> DelRole(IdentityRole<int> RoleName)
         {
-            return _repositories.DelRole(RoleName);
+            return await  _repositories.DelRole(RoleName);
         }
 
-        public async Task<Role> GetRoleById(int roleId)
+        public async Task<IdentityRole<int>> GetRoleById(int roleId)
         {
             return await _repositories.GetRoleById(roleId);
         }
 
-        public async Task<List<Role>> GetAllRole()
+        public async Task<List<IdentityRole<int>>> GetAllRole()
         {
             return await _repositories.GetAllRole();
         }
-        public bool UpRole(Role role)
+        public async Task<bool> UpRole(IdentityRole<int> role)
         {
-            return _repositories.UpRole(role);
+            return await _repositories.UpRole(role);
         }
 
     }

@@ -38,8 +38,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Role[0].RoleId)</th>
-                    <th>@Html.DisplayNameFor(model => model.Role[0].RoleName)</th>
+
+                    <th>@Html.DisplayNameFor(model => model.Role[0].Name)</th>
                
                 </tr>
             </thead>
@@ -47,12 +47,12 @@
                 @foreach (var item in Model.Role)
                 {
                     <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@Html.DisplayFor(modelItem => item.RoleId)</strong></td>
-                        <td> @Html.DisplayFor(modelItem => item.RoleName)</td>
+                       
+                        <td> @Html.DisplayFor(modelItem => item.Name)</td>
                         <td>
-                            <button type="button" class="btn btn-info"><a asp-page="./Edit" asp-route-id="@item.RoleId" style="color:white">Edit</a> </button>
-                            <button type="button" class="btn btn-info"> <a asp-page="./Details" asp-route-id="@item.RoleId" style="color:white">Details</a> </button>
-                            <button type="button" class="btn btn-danger"><a asp-page="./Delete" asp-route-id="@item.RoleId" style="color:white">Delete</a></button>
+                            <button type="button" class="btn btn-info"><a asp-page="./Edit" asp-route-id="@item.Id" style="color:white">Edit</a> </button>
+                            <button type="button" class="btn btn-info"> <a asp-page="./Details" asp-route-id="@item.Id" style="color:white">Details</a> </button>
+                            <button type="button" class="btn btn-danger"><a asp-page="./Delete" asp-route-id="@item.Id" style="color:white">Delete</a></button>
                             
                         </td>
                     </tr>

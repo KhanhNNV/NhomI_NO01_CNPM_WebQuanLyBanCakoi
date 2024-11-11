@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
 
 namespace KoiFarmShop.WebApplication.Pages.Rolehtml
 {
@@ -19,7 +20,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
             _roleService = roleService;
         }
 
-        public IList<Role> Role { get;set; } = default!;
+        public IList<IdentityRole<int>> Role { get;set; } = default!;
 
         public async Task OnGetAsync()
         {

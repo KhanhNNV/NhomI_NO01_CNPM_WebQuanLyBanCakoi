@@ -1,5 +1,6 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories.InterfaceRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,18 @@ namespace KoiFarmShop.Repositories.Repositories
 {
     public class RoleRepository : IRoleRepository
     {
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
         private readonly KoiFarmShopDbContext _dbContext;
-        public RoleRepository(KoiFarmShopDbContext dbContext)
+        public RoleRepository(KoiFarmShopDbContext dbContext, RoleManager<IdentityRole<int>> roleManager)
         {
             _dbContext = dbContext;
+            _roleManager = roleManager;
         }
-        public bool AddRole(Role role)
+        public async Task<bool> AddRole(IdentityRole<int> role)
         {
             try
             {
-                _dbContext.Roles.Add(role);
-                _dbContext.SaveChanges();
+                await _roleManager.CreateAsync(role);
                 return true;
             }
             catch (Exception ex)
@@ -29,15 +31,14 @@ namespace KoiFarmShop.Repositories.Repositories
                 throw new NotImplementedException(ex.ToString());
             }
         }
-        public bool DelRole(int id)
+        public async Task<bool> DelRole(int id)
         {
             try
             {
-                var objDel = _dbContext.Roles.Where(p => p.RoleId.Equals(id)).FirstOrDefault();
+                var objDel = await _roleManager.Roles.Where(p => p.Id.Equals(id)).FirstOrDefaultAsync();
                 if (objDel != null)
                 {
-                    _dbContext.Roles.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    await _roleManager.DeleteAsync(objDel);
                     return true;
                 }
                 return false;
@@ -48,12 +49,11 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public bool DelRole(Role role)
+        public async Task<bool> DelRole(IdentityRole<int> role)
         {
             try
             {
-                _dbContext.Roles.Remove(role);
-                _dbContext.SaveChanges();
+                await _roleManager.DeleteAsync(role);
                 return true;
             }
             catch (Exception ex)
@@ -62,22 +62,21 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public async Task<List<Role>> GetAllRole()
+        public async Task<List<IdentityRole<int>>> GetAllRole()
         {
-            return await _dbContext.Roles.ToListAsync();
+
+            return await _roleManager.Roles.ToListAsync();
         }
 
-        public async Task<Role> GetRoleById(int id)
+        public async Task<IdentityRole<int>> GetRoleById(int id)
         {
-            return await _dbContext.Roles.Where(p => p.RoleId.Equals(id)).FirstOrDefaultAsync();
+            return await _roleManager.Roles.Where(p => p.Id.Equals(id)).FirstOrDefaultAsync();
         }
-        public bool UpRole(Role role)
+        public async Task<bool> UpRole(IdentityRole<int> role)
         {
             try
             {
-                _dbContext.Attach(role).State = EntityState.Modified;
-                _dbContext.Roles.Update(role);
-                _dbContext.SaveChanges();
+                await _roleManager.UpdateAsync(role);
                 return true;
             }
             catch (Exception ex)

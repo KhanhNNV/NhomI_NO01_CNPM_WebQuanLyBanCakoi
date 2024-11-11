@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
 
 namespace KoiFarmShop.WebApplication.Pages.Rolehtml
 {
@@ -25,7 +26,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
         }
 
         [BindProperty]
-        public Role Role { get; set; } = default!;
+        public IdentityRole<int> Role { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +36,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
                 return Page();
             }
 
-            _roleService.AddRole(Role);
+            await _roleService.AddRole(Role);
 
             return RedirectToPage("./Index");
         }

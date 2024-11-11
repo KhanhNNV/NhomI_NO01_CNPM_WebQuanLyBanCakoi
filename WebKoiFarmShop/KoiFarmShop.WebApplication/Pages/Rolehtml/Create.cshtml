@@ -47,15 +47,11 @@
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         
+                        
                         <div class="mb-3">
-                            <label asp-for="Role.RoleId" class="control-label"></label>
-                            <input asp-for="Role.RoleId" class="form-control" />
-                            <span asp-validation-for="Role.RoleId" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Role.RoleName" class="control-label"></label>
-                            <input asp-for="Role.RoleName" class="form-control" />
-                            <span asp-validation-for="Role.RoleName" class="text-danger"></span>
+                            <label asp-for="Role.Name" class="control-label"></label>
+                            <input asp-for="Role.Name" class="form-control" />
+                            <span asp-validation-for="Role.Name" class="text-danger"></span>
                         </div>
                         
                         <div class="mb-3">
