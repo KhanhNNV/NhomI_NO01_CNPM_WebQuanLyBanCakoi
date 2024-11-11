@@ -19,6 +19,7 @@ namespace KoiFarmShop.Repositories.Entities
         // [Required]       
         [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
-
+        
+        
     }
 }

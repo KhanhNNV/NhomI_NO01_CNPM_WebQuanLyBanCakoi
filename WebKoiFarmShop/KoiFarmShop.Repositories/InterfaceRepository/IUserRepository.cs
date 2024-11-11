@@ -9,11 +9,14 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
 {
     public interface IUserRepository
     {
-        Task<List<User>> GetAllUser();
-        Boolean DelUser(int Id);
-        Boolean DelUser(User user);
-        Boolean AddUser(User user);
-        Boolean UpUser(User user);
-        Task<User> GetUserById(int Id);
+        Task<List<AppUser>> GetAllUser();
+        Task<bool> DelUser(int Id);
+        Task<bool> DelUser(AppUser user);
+        Task<bool> AddUser(AppUser user);
+        Task<bool> UpUser(AppUser user);
+        Task<AppUser> GetUserById(int Id);
+        Task<List<string>> GetRolesForUser(int userId);
+        Task<bool> AddRoleToUser(int userId, string roleName);
+
     }
 }

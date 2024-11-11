@@ -2,92 +2,45 @@
 @model KoiFarmShop.WebApplication.Pages.Userhtml.IndexModel
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4">Users</h4>
+    <h4 class="fw-bold py-3 mb-4">Danh sách các thành viên</h4>
 
     <!-- Basic Bootstrap Table -->
     <div class="card">
-        <h5 class="card-header">
-            <button type="button" class="btn btn-dark"><a asp-page="Create" style="color:white">Create New</a></button>
-        </h5>
+        
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.User[0].UserId)
+                            Tên User
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.User[0].FullName)
+                            Tên Role
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User[0].Phone)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User[0].Password)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User[0].Role)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User[0].Email)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User[0].UserAddress)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User[0].CreatedDay)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User[0].UpdateDay)
-                        </th>
+                        
                         <th></th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach (var item in Model.User)
+                    @foreach (var item in Model.users)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.UserId)
+                                @item.UserName
                             </td>
                             <td>
-                                <strong>
-                                    @Html.DisplayFor(modelItem => item.FullName)
-                                </strong>
+                                @item.RoleNames
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Password)
-                            </td>
-                            <td>
-                                <span class="badge bg-label-primary me-1">
-                                    @Html.DisplayFor(modelItem => item.Role.RoleName)
-                                </span>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserAddress)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedDay)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UpdateDay)
-                            </td>
+                            
                             <td>
                                 <button type="button" class="btn btn-info">
-                                    <a asp-page="./Edit" asp-route-id="@item.UserId" style="color:white">Edit</a>
+                                    <a asp-page="./SetPassword" asp-route-id="@item.Id" style="color:white">Đặt mật khẩu</a>
                                 </button>
+
                                 <button type="button" class="btn btn-info">
-                                    <a asp-page="./Details" asp-route-id="@item.UserId" style="color:white">Details</a>
+                                    <a asp-page="./AddRole" asp-route-id="@item.Id" style="color:white">Thêm Role</a>
                                 </button>
-                                <button type="button" class="btn btn-danger">
-                                    <a asp-page="./Delete" asp-route-id="@item.UserId" style="color:white">Delete</a>
-                                </button>
+                                
                             </td>
                         </tr>
                     }               

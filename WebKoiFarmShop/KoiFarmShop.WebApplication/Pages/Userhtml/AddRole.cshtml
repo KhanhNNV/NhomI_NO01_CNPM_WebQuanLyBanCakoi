@@ -1,0 +1,76 @@
+﻿@page 
+@model KoiFarmShop.WebApplication.Pages.Userhtml.AddRoleModel
+@* @{
+    ViewData["Title"] = "Thiết lập role";
+
+}
+
+<h3>Thiết lập mật khẩu: @Model.user.UserName</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="row">
+    <div class="col-md-6">
+        <form id="set-password-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+             
+                <label asp-for="RoleNames" class="form-label"></label>
+                @Html.ListBoxFor(m => m.RoleNames,@Model.allRole)
+                <span asp-validation-for="RoleNames" class="text-danger"></span>
+            </div>
+            
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Cập nhật</button>
+            <a class="w-100 btn btn-lg btn-primary" asp-page="./Index"></a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Gán Role</h4>
+    <!-- Basic Layout -->
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-body">
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+
+
+                        <div class="mb-3">
+
+                            <label asp-for="RoleName" class="form-label"></label>
+                            @* @Html.ListBoxFor(m => m.RoleNames, @Model.allRole, new
+                                {
+                                    id = "id-select-roles",
+                                    
+                                }) *@
+                            
+                            @Html.DropDownListFor(m => m.RoleName, @Model.allRole, "Chọn vai trò", new { @class = "form-control", id = "id-select-roles" })
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
