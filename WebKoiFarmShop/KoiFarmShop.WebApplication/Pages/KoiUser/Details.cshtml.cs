@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Authorization;
 
-namespace KoiFarmShop.WebApplication.Pages.Koihtml
+namespace KoiFarmShop.WebApplication.Pages.KoiUser
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly IKoiService _koiService;

@@ -10,9 +10,11 @@ using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using KoiFarmShop.Services.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class EditModel : PageModel
     {
         private readonly IOrderService _orderService;

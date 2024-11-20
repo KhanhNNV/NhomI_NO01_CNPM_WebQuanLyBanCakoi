@@ -9,9 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Contacthtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class EditModel : PageModel
     {
         private readonly IContactService _contactService;

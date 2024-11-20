@@ -1,6 +1,7 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using KoiFarmShop.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace KoiFarmShop.WebApplication.Pages.KyguiCa
 {
+    [Authorize]
     public class ConfirmModel : PageModel
     {
         private readonly IBookingService _bookingService;

@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Rolehtml
 {
+    [Authorize(Roles = "Manager")]
     public class DeleteModel : PageModel
     {
         private readonly IRoleService _roleService;

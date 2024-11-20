@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.KoiCatehtml
 {
+    [Authorize(Roles = "Manager")]
     public class EditModel : PageModel
     {
         private readonly IKoiCateService _koiCateService;

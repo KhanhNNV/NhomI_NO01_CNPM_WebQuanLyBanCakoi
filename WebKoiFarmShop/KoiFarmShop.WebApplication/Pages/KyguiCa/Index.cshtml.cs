@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Identity;
 using KoiFarmShop.Services.Services;
 using static NuGet.Packaging.PackagingConstants;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.KyguiCa
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly IBookingService _bookingService;

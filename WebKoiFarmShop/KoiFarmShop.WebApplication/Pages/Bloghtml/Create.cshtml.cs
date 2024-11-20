@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using System.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Bloghtml
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly IBlogService _blogService;

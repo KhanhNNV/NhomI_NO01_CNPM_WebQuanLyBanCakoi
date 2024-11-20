@@ -1,50 +1,74 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.CmtBloghtml.IndexModel
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentBlog[0].Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentBlog[0].CreatedDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentBlog[0].UpdateDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentBlog[0].Blog)
-            </th>
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.CommentBlog) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Blog.BlogId)
-            </td>
-            
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CmtBlogId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CmtBlogId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CmtBlogId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">CommentBlog</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">
+            <button type="button" class="btn btn-dark"><a asp-page="Create" style="color:white">Create New</a></button>
+        </h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CommentBlog[0].Content)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CommentBlog[0].CreatedDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CommentBlog[0].UpdateDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CommentBlog[0].Blog)
+                        </th>
+                        
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.CommentBlog)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </td>
+                            <td>
+                                <strong>
+                                    @Html.DisplayFor(modelItem => item.CreatedDay)
+                                </strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdateDay)
+                            </td>
+                            <td>
+                                    @Html.DisplayFor(modelItem => item.Blog.BlogId)
+                            </td>
+                           
+                            <td>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Edit" asp-route-id="@item.CmtBlogId" style="color:white">Edit</a>
+                                </button>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Details" asp-route-id="@item.CmtBlogId" style="color:white">Details</a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="./Delete" asp-route-id="@item.CmtBlogId" style="color:white">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>

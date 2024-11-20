@@ -10,9 +10,11 @@ using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using Microsoft.AspNetCore.Identity;
 using KoiFarmShop.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class EditModel : PageModel
     {
         private readonly IBookingService _bookingService;

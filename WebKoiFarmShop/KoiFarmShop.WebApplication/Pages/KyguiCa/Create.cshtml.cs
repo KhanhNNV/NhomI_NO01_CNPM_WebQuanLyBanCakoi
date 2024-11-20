@@ -9,9 +9,11 @@ using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using Microsoft.AspNetCore.Identity;
 using KoiFarmShop.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.KyguiCa
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly IBookingService _bookingService;

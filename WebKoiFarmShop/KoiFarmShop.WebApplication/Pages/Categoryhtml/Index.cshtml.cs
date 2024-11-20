@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Categoryhtml
 {
-    [Authorize]
+    [Authorize(Roles = "Manager,Staff")]
     public class IndexModel : PageModel
     {
         private readonly ICategoryService _categoryService;

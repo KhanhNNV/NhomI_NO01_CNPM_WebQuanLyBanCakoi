@@ -67,7 +67,6 @@
                     
 
                     <a asp-area="" asp-page="/Index" class="nav-item nav-link active">Trang Chủ</a>
-                    <a asp-area="" asp-page="/Privacy" class="nav-item nav-link">Giới Thiệu</a>
                     <a asp-area="" asp-page="/Categoryhtml/Index" class="nav-item nav-link">Quản lý</a>
                     <a asp-area="" asp-page="/KyguiCa/Index" class="nav-item nav-link">Ký gửi</a>
                     <a asp-area="" asp-page="/UserOrder/Index" class="nav-item nav-link">Đơn hàng</a>
@@ -83,8 +82,14 @@
                     </div>
                     <a asp-area="" asp-page="/lienHe/Create" class="nav-item nav-link">Liên Hệ</a>
                     <partial name="_LoginPartial" />
+                    
                 </div>
-                
+                <div class="d-none d-lg-flex ms-2">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" asp-area="" asp-page="/timKiem/Index">
+                        <small class="fa fa-search text-body"></small>
+                    </a>
+
+                </div>
             </div>
         </nav>
     </div>

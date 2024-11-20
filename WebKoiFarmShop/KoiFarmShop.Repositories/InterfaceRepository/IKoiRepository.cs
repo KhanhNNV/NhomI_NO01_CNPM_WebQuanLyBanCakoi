@@ -16,5 +16,6 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
         Boolean UpKoi(Koi koi);
         Task<Koi> GetKOiById(int Id);
         Task<List<Koi>> GetKoiByKoiCateId(int KoiCateId);
+        Task<List<Koi>> SearchKois(string search);
     }
 }

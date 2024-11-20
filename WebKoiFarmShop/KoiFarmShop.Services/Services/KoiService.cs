@@ -47,6 +47,11 @@ namespace KoiFarmShop.Services.Services
             return _koiRepository.GetKoiByKoiCateId(KoiCateId);
         }
 
+        public Task<List<Koi>> SearchKois(string search)
+        {
+            return _koiRepository.SearchKois(search);
+        }
+
         public bool UpKoi(Koi koi)
         {
             return _koiRepository.UpKoi(koi);

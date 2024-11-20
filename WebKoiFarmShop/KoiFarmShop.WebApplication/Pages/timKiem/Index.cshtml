@@ -1,0 +1,38 @@
+﻿@page "{Search?}"
+@model KoiFarmShop.WebApplication.Pages.timKiem.IndexModel
+
+<style>
+    .search-form{
+        margin-bottom:50px;
+    }
+</style>
+
+<form class="search-form" method="get">
+    <input type="text" name="Search" value="@Model.Search" placeholder="Tìm kiếm cá Koi..." class="form-control search-input" />
+    <button type="submit" class="btn btn-primary search-button">Tìm kiếm</button>
+</form>
+
+<div class="row">
+    @foreach (var product in Model.Koi)
+    {
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="product-item">
+                <img class="img-fluid w-100" src="/assets/img/elements/@product.Image" alt="@product.Title" />
+                <div class="text-center p-4">
+                    <a class="d-block h5 mb-2" href="">@product.Title</a>
+                    <span class="text-primary me-1">$@product.Price</span>
+                </div>
+                <div class="d-flex border-top">
+                    <small class="w-50 text-center border-end py-2">
+                        <a class="text-body" asp-page="./KoiUser/Details" asp-route-id="@product.KoiId"><i class="fa fa-eye text-primary me-2"></i>Xem Chi Tiết</a>
+                    </small>
+                    <small class="w-50 text-center py-2">
+                        <a class="text-body" onclick="location.href='@Url.Page("/UserOrder/Create", new { KoiId = product.KoiId })'">
+                            <i class="fa fa-shopping-bag text-primary me-2"></i>Mua ngay
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    }
+</div>

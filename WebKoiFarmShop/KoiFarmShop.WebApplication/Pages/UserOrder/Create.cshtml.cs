@@ -1,13 +1,16 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KoiFarmShop.WebApplication.Pages.UserOrder
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
+        
         private readonly IKoiService _koiService;
         private readonly IOrderService _orderService;
         private readonly UserManager<AppUser> _userManager;

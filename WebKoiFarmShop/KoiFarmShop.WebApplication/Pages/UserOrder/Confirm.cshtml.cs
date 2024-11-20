@@ -1,5 +1,6 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace KoiFarmShop.WebApplication.Pages.UserOrder
 {
+    [Authorize]
     public class ConfirmModel : PageModel
     {
         private readonly IKoiService _koiService;

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.lienHe
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly IContactService _contactService;

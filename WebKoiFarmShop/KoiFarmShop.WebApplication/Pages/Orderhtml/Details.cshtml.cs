@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class DetailsModel : PageModel
     {
         private readonly IOrderService _orderService;

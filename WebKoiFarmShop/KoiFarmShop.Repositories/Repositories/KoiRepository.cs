@@ -94,5 +94,12 @@ namespace KoiFarmShop.Repositories.Repositories
                 throw new NotImplementedException(ex.ToString());
             }
         }
+        public async Task<List<Koi>> SearchKois(string search)
+        {
+            return await _dbContext.Kois
+                .Where(k => k.Title.Contains(search) || k.Description.Contains(search)
+                || k.Breed.Contains(search) || k.Origin.Contains(search))
+                .ToListAsync();
+        }
     }
 }
