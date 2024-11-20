@@ -32,13 +32,13 @@ namespace KoiFarmShop.Services.Services
             return _orderRepository.DeleteOrder(order) ;
         }
 
-        public Task<Order> GetAllOrdersById(int id)
+        public Task<Order> GetOrdersById(int id, int userId)
         {
-            return _orderRepository.GetAllOrdersById(id) ;
+            return _orderRepository.GetOrdersById(id, userId) ;
         }
 
 
-        public Task<List<Order>> GetOrder()
+        public Task<List<Order>> GetAllOrder()
         {
             return _orderRepository.GetAllOrder();
         }
@@ -47,5 +47,16 @@ namespace KoiFarmShop.Services.Services
         {
             return _orderRepository.UpdateOrder(order) ;
         }
+
+        public Task<Order> GetOrdersById(int id)
+        {
+            return _orderRepository.GetOrdersById(id);
+        }
+        public async Task<List<Order>> GetOrdersByUserId(int userId)
+        {
+            return await _orderRepository.GetOrdersByUserId(userId);
+        }
+
+        
     }
 }

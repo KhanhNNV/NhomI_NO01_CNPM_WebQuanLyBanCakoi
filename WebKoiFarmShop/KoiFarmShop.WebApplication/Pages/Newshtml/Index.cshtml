@@ -25,12 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.News[0].Cate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.News[0].CreatedByNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.News[0].UpdateByNavigation)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -55,12 +50,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Cate.CategoryId)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedByNavigation.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateByNavigation.FullName)
-            </td>
+           
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.NewId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.NewId">Details</a> |

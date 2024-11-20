@@ -1,0 +1,166 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.KoiUser.DetailsModel
+
+
+
+<!DOCTYPE html>
+<html lang="vi" class="h-100">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="Nền tảng,HTML,CSS,XML,JavaScript, Lập trình C#, Lập trình, Web, Kiến thức, Đồ án">
+    <meta name="author" content="Dương Nguyễn Phú Cường">
+    <meta name="description"
+          content="Cung cấp các kiến thức Nền tảng, cơ bản về Lập trình, Lập trình web, Lập trình di động, Cơ sở dữ liệu, ...">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nền tảng Kiến thức">
+    <meta property="og:description"
+          content="Cung cấp các kiến thức Nền tảng, cơ bản về Lập trình, Lập trình web, Lập trình di động, Cơ sở dữ liệu, ...">
+    <meta property="og:url" content="https://nentang.vn/">
+    <meta property="og:site_name" content="Nền tảng Kiến thức">
+    <title>Trang chi tiết sản phẩm</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../layout2/vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="../layout2/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Custom css - Các file css do chúng ta tự viết -->
+    <link rel="stylesheet" href="../layout2/css/product-detail.css" type="text/css">
+
+    <style>
+        body{
+            margin:70px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <main role="main">
+        <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+        <div class="container mt-4">
+            <div id="thongbao" class="alert alert-danger d-none face" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="container-fliud">
+                    
+                        <input type="hidden" name="sp_ma" id="sp_ma" value="5">
+                        <input type="hidden" name="sp_ten" id="sp_ten" value="Samsung Galaxy Tab 10.1 3G 16G">
+                    
+                        <input type="hidden" name="sp_gia" id="sp_gia" value="10990000.00">
+                        <input type="hidden" name="hinhdaidien" id="hinhdaidien" value="samsung-galaxy-tab-10.jpg">
+
+                        <div class="wrapper row">
+                            <div class="preview col-md-6">
+                                <div class="preview-pic tab-content">
+                                    <div class="tab-pane" id="pic-1">
+                                        <img src="/assets/img/elements/@Html.DisplayFor(model => model.Koi.Image)">
+                                    </div>
+                                    <div class="tab-pane" id="pic-2">
+                                        <img src="/assets/img/elements/@Html.DisplayFor(model => model.Koi.Image)">
+                                    </div>
+                                    <div class="tab-pane active" id="pic-3">
+                                        <img src="/assets/img/elements/@Html.DisplayFor(model => model.Koi.Image)">
+                                    </div>
+                                </div>
+                                <ul class="preview-thumbnail nav nav-tabs">
+                                    <li class="active">
+                                        <a data-target="#pic-1" data-toggle="tab" class="">
+                                            <img src="/assets/img/elements/@Html.DisplayFor(model => model.Koi.Image)">
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-target="#pic-2" data-toggle="tab" class="">
+                                            <img src="/assets/img/elements/@Html.DisplayFor(model => model.Koi.Image)">
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-target="#pic-3" data-toggle="tab" class="active">
+                                            <img src="/assets/img/elements/@Html.DisplayFor(model => model.Koi.Image)">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="details col-md-6">
+                                <h3 class="product-title">@Html.DisplayFor(model => model.Koi.Title)</h3>
+                                
+                                <p class="product-description">@Html.DisplayFor(model => model.Koi.Description)</p>
+                                 @* <small class="text-muted">Giá cũ: <s><span>10,990,000.00 vnđ</span></s></small> *@
+                                <h4 class="price">Giá hiện tại: <span>@Html.DisplayFor(model => model.Koi.Price)</span></h4>
+                                
+                                <h5 class="sizes">
+                                    kích cỡ:
+                                    @Html.DisplayFor(model => model.Koi.Size)
+                                </h5>
+                                <h5 class="sizes">
+                                    tuổi:
+                                    @Html.DisplayFor(model => model.Koi.Age)
+                                </h5>
+                                <h5 class="sizes">
+                                    giới tính:
+                                    @Html.DisplayFor(model => model.Koi.Gender)
+                                </h5>
+                                <h5 class="sizes">
+                                    giống:
+                                    @Html.DisplayFor(model => model.Koi.Breed)
+                                </h5>
+                                <h5 class="sizes">
+                                    nguồn gốc:
+                                    @Html.DisplayFor(model => model.Koi.Origin)
+                                </h5>
+                                <h5 class="sizes">
+                                    Tồn kho:
+                                    @Html.DisplayFor(model => model.Koi.Stock)
+                                </h5>
+
+                                 <div class="action">
+
+                                    <button class="add-to-cart btn btn-default" onclick="location.href='@Url.Page("/UserOrder/Create", new { KoiId = Model.Koi.KoiId })'">
+                                        Mua ngay
+                                    </button>
+                                </div>
+                                    
+                                
+                            </div>
+
+                        </div>
+                    
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="container-fluid">
+                    <h3>Thông tin chi tiết về cá Koi</h3>
+                    <div class="row">
+                        <div class="col">
+                            @Html.DisplayFor(model => model.Koi.Detail)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End block content -->
+    </main>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../layout2/vendor/jquery/jquery.min.js"></script>
+    <script src="../layout2/vendor/popperjs/popper.min.js"></script>
+    <script src="../layout2/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Custom script - Các file js do mình tự viết -->
+    <script src="../layout2/js/app.js"></script>
+
+</body>
+
+</html>

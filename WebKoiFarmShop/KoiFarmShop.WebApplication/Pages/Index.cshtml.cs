@@ -1,20 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using KoiFarmShop.Repositories.Entities;
+using KoiFarmShop.Services.InterfaceService;
 
 namespace KoiFarmShop.WebApplication.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly IKoiCateService _koiCateService;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(IKoiCateService koiCateService)
         {
-            _logger = logger;
+            _koiCateService = koiCateService;
         }
 
-        public void OnGet()
-        {
+        public IList<KoiCategory> KoiCategory { get; set; } = default!;
 
+        public async Task OnGetAsync()
+        {
+            KoiCategory = await _koiCateService.GetAllKoiCate();
         }
+
     }
 }
+

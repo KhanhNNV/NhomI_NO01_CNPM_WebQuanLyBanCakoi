@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoiFarmShop.Repositories.Entities;
 
-public partial class KoiFarmShopDbContext : DbContext
+public partial class KoiFarmShopDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
 {
     public KoiFarmShopDbContext()
     {
@@ -14,6 +16,8 @@ public partial class KoiFarmShopDbContext : DbContext
         : base(options)
     {
     }
+
+   
 
     public virtual DbSet<Blog> Blogs { get; set; }
 
@@ -41,13 +45,7 @@ public partial class KoiFarmShopDbContext : DbContext
 
     public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
-    public virtual DbSet<Permission> Permissions { get; set; }
-
     public virtual DbSet<Promotion> Promotions { get; set; }
-
-    public virtual DbSet<Role> Roles { get; set; }
-
-    public virtual DbSet<User> Users { get; set; }
 
 //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -55,6 +53,8 @@ public partial class KoiFarmShopDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+       base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Blog>(entity =>
         {
             entity.HasKey(e => e.BlogId).HasName("PK__Blog__54379E50E7DE9897");
@@ -71,14 +71,6 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasOne(d => d.Cate).WithMany(p => p.Blogs)
                 .HasForeignKey(d => d.CateId)
                 .HasConstraintName("FK__Blog__CateID__14270015");
-
-            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.BlogCreatedByNavigations)
-                .HasForeignKey(d => d.CreatedBy)
-                .HasConstraintName("FK__Blog__CreatedBy__151B244E");
-
-            entity.HasOne(d => d.UpdateByNavigation).WithMany(p => p.BlogUpdateByNavigations)
-                .HasForeignKey(d => d.UpdateBy)
-                .HasConstraintName("FK__Blog__UpdateBy__160F4887");
         });
 
         modelBuilder.Entity<Booking>(entity =>
@@ -90,7 +82,6 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.Property(e => e.Breed).HasMaxLength(32);
             entity.Property(e => e.CateId).HasColumnName("CateID");
             entity.Property(e => e.CreatedDay).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.Image)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -102,10 +93,6 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasOne(d => d.Cate).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.CateId)
                 .HasConstraintName("FK__Booking__CateID__4F47C5E3");
-
-            entity.HasOne(d => d.Customer).WithMany(p => p.Bookings)
-                .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__Booking__Custome__503BEA1C");
         });
 
         modelBuilder.Entity<Category>(entity =>
@@ -132,14 +119,6 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasOne(d => d.Blog).WithMany(p => p.CommentBlogs)
                 .HasForeignKey(d => d.BlogId)
                 .HasConstraintName("FK__CommentBl__BlogI__1332DBDC");
-
-            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.CommentBlogCreatedByNavigations)
-                .HasForeignKey(d => d.CreatedBy)
-                .HasConstraintName("FK__CommentBl__Creat__17036CC0");
-
-            entity.HasOne(d => d.UpdateByNavigation).WithMany(p => p.CommentBlogUpdateByNavigations)
-                .HasForeignKey(d => d.UpdateBy)
-                .HasConstraintName("FK__CommentBl__Updat__17F790F9");
         });
 
         modelBuilder.Entity<CommentKoi>(entity =>
@@ -152,17 +131,9 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.Property(e => e.KoiId).HasColumnName("KoiID");
             entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.CommentKoiCreatedByNavigations)
-                .HasForeignKey(d => d.CreatedBy)
-                .HasConstraintName("FK__CommentKo__Creat__6C190EBB");
-
             entity.HasOne(d => d.Koi).WithMany(p => p.CommentKois)
                 .HasForeignKey(d => d.KoiId)
                 .HasConstraintName("FK__CommentKo__KoiID__0C85DE4D");
-
-            entity.HasOne(d => d.UpdateByNavigation).WithMany(p => p.CommentKoiUpdateByNavigations)
-                .HasForeignKey(d => d.UpdateBy)
-                .HasConstraintName("FK__CommentKo__Updat__18EBB532");
         });
 
         modelBuilder.Entity<CommentNews>(entity =>
@@ -174,17 +145,9 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.Property(e => e.NewsId).HasColumnName("NewsID");
             entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.CommentNewsCreatedByNavigations)
-                .HasForeignKey(d => d.CreatedBy)
-                .HasConstraintName("FK__CommentNe__Creat__114A936A");
-
             entity.HasOne(d => d.News).WithMany(p => p.CommentNews)
                 .HasForeignKey(d => d.NewsId)
                 .HasConstraintName("FK__CommentNe__NewsI__0E6E26BF");
-
-            entity.HasOne(d => d.UpdateByNavigation).WithMany(p => p.CommentNewsUpdateByNavigations)
-                .HasForeignKey(d => d.UpdateBy)
-                .HasConstraintName("FK__CommentNe__Updat__123EB7A3");
         });
 
         modelBuilder.Entity<Contact>(entity =>
@@ -199,10 +162,6 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasOne(d => d.Cate).WithMany(p => p.Contacts)
                 .HasForeignKey(d => d.CateId)
                 .HasConstraintName("FK__Contact__CateId__3C34F16F");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Contacts)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Contact__UserId__3D2915A8");
         });
 
         modelBuilder.Entity<Discount>(entity =>
@@ -229,6 +188,7 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.ToTable("Koi");
 
             entity.Property(e => e.Breed).HasMaxLength(64);
+            entity.Property(e => e.Gender).HasMaxLength(50);
             entity.Property(e => e.Image)
                 .HasMaxLength(64)
                 .IsUnicode(false);
@@ -270,14 +230,6 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasOne(d => d.Cate).WithMany(p => p.News)
                 .HasForeignKey(d => d.CateId)
                 .HasConstraintName("FK__News__Cate_ID__0D7A0286");
-
-            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.NewsCreatedByNavigations)
-                .HasForeignKey(d => d.CreatedBy)
-                .HasConstraintName("FK__News__CreatedBy__0F624AF8");
-
-            entity.HasOne(d => d.UpdateByNavigation).WithMany(p => p.NewsUpdateByNavigations)
-                .HasForeignKey(d => d.UpdateBy)
-                .HasConstraintName("FK__News__UpdateBy__10566F31");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -285,13 +237,12 @@ public partial class KoiFarmShopDbContext : DbContext
             entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BCF3012034B");
 
             entity.Property(e => e.CreatedDay).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.ShipAddress).HasMaxLength(64);
+            entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__Orders__Customer__76969D2E");
+            entity.HasOne(d => d.Koi).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.KoiId)
+                .HasConstraintName("FK_Order_Koi");
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>
@@ -313,14 +264,6 @@ public partial class KoiFarmShopDbContext : DbContext
                 .HasConstraintName("FK__OrderDeta__Order__7A672E12");
         });
 
-        modelBuilder.Entity<Permission>(entity =>
-        {
-            entity.HasKey(e => e.PermissionId).HasName("PK__Permissi__EFA6FB2F950F0142");
-
-            entity.Property(e => e.PermissionId).ValueGeneratedNever();
-            entity.Property(e => e.PermissionName).HasMaxLength(255);
-        });
-
         modelBuilder.Entity<Promotion>(entity =>
         {
             entity.HasKey(e => e.ProId).HasName("PK__Promotio__620295901C480AC6");
@@ -329,61 +272,6 @@ public partial class KoiFarmShopDbContext : DbContext
 
             entity.Property(e => e.DayEnd).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.DayStart).HasDefaultValueSql("(getdate())");
-        });
-
-        modelBuilder.Entity<Role>(entity =>
-        {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__8AFACE1A8B20423C");
-
-            entity.Property(e => e.RoleId).ValueGeneratedNever();
-            entity.Property(e => e.RoleName).HasMaxLength(20);
-
-            entity.HasMany(d => d.Permissions).WithMany(p => p.Roles)
-                .UsingEntity<Dictionary<string, object>>(
-                    "RolePermission",
-                    r => r.HasOne<Permission>().WithMany()
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__RolePermi__Permi__5CD6CB2B"),
-                    l => l.HasOne<Role>().WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__RolePermi__RoleI__5BE2A6F2"),
-                    j =>
-                    {
-                        j.HasKey("RoleId", "PermissionId").HasName("PK__RolePerm__6400A1A8D9198E28");
-                        j.ToTable("RolePermissions");
-                    });
-        });
-
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4CB0F9474D");
-
-            entity.ToTable("User");
-
-            entity.HasIndex(e => e.Phone, "UQ__User__5C7E359E2EA923D6").IsUnique();
-
-            entity.HasIndex(e => e.Email, "UQ__User__A9D1053437156E29").IsUnique();
-
-            entity.Property(e => e.CreatedDay).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.Email)
-                .HasMaxLength(30)
-                .IsUnicode(false);
-            entity.Property(e => e.FullName).HasMaxLength(30);
-            entity.Property(e => e.Password)
-                .HasMaxLength(64)
-                .IsUnicode(false);
-            entity.Property(e => e.Phone)
-                .HasMaxLength(20)
-                .IsUnicode(false);
-            entity.Property(e => e.RoleId).HasColumnName("RoleID");
-            entity.Property(e => e.UpdateDay).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.UserAddress).HasMaxLength(50);
-
-            entity.HasOne(d => d.Role).WithMany(p => p.Users)
-                .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK__User__RoleID__5535A963");
         });
 
         OnModelCreatingPartial(modelBuilder);

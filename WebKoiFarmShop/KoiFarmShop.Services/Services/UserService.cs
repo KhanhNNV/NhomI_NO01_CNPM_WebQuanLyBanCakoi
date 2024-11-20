@@ -1,5 +1,6 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories.InterfaceRepository;
+using KoiFarmShop.Repositories.Repositories;
 using KoiFarmShop.Services.InterfaceService;
 using System;
 using System.Collections.Generic;
@@ -18,33 +19,41 @@ namespace KoiFarmShop.Services.Services
         }
 
 
-        public bool AddUser(User UserName)
+        public async Task<bool> AddUser(AppUser UserName)
         {
-            return _userRepositories.AddUser(UserName);
+            return await _userRepositories.AddUser(UserName);
         }
 
-        public bool DelUser(int UserId)
+        public async Task<bool> DelUser(int UserId)
         {
-            return _userRepositories.DelUser(UserId);
+            return await _userRepositories.DelUser(UserId);
         }
 
-        public bool DelUser(User UserName)
+        public async Task<bool> DelUser(AppUser UserName)
         {
-            return _userRepositories.DelUser(UserName);
+            return await _userRepositories.DelUser(UserName);
         }
-        public async Task<User> GetUserById(int UserId)
+        public async Task<AppUser> GetUserById(int UserId)
         {
             return await _userRepositories.GetUserById(UserId);
         }
 
-        public bool UpUser(User user)
+        public async Task<bool> UpUser(AppUser user)
         {
-            return _userRepositories.UpUser(user);
+            return await _userRepositories.UpUser(user);
         }
 
-        public async Task<List<User>> GetAllUser()
+        public async Task<List<AppUser>> GetAllUser()
         {
             return await _userRepositories.GetAllUser();
+        }
+        public async Task<List<string>> GetRolesForUser(int userId)
+        {
+            return await _userRepositories.GetRolesForUser(userId);
+        }
+        public async Task<bool> AddRoleToUser(int userId, string roleName)
+        {
+            return await _userRepositories.AddRoleToUser(userId, roleName);
         }
     }
 }

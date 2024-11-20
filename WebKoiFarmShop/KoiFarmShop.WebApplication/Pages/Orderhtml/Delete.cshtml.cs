@@ -7,15 +7,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class DeleteModel : PageModel
     {
+        
         private readonly IOrderService _orderService;
+        
 
         public DeleteModel(IOrderService orderService)
         {
+            
             _orderService = orderService;
         }
 
@@ -28,8 +34,8 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
             {
                 return NotFound();
             }
-
-            var order = await _orderService.GetAllOrdersById((int)id);
+            
+            var order = await _orderService.GetOrdersById((int)id);
 
             if (order == null)
             {

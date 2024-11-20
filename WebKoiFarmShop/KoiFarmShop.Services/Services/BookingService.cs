@@ -37,9 +37,19 @@ namespace KoiFarmShop.Services.Services
             return _bookingRepository.GetAllBooking();
         }
 
+        public Task<Booking> GetBookingById(int id, int userId)
+        {
+            return _bookingRepository.GetBookingById(id, userId);
+        }
+
         public Task<Booking> GetBookingById(int id)
         {
             return _bookingRepository.GetBookingById(id);
+        }
+
+        public Task<List<Booking>> GetBookingByUserId(int userId)
+        {
+            return _bookingRepository.GetBookingByUserId(userId);
         }
 
         public bool UpdateBooking(Booking booking)

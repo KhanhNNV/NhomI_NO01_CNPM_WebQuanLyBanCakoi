@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Categoryhtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class DetailsModel : PageModel
     {
         private readonly ICategoryService _categoryService;

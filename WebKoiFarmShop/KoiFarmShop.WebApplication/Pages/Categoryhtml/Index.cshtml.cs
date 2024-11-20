@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using KoiFarmShop.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Categoryhtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class IndexModel : PageModel
     {
         private readonly ICategoryService _categoryService;

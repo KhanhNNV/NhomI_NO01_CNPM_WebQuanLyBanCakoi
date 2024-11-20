@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Rolehtml
 {
+    [Authorize(Roles = "Manager")]
     public class DetailsModel : PageModel
     {
         private readonly IRoleService _roleService;
@@ -19,7 +22,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
             _roleService = roleService;
         }
 
-        public Role Role { get; set; } = default!;
+        public IdentityRole<int> Role { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

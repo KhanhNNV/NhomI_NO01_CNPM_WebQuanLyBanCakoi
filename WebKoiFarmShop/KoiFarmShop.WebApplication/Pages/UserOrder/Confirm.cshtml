@@ -1,0 +1,35 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.UserOrder.ConfirmModel
+
+<style>
+    .display-5 {
+        margin-top:70px
+    }
+</style>
+
+<div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
+    <h1 class="display-5 mb-4">Chi tiết đơn hàng</h1>
+    <p class="mb-4">Đơn hàng của bạn đã được tiếp nhận.</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Tình trạng: 
+        @{
+            if (Model.Order.Status == 0)
+            {
+                <span>Đang xác nhận</span>
+            }
+            else if (Model.Order.Status == 1)
+            {
+                <span>Đã xác nhận</span>
+            }
+            else
+            {
+                <span>Trạng thái không hợp lệ</span>
+            }
+        }
+    </p>
+    <p><i class="fa fa-check text-primary me-3"></i>Tên người đặt: @Model.userName</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Sản phẩm: @Model.Koi.Title</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Số lượng: @Model.Quantity</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Tổng tiền: @Model.TotalAmount.ToString("C")</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Ngày mua hàng: @Model.Order.CreatedDay</p>
+    <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" asp-area="" asp-page="/Index">Về trang chủ</a>
+</div>

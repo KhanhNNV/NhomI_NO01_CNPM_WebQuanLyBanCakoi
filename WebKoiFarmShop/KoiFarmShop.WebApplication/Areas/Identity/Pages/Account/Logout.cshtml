@@ -1,0 +1,47 @@
+﻿@page "/logout/"
+@model LogoutModel
+@{
+    ViewData["Title"] = "Đăng xuất";
+}
+<style>
+    .logout {
+        margin-top: 100px;
+    }
+
+    .logout button {
+        background-color: #009933;
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        font-size: 16px; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        transition: background-color 0.3s ease; 
+    }
+
+    .logout button:hover {
+        background-color: #80ffaa;
+    }
+
+         
+</style>
+
+<header>
+    <div class="logout">
+        <h1>@ViewData["Title"]</h1>
+        @{
+            if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="nav-link btn btn-link text-dark">Click vào đây để đăng xuất</button>
+                </form>
+            }
+            else
+            {
+                <p>Bạn đã đăng xuất khỏi ứng dụng thành công..</p>
+            }
+        }
+    </div>
+
+    
+</header>

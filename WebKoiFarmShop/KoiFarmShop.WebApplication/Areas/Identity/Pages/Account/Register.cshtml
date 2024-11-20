@@ -1,0 +1,68 @@
+﻿@page "/register/"
+@model RegisterModel
+@{
+    Layout = "~/Pages/Shared/_LayoutLogin.cshtml";
+    
+}
+
+
+<section class="container forms show-signup">
+
+    <div class="form signup">
+        <div class="form-content">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <header>Đăng ký</header>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="field input-field">
+                    <input asp-for="Input.UserName" placeholder="Tên đăng nhập" class="input" />
+                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                </div>
+
+                <div class="field input-field">
+                
+                    <input asp-for="Input.Password" placeholder="Nhập mật khẩu" class="password" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="field input-field">
+                    <input asp-for="Input.ConfirmPassword" placeholder="Nhập lại mật khẩu" class="password" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    <i class='bx bx-hide eye-icon'></i>
+                </div>
+
+                <div class="field button-field">
+                    <button type="submit">Tạo tài khoản</button>
+                </div>
+            </form>
+
+            <div class="form-link">
+                <span>Bạn đã có tài khoản? <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a></span>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+    
+        <div class="media-options">
+            @foreach (var provider in Model.ExternalLogins!)
+            {
+                if (provider.Name == "Google")
+                {
+                    <a href="#;" class="field google" onclick="document.getElementById('google-login-form').submit();">
+                        <img src="layoutLogin/Images/google.png" alt="" class="google-img">
+                        <span>Đăng nhập với @provider.DisplayName</span>
+                    </a>
+
+                    <!-- Form ẩn để gửi yêu cầu đăng nhập -->
+                    <form id="google-login-form" asp-page="./ExternalLogin" asp-route-provider="@provider.Name" asp-route-returnUrl="@Model.ReturnUrl" method="post" style="display:none;">
+                    </form>
+
+                }
+            }
+        </div>
+
+    </div>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

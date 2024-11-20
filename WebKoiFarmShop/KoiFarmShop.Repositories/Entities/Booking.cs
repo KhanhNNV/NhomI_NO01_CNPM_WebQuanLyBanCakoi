@@ -9,8 +9,6 @@ public partial class Booking
 
     public int? CateId { get; set; }
 
-    public int? CustomerId { get; set; }
-
     public string? Koiname { get; set; }
 
     public string? Description { get; set; }
@@ -41,7 +39,8 @@ public partial class Booking
 
     public DateOnly? UpdateDay { get; set; }
 
-    public virtual Category? Cate { get; set; }
+    public int UserId { get; set; }
+    public AppUser User { get; set; }
 
-    public virtual User? Customer { get; set; }
+    public virtual Category? Cate { get; set; }
 }

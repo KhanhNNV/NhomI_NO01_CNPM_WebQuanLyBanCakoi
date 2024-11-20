@@ -15,5 +15,7 @@ namespace KoiFarmShop.Services.InterfaceService
         Boolean AddKOi(Koi koi);
         Boolean UpKoi(Koi koi);
         Task<Koi> GetKOiById(int Id);
+        Task<List<Koi>> GetKoiByKoiCateId(int KoiCateId);
+        Task<List<Koi>> SearchKois(string search);
     }
 }

@@ -1,0 +1,75 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.Contacthtml.IndexModel
+
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Liên hệ</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].Report)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].CreatedDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].Cate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact[0].User)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Contact)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Report)
+                            </td>
+                            <td>
+                                @(item.Status == 0 ? "Chưa xác nhận" : item.Status == 1 ? "Đã xác nhận" : "không hợp lệ")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CateId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.UserName)
+                            </td>
+                           
+                            <td>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Edit" asp-route-id="@item.ContactId" style="color:white">Edit</a>
+                                </button>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Details" asp-route-id="@item.ContactId" style="color:white">Details</a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="./Delete" asp-route-id="@item.ContactId" style="color:white">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>

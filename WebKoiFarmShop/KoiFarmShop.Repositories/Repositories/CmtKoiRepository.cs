@@ -67,17 +67,15 @@ namespace KoiFarmShop.Repositories.Repositories
         public async Task<List<CommentKoi>> GetAllCmtKoi()
         {
             return await _dbContext.CommentKois
-                .Include(c => c.CreatedByNavigation)
                 .Include(c => c.Koi)
-                .Include(c => c.UpdateByNavigation).ToListAsync();
+                .ToListAsync();
         }
 
         public async Task<CommentKoi> GetCmtKoiById(int Id)
         {
             return await _dbContext.CommentKois
-                .Include(c => c.CreatedByNavigation)
                 .Include(c => c.Koi)
-                .Include(c => c.UpdateByNavigation).FirstOrDefaultAsync(o => o.CmtKoiId == Id);
+                .FirstOrDefaultAsync(o => o.CmtKoiId == Id);
         
         }
 

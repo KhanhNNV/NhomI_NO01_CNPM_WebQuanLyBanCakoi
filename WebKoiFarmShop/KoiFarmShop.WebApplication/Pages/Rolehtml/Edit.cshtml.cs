@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Rolehtml
 {
+    [Authorize(Roles = "Manager")]
     public class EditModel : PageModel
     {
         private readonly IRoleService _roleService;
@@ -21,7 +24,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
         }
 
         [BindProperty]
-        public Role Role { get; set; } = default!;
+        public IdentityRole<int> Role { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -48,7 +51,7 @@ namespace KoiFarmShop.WebApplication.Pages.Rolehtml
                 return Page();
             }
 
-            _roleService.UpRole(Role);
+            await _roleService.UpRole(Role);
 
             
             return RedirectToPage("./Index");

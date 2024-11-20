@@ -15,5 +15,6 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
         Boolean UpdateBlog(Blog blog);
         Boolean AddBlog(Blog blog);
         Task<Blog> GetBlogById(int id);
+        
     }
 }

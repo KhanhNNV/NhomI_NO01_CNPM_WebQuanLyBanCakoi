@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Pages/Shared/_LayoutBasic.cshtml";
+    
+}
+
+
+<div>
+    <h2>Quản lí tài khoản</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

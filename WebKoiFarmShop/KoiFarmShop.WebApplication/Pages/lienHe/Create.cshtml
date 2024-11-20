@@ -1,0 +1,60 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.lienHe.CreateModel
+<style>
+    .section-header {
+        padding-top: 90px;
+    }
+
+    .form-floating textarea {
+        min-height: 350px;
+    }
+</style>
+<div class="container">
+    <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px; visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+        <h1 class="display-5 mb-3">Liên hệ</h1>
+        <p>Viết tin nhắn để được hỗ trợ</p>
+    </div>
+    <div class="row g-5 justify-content-center">
+        <div class="col-lg-5 col-md-12 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+            <div class="bg-primary text-white d-flex flex-column justify-content-center h-100 p-5">
+                <h5 class="text-white">Gọi cho chúng tôi</h5>
+                <p class="mb-5"><i class="fa fa-phone-alt me-3"></i>0399329361</p>
+                <h5 class="text-white">Email của chúng tôi</h5>
+                <p class="mb-5"><i class="fa fa-envelope me-3"></i>khanhnnv8123@ut.edu.vn</p>
+                
+                <h5 class="text-white">Theo dõi chúng tôi</h5>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-12 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row g-3">
+
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <label asp-for="Contact.Report" class="control-label" ></label>
+                            <textarea asp-for="Contact.Report" class="form-control"></textarea>
+                            <span asp-validation-for="Contact.Report" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input type="submit" value="Gửi" class="btn btn-primary rounded-pill py-3 px-5" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

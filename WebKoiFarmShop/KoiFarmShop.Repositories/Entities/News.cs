@@ -26,8 +26,4 @@ public partial class News
     public virtual Category? Cate { get; set; }
 
     public virtual ICollection<CommentNews> CommentNews { get; set; } = new List<CommentNews>();
-
-    public virtual User? CreatedByNavigation { get; set; }
-
-    public virtual User? UpdateByNavigation { get; set; }
 }

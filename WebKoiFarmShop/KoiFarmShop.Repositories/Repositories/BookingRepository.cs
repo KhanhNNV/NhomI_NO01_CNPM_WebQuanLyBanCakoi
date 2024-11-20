@@ -66,16 +66,26 @@ namespace KoiFarmShop.Repositories.Repositories
 
         public async Task<List<Booking>> GetAllBooking()
         {
-            return await _dbContext.Bookings
-                .Include(b => b.Cate)
-                .Include(b => b.Customer).ToListAsync();
+            return await _dbContext.Bookings.Include(b => b.User).ToListAsync();
+           
         }
-
         public async Task<Booking> GetBookingById(int id)
         {
+            return await _dbContext.Bookings.Include(o => o.User).FirstOrDefaultAsync(o => o.BookingId == id);
+        }
+
+        public async Task<Booking> GetBookingById(int id, int userId)
+        {
+            return await _dbContext.Bookings.FirstOrDefaultAsync(o => o.BookingId == id && o.UserId == userId);
+
+        }
+        public async Task<List<Booking>> GetBookingByUserId(int userId)
+        {
             return await _dbContext.Bookings
-               .Include(b => b.Cate)
-               .Include(b => b.Customer).FirstOrDefaultAsync(o=>o.BookingId == id);
+                .Where(o => o.UserId == userId)
+                .Include(o => o.User)
+                .ToListAsync();
+           
         }
 
         public bool UpdateBooking(Booking booking)

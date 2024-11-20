@@ -1,126 +1,148 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Bookinghtml.IndexModel
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Koiname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Size)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Breed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Origin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].DateSent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].DateReceived)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].CreatedDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].UpdateDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Cate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Customer)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Booking) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Koiname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Breed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Origin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateSent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateReceived)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cate.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.FullName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.BookingId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BookingId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BookingId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Ký gửi</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Koiname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Age)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Size)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Breed)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Gender)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Origin)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Image)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Quantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].DateSent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].DateReceived)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].CreatedDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].UpdateDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].Cate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Booking[0].User)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Booking)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Koiname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Age)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Size)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Breed)
+                            </td>
+                            <td>
+                                @(item.Gender == 0 ? "Đực" : item.Gender == 1 ? "Cái" : "không hợp lệ")
+                                
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Origin)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Image)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @(item.Status == 0 ? "Chưa xác nhận" : item.Status == 1 ? "Đã xác nhận" : "không hợp lệ")
+                            </td>
+                            <td>
+                                @(item.Type == 0 ? "Chăm sóc" : item.Type == 1 ? "Bán" : "không hợp lệ")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateSent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateReceived)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdateDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CateId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.UserName)
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Edit" asp-route-id="@item.BookingId" style="color:white">Chỉnh sửa</a>
+                                </button>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Details" asp-route-id="@item.BookingId" style="color:white">Chi tiết</a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="./Delete" asp-route-id="@item.BookingId" style="color:white">Xóa</a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>

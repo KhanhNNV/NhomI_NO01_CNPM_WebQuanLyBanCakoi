@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
 using KoiFarmShop.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Newshtml
 {
+    [Authorize(Roles = "Manager,Staff")]
     public class CreateModel : PageModel
     {
         private readonly INewsService _newsService;

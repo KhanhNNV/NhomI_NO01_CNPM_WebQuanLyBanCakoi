@@ -1,27 +1,42 @@
 ﻿using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Repositories.InterfaceRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace KoiFarmShop.Repositories.Repositories
 {
-    public class UserRepository :IUserRepository
+    public class UserRepository : IUserRepository
     {
-        private readonly KoiFarmShopDbContext _dbContext;
-        public UserRepository(KoiFarmShopDbContext dbContext)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
+
+        public UserRepository(UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager)
         {
-            _dbContext = dbContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
-        public bool AddUser(User user)
+
+        public async Task<bool> AddUser(AppUser user)
         {
             try
             {
-                _dbContext.Users.Add(user);
-                _dbContext.SaveChanges();
+                await _userManager.CreateAsync(user);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.ToString());
+            }
+        }
+        public async Task<bool> DelUser(AppUser user)
+        {
+            try
+            {
+                await _userManager.DeleteAsync(user);
                 return true;
             }
             catch (Exception ex)
@@ -30,15 +45,14 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public bool DelUser(int id)
+        public async Task<bool> DelUser(int id)
         {
             try
             {
-                var objDel = _dbContext.Users.Where(p => p.UserId.Equals(id)).FirstOrDefault();
+                var objDel = await _userManager.Users.Where(p => p.Id == id).FirstOrDefaultAsync();
                 if (objDel != null)
                 {
-                    _dbContext.Users.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    await _userManager.DeleteAsync(objDel);
                     return true;
                 }
                 return false;
@@ -49,12 +63,33 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public bool DelUser(User UserName)
+        public async Task<List<AppUser>> GetAllUser()
+        {
+            var users = await _userManager.Users.ToListAsync();
+            return users;
+        }
+
+        public async Task<AppUser> GetUserById(int id)
+        {
+            return await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<List<string>> GetRolesForUser(int userId)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                return roles.ToList();
+            }
+            return new List<string>();
+        }
+
+        public async Task<bool> UpUser(AppUser user)
         {
             try
             {
-                _dbContext.Users.Remove(UserName);
-                _dbContext.SaveChanges();
+                await _userManager.UpdateAsync(user);
                 return true;
             }
             catch (Exception ex)
@@ -63,24 +98,26 @@ namespace KoiFarmShop.Repositories.Repositories
             }
         }
 
-        public async Task<List<User>> GetAllUser()
-        {
-            return await _dbContext.Users.Include(u => u.Role).ToListAsync();
-        }
-
-        public async Task<User> GetUserById(int id)
-        {
-            return await _dbContext.Users.Include(o => o.Role).FirstOrDefaultAsync(o => o.UserId == id);
-        }
-
-        public bool UpUser(User User)
+        public async Task<bool> AddRoleToUser(int userId, string roleName)
         {
             try
             {
-                _dbContext.Attach(User).State = EntityState.Modified;
-                _dbContext.Users.Update(User);
-                _dbContext.SaveChanges();
-                return true;
+                var user = await _userManager.FindByIdAsync(userId.ToString());
+                if (user == null)
+                {
+                    return false; // User không tồn tại
+                }
+
+                // Kiểm tra vai trò đã tồn tại chưa
+                var roleExist = await _roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    return false; // Vai trò không tồn tại
+                }
+
+                // Thêm vai trò vào người dùng
+                var result = await _userManager.AddToRoleAsync(user, roleName);
+                return result.Succeeded;
             }
             catch (Exception ex)
             {
