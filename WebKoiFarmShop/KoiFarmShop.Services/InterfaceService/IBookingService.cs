@@ -14,6 +14,8 @@ namespace KoiFarmShop.Services.InterfaceService
         Boolean DeleteBooking(Booking booking);
         Boolean UpdateBooking(Booking booking);
         Boolean AddBooking(Booking booking);
+        Task<Booking> GetBookingById(int id, int userId);
         Task<Booking> GetBookingById(int id);
+        Task<List<Booking>> GetBookingByUserId(int userId);
     }
 }

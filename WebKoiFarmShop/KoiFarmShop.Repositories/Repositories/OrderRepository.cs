@@ -67,16 +67,28 @@ namespace KoiFarmShop.Repositories.Repositories
         }
 
         public async Task<List<Order>> GetAllOrder()
-        {
-            return await _dbContext.Orders.Include(o => o.Customer).ToListAsync();
+        {   
+            
+            return await _dbContext.Orders.Include(o => o.User).ToListAsync();
         }
 
-        public async Task<Order> GetAllOrdersById(int id)
+        public async Task<Order> GetOrdersById(int id, int userId)
         {
-            return await _dbContext.Orders.Include(o => o.Customer).FirstOrDefaultAsync(o => o.OrderId == id);
+            return await _dbContext.Orders.FirstOrDefaultAsync(o => o.OrderId == id && o.UserId == userId);
+            
         }
 
-
+        public async Task<Order> GetOrdersById(int id)
+        {
+            return await _dbContext.Orders.Include(o => o.User).FirstOrDefaultAsync(o => o.OrderId == id);
+        }
+        public async Task<List<Order>> GetOrdersByUserId(int userId)
+        {
+            return await _dbContext.Orders
+                .Where(o => o.UserId == userId)
+                .Include(o => o.User) 
+                .ToListAsync();
+        }
         public bool UpdateOrder(Order order)
         {
             try
@@ -93,6 +105,8 @@ namespace KoiFarmShop.Repositories.Repositories
 
         }
 
-      
+        
+
+
     }
 }

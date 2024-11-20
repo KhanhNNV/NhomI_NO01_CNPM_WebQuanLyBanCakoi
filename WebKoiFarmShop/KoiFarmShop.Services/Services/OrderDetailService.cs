@@ -46,5 +46,9 @@ namespace KoiFarmShop.Services.Services
         {
             return _orderDetailRepository.UpdateOrderDetail(orderDetail);
         }
+        public async Task<IEnumerable<OrderDetail>> GetAllOrderDetailsByOrderId(int orderId)
+        {
+            return await _orderDetailRepository.GetAllOrderDetailsByOrderId(orderId);
+        }
     }
 }

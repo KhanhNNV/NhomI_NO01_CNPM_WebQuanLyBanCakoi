@@ -20,11 +20,11 @@ namespace KoiFarmShop.WebApplication.Pages.Koihtml
         }
 
         public IList<Koi> Koi { get;set; } = default!;
-
         public async Task OnGetAsync()
         {
             Koi = await _koiService.GetAllKoi();
            
         }
+        
     }
 }

@@ -1,30 +1,53 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Categoryhtml.IndexModel
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Category</h4>
+    <div class="card mb-4">
+        <h5 class="card-header">
+            <button type="button" class="btn btn-dark"><a asp-page="Create" style="color:white">Create New</a></button>
+        </h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category[0].CategoryId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category[0].Title)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Category)
+                    {
+                        <tr>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Category[0].Title)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Category) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CategoryId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CategoryId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryId)
+                            </td>
+                            <td>
+                                <strong>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                    <strong>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Edit" asp-route-id="@item.CategoryId" style="color:white">Edit</a>
+                                </button>
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Details" asp-route-id="@item.CategoryId" style="color:white">Details</a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="./Delete" asp-route-id="@item.CategoryId" style="color:white">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

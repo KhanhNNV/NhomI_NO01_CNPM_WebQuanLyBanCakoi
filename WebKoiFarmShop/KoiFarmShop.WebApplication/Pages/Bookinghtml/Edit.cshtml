@@ -126,11 +126,12 @@
                         <input type="hidden" asp-for="Booking.BookingId" />
                         <div class="mb-3">
                             <label asp-for="Booking.CateId" class="control-label"></label>
-                            <select asp-for="Booking.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
+                            <input asp-for="Booking.CateId" class="form-control" />
+                            <span asp-validation-for="Booking.CateId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="Booking.CustomerId" class="control-label"></label>
-                            <select asp-for="Booking.CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                            <label asp-for="Booking.UserId" class="control-label"></label>
+                            <select asp-for="Booking.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
 
                         </div>
                         <div class="mb-3">
@@ -163,19 +164,16 @@
                         </div>
                         <div class="mb-3">
                             <label asp-for="Booking.Gender" class="control-label"></label>
-                            <input asp-for="Booking.Gender" class="form-control" />
+                            <select asp-for="Booking.Gender" class="form-control">
+                                <option value="0">Đực</option>
+                                <option value="1">Cái</option>
+                            </select>
                             <span asp-validation-for="Booking.Gender" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label asp-for="Booking.Origin" class="control-label"></label>
                             <input asp-for="Booking.Origin" class="form-control" />
                             <span asp-validation-for="Booking.Origin" class="text-danger"></span>
-
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Booking.Image" class="control-label"></label>
-                            <input asp-for="Booking.Image" class="form-control" />
-                            <span asp-validation-for="Booking.Image" class="text-danger"></span>
 
                         </div>
                         <div class="mb-3">
@@ -186,14 +184,20 @@
                         </div>
                         <div class="mb-3">
                             <label asp-for="Booking.Status" class="control-label"></label>
-                            <input asp-for="Booking.Status" class="form-control" />
+                            <select asp-for="Booking.Status" class="form-control">
+                                <option value="0">Chưa xác nhận</option>
+                                <option value="1">Đã xác nhận</option>
+                            </select>
                             <span asp-validation-for="Booking.Status" class="text-danger"></span>
 
                         </div>
 
                         <div class="mb-3">
                             <label asp-for="Booking.Type" class="control-label"></label>
-                            <input asp-for="Booking.Type" class="form-control" />
+                            <select asp-for="Booking.Type" class="form-control">
+                                <option value="0">Chăm sóc</option>
+                                <option value="1">Bán</option>
+                            </select>
                             <span asp-validation-for="Booking.Type" class="text-danger"></span>
 
                         </div>

@@ -92,5 +92,12 @@ namespace KoiFarmShop.Repositories.Repositories
                 throw new NotImplementedException(ex.ToString());
             }
         }
+        public async Task<IEnumerable<OrderDetail>> GetAllOrderDetailsByOrderId(int orderId)
+        {
+            return await _dbContext.OrderDetails
+                .Where(od => od.OrderId == orderId)
+                .Include(od => od.Koi)
+                .ToListAsync();
+        }
     }
 }

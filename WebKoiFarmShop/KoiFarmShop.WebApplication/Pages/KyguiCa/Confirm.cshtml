@@ -1,0 +1,51 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.KyguiCa.ConfirmModel
+
+<style>
+    .display-5 {
+        margin-top:70px
+    }
+</style>
+
+<div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
+    <h1 class="display-5 mb-4">Xác nhận ký gửi</h1>
+    <p class="mb-4">Đơn ký gửi của bạn đã được tiếp nhận.Sau khi được xác nhận hãy đem cá trực tiếp dến cửa hàng</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Tình trạng: 
+        @{
+            if (Model.Booking.Status == 0)
+            {
+                <span>Đang xác nhận</span>
+            }
+            else if (Model.Booking.Status == 1)
+            {
+                <span>Đã xác nhận</span>
+            }
+            else
+            {
+                <span>Trạng thái không hợp lệ</span>
+            }
+        }
+    </p>
+    <p><i class="fa fa-check text-primary me-3"></i>Tên người ký gửi: @Model.userName</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Tên cá: @Model.Booking.Koiname</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Ngày gửi: @Model.Booking.DateSent</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Ngày nhận: @Model.Booking.DateReceived</p>
+    <p><i class="fa fa-check text-primary me-3"></i>Ký gửi để:
+        @{
+            if (Model.Booking.Type == 0)
+            {
+                <span>Chăm sóc</span>
+            }
+            else if (Model.Booking.Type == 1)
+            {
+                <span>Bán</span>
+            }
+            else
+            {
+                <span>Không hợp lệ</span>
+            }
+        }
+    </p>
+
+    <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" asp-area="" asp-page="/Index">Về trang chủ</a>
+</div>

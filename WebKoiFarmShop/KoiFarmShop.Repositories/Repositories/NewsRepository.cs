@@ -69,16 +69,14 @@ namespace KoiFarmShop.Repositories.Repositories
         {
             return await _dbContext.News
                 .Include(n => n.Cate)
-                .Include(n => n.CreatedByNavigation)
-                .Include(n => n.UpdateByNavigation).ToListAsync();
+                .ToListAsync();
         }
 
         public async Task<News> GetNewsById(int id)
         {
             return await _dbContext.News
                 .Include(n => n.Cate)
-                .Include(n => n.CreatedByNavigation)
-                .Include(n => n.UpdateByNavigation).FirstOrDefaultAsync(o => o.NewId == id);
+               .FirstOrDefaultAsync(o => o.NewId == id);
         }
 
         public bool UpdateNews(News news)

@@ -7,8 +7,6 @@ public partial class Order
 {
     public int OrderId { get; set; }
 
-    public int? CustomerId { get; set; }
-
     public double Total { get; set; }
 
     public int? Status { get; set; }
@@ -21,7 +19,14 @@ public partial class Order
 
     public DateOnly? UpdateDay { get; set; }
 
-    public virtual User? Customer { get; set; }
+    public int? KoiId { get; set; }
+
+    public int Quantity { get; set; }
+
+    public int UserId { get; set; }
+    public AppUser User { get; set; }
+
+    public virtual Koi? Koi { get; set; }
 
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 }

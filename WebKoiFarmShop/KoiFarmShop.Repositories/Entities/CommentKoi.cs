@@ -19,9 +19,5 @@ public partial class CommentKoi
 
     public int? UpdateBy { get; set; }
 
-    public virtual User? CreatedByNavigation { get; set; }
-
     public virtual Koi? Koi { get; set; }
-
-    public virtual User? UpdateByNavigation { get; set; }
 }

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.Userhtml
 {
-    [Authorize(Roles = "Manager,Staff")]
+    [Authorize(Roles = "Manager")]
     public class IndexModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;

@@ -69,10 +69,16 @@ namespace KoiFarmShop.Repositories.Repositories
             return await _dbContext.Kois.Include(u => u.KoiCate).ToListAsync();
         }
 
+        public async Task<List<Koi>> GetKoiByKoiCateId(int KoiCateId)
+        {
+            return await _dbContext.Kois.Where(k => k.KoiCateId == KoiCateId).ToListAsync();
+        }
+
         public async Task<Koi> GetKOiById(int Id)
         {
             return await _dbContext.Kois.Include(o => o.KoiCate).FirstOrDefaultAsync(o => o.KoiId == Id);
         }
+        
 
         public bool UpKoi(Koi koi)
         {

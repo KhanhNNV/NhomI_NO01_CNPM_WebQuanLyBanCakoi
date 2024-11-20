@@ -26,8 +26,4 @@ public partial class Blog
     public virtual Category? Cate { get; set; }
 
     public virtual ICollection<CommentBlog> CommentBlogs { get; set; } = new List<CommentBlog>();
-
-    public virtual User? CreatedByNavigation { get; set; }
-
-    public virtual User? UpdateByNavigation { get; set; }
 }

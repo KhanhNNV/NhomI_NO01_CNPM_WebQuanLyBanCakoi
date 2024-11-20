@@ -143,10 +143,6 @@ namespace KoiFarmShop.Repositories.Migrations
 
                     b.HasIndex("CateId");
 
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("UpdateBy");
-
                     b.ToTable("Blog", (string)null);
                 });
 
@@ -174,7 +170,7 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasColumnType("date")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
 
@@ -222,12 +218,15 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasColumnType("date")
                         .HasDefaultValueSql("(getdate())");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("BookingId")
                         .HasName("PK__Booking__73951AEDEAE4B598");
 
                     b.HasIndex("CateId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Booking", (string)null);
                 });
@@ -284,10 +283,6 @@ namespace KoiFarmShop.Repositories.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("UpdateBy");
-
                     b.ToTable("CommentBlog", (string)null);
                 });
 
@@ -325,11 +320,7 @@ namespace KoiFarmShop.Repositories.Migrations
                     b.HasKey("CmtKoiId")
                         .HasName("PK__CommentK__06D742EA68DD1AE1");
 
-                    b.HasIndex("CreatedBy");
-
                     b.HasIndex("KoiId");
-
-                    b.HasIndex("UpdateBy");
 
                     b.ToTable("CommentKoi", (string)null);
                 });
@@ -369,11 +360,7 @@ namespace KoiFarmShop.Repositories.Migrations
                     b.HasKey("CmtNewsId")
                         .HasName("PK__CommentN__EF677CE326C0260E");
 
-                    b.HasIndex("CreatedBy");
-
                     b.HasIndex("NewsId");
-
-                    b.HasIndex("UpdateBy");
 
                     b.ToTable("CommentNews");
                 });
@@ -409,8 +396,6 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasName("PK__Contact__5C66259BC3730F7F");
 
                     b.HasIndex("CateId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Contact", (string)null);
                 });
@@ -461,8 +446,9 @@ namespace KoiFarmShop.Repositories.Migrations
                     b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Gender")
-                        .HasColumnType("int");
+                    b.Property<string>("Gender")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Image")
                         .HasMaxLength(64)
@@ -567,10 +553,6 @@ namespace KoiFarmShop.Repositories.Migrations
 
                     b.HasIndex("CateId");
 
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("UpdateBy");
-
                     b.ToTable("News");
                 });
 
@@ -587,11 +569,13 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasColumnType("date")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int")
-                        .HasColumnName("CustomerID");
+                    b.Property<int?>("KoiId")
+                        .HasColumnType("int");
 
                     b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("ShipAddress")
@@ -610,10 +594,15 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasColumnType("date")
                         .HasDefaultValueSql("(getdate())");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderId")
                         .HasName("PK__Orders__C3905BCF3012034B");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("KoiId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -651,21 +640,6 @@ namespace KoiFarmShop.Repositories.Migrations
                     b.ToTable("OrderDetail", (string)null);
                 });
 
-            modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Permission", b =>
-                {
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PermissionName")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("PermissionId")
-                        .HasName("PK__Permissi__EFA6FB2F950F0142");
-
-                    b.ToTable("Permissions");
-                });
-
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Promotion", b =>
                 {
                     b.Property<int>("ProId")
@@ -691,84 +665,6 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasName("PK__Promotio__620295901C480AC6");
 
                     b.ToTable("Promotion", (string)null);
-                });
-
-            modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Role", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RoleName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("RoleId")
-                        .HasName("PK__Roles__8AFACE1A8B20423C");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("KoiFarmShop.Repositories.Entities.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<DateOnly?>("CreatedDay")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(30)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(64)");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<int?>("RoleId")
-                        .HasColumnType("int")
-                        .HasColumnName("RoleID");
-
-                    b.Property<DateOnly?>("UpdateDay")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("UserAddress")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("UserId")
-                        .HasName("PK__User__1788CC4CB0F9474D");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex(new[] { "Phone" }, "UQ__User__5C7E359E2EA923D6")
-                        .IsUnique()
-                        .HasFilter("[Phone] IS NOT NULL");
-
-                    b.HasIndex(new[] { "Email" }, "UQ__User__A9D1053437156E29")
-                        .IsUnique()
-                        .HasFilter("[Email] IS NOT NULL");
-
-                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -904,22 +800,6 @@ namespace KoiFarmShop.Repositories.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("RolePermission", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoleId", "PermissionId")
-                        .HasName("PK__RolePerm__6400A1A8D9198E28");
-
-                    b.HasIndex("PermissionId");
-
-                    b.ToTable("RolePermissions", (string)null);
-                });
-
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Blog", b =>
                 {
                     b.HasOne("KoiFarmShop.Repositories.Entities.Category", "Cate")
@@ -927,21 +807,7 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasForeignKey("CateId")
                         .HasConstraintName("FK__Blog__CateID__14270015");
 
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "CreatedByNavigation")
-                        .WithMany("BlogCreatedByNavigations")
-                        .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK__Blog__CreatedBy__151B244E");
-
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "UpdateByNavigation")
-                        .WithMany("BlogUpdateByNavigations")
-                        .HasForeignKey("UpdateBy")
-                        .HasConstraintName("FK__Blog__UpdateBy__160F4887");
-
                     b.Navigation("Cate");
-
-                    b.Navigation("CreatedByNavigation");
-
-                    b.Navigation("UpdateByNavigation");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Booking", b =>
@@ -951,14 +817,15 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasForeignKey("CateId")
                         .HasConstraintName("FK__Booking__CateID__4F47C5E3");
 
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "Customer")
-                        .WithMany("Bookings")
-                        .HasForeignKey("CustomerId")
-                        .HasConstraintName("FK__Booking__Custome__503BEA1C");
+                    b.HasOne("KoiFarmShop.Repositories.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cate");
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.CommentBlog", b =>
@@ -968,69 +835,27 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasForeignKey("BlogId")
                         .HasConstraintName("FK__CommentBl__BlogI__1332DBDC");
 
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "CreatedByNavigation")
-                        .WithMany("CommentBlogCreatedByNavigations")
-                        .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK__CommentBl__Creat__17036CC0");
-
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "UpdateByNavigation")
-                        .WithMany("CommentBlogUpdateByNavigations")
-                        .HasForeignKey("UpdateBy")
-                        .HasConstraintName("FK__CommentBl__Updat__17F790F9");
-
                     b.Navigation("Blog");
-
-                    b.Navigation("CreatedByNavigation");
-
-                    b.Navigation("UpdateByNavigation");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.CommentKoi", b =>
                 {
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "CreatedByNavigation")
-                        .WithMany("CommentKoiCreatedByNavigations")
-                        .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK__CommentKo__Creat__6C190EBB");
-
                     b.HasOne("KoiFarmShop.Repositories.Entities.Koi", "Koi")
                         .WithMany("CommentKois")
                         .HasForeignKey("KoiId")
                         .HasConstraintName("FK__CommentKo__KoiID__0C85DE4D");
 
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "UpdateByNavigation")
-                        .WithMany("CommentKoiUpdateByNavigations")
-                        .HasForeignKey("UpdateBy")
-                        .HasConstraintName("FK__CommentKo__Updat__18EBB532");
-
-                    b.Navigation("CreatedByNavigation");
-
                     b.Navigation("Koi");
-
-                    b.Navigation("UpdateByNavigation");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.CommentNews", b =>
                 {
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "CreatedByNavigation")
-                        .WithMany("CommentNewsCreatedByNavigations")
-                        .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK__CommentNe__Creat__114A936A");
-
                     b.HasOne("KoiFarmShop.Repositories.Entities.News", "News")
                         .WithMany("CommentNews")
                         .HasForeignKey("NewsId")
                         .HasConstraintName("FK__CommentNe__NewsI__0E6E26BF");
 
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "UpdateByNavigation")
-                        .WithMany("CommentNewsUpdateByNavigations")
-                        .HasForeignKey("UpdateBy")
-                        .HasConstraintName("FK__CommentNe__Updat__123EB7A3");
-
-                    b.Navigation("CreatedByNavigation");
-
                     b.Navigation("News");
-
-                    b.Navigation("UpdateByNavigation");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Contact", b =>
@@ -1040,14 +865,9 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasForeignKey("CateId")
                         .HasConstraintName("FK__Contact__CateId__3C34F16F");
 
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "User")
-                        .WithMany("Contacts")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("FK__Contact__UserId__3D2915A8");
 
                     b.Navigation("Cate");
-
-                    b.Navigation("User");
+                    
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Discount", b =>
@@ -1094,31 +914,25 @@ namespace KoiFarmShop.Repositories.Migrations
                         .HasForeignKey("CateId")
                         .HasConstraintName("FK__News__Cate_ID__0D7A0286");
 
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "CreatedByNavigation")
-                        .WithMany("NewsCreatedByNavigations")
-                        .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK__News__CreatedBy__0F624AF8");
-
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "UpdateByNavigation")
-                        .WithMany("NewsUpdateByNavigations")
-                        .HasForeignKey("UpdateBy")
-                        .HasConstraintName("FK__News__UpdateBy__10566F31");
-
                     b.Navigation("Cate");
-
-                    b.Navigation("CreatedByNavigation");
-
-                    b.Navigation("UpdateByNavigation");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Order", b =>
                 {
-                    b.HasOne("KoiFarmShop.Repositories.Entities.User", "Customer")
+                    b.HasOne("KoiFarmShop.Repositories.Entities.Koi", "Koi")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
-                        .HasConstraintName("FK__Orders__Customer__76969D2E");
+                        .HasForeignKey("KoiId")
+                        .HasConstraintName("FK_Order_Koi");
 
-                    b.Navigation("Customer");
+                    b.HasOne("KoiFarmShop.Repositories.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Koi");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.OrderDetail", b =>
@@ -1136,16 +950,6 @@ namespace KoiFarmShop.Repositories.Migrations
                     b.Navigation("Koi");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("KoiFarmShop.Repositories.Entities.User", b =>
-                {
-                    b.HasOne("KoiFarmShop.Repositories.Entities.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .HasConstraintName("FK__User__RoleID__5535A963");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1199,21 +1003,6 @@ namespace KoiFarmShop.Repositories.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RolePermission", b =>
-                {
-                    b.HasOne("KoiFarmShop.Repositories.Entities.Permission", null)
-                        .WithMany()
-                        .HasForeignKey("PermissionId")
-                        .IsRequired()
-                        .HasConstraintName("FK__RolePermi__Permi__5CD6CB2B");
-
-                    b.HasOne("KoiFarmShop.Repositories.Entities.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .IsRequired()
-                        .HasConstraintName("FK__RolePermi__RoleI__5BE2A6F2");
-                });
-
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Blog", b =>
                 {
                     b.Navigation("CommentBlogs");
@@ -1239,6 +1028,8 @@ namespace KoiFarmShop.Repositories.Migrations
                     b.Navigation("Discounts");
 
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.KoiCategory", b =>
@@ -1259,40 +1050,6 @@ namespace KoiFarmShop.Repositories.Migrations
             modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Promotion", b =>
                 {
                     b.Navigation("Discounts");
-                });
-
-            modelBuilder.Entity("KoiFarmShop.Repositories.Entities.Role", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("KoiFarmShop.Repositories.Entities.User", b =>
-                {
-                    b.Navigation("BlogCreatedByNavigations");
-
-                    b.Navigation("BlogUpdateByNavigations");
-
-                    b.Navigation("Bookings");
-
-                    b.Navigation("CommentBlogCreatedByNavigations");
-
-                    b.Navigation("CommentBlogUpdateByNavigations");
-
-                    b.Navigation("CommentKoiCreatedByNavigations");
-
-                    b.Navigation("CommentKoiUpdateByNavigations");
-
-                    b.Navigation("CommentNewsCreatedByNavigations");
-
-                    b.Navigation("CommentNewsUpdateByNavigations");
-
-                    b.Navigation("Contacts");
-
-                    b.Navigation("NewsCreatedByNavigations");
-
-                    b.Navigation("NewsUpdateByNavigations");
-
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

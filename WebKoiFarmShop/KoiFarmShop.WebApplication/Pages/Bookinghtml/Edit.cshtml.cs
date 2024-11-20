@@ -8,20 +8,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
+using KoiFarmShop.Services.Services;
 
 namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
 {
     public class EditModel : PageModel
     {
         private readonly IBookingService _bookingService;
-        private readonly ICategoryService _categoryService;
-        private readonly IUserService _userService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public EditModel(IBookingService bookingService, ICategoryService categoryService, IUserService userService)
+        public EditModel(IBookingService bookingService, UserManager<AppUser> userManager)
         {
             _bookingService = bookingService;
-            _categoryService = categoryService;
-            _userService = userService;
+            _userManager = userManager;
+            
         }
 
         [BindProperty]
@@ -40,10 +41,9 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
                 return NotFound();
             }
             Booking = booking;
-            var cate = await _categoryService.GetAllCategory();
-            var user = await _userService.GetAllUser();
-            ViewData["CateId"] = new SelectList(cate, "CategoryId", "Title");
-            ViewData["CustomerId"] = new SelectList(user, "UserId", "FullName");
+            var users = _userManager.Users.ToList();
+            ViewData["UserId"] = new SelectList(users, "Id", "UserName");
+
             return Page();
         }
 
@@ -51,17 +51,14 @@ namespace KoiFarmShop.WebApplication.Pages.Bookinghtml
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+           
 
             _bookingService.UpdateBooking(Booking);
 
             return RedirectToPage("./Index");
         }
 
-        private bool BookingExists(int id)
+        private bool OrderExists(int id)
         {
             return _bookingService.GetBookingById(id) != null;
         }

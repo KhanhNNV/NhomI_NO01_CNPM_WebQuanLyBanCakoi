@@ -16,15 +16,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.CommentKoi[0].UpdateDay)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentKoi[0].CreatedByNavigation)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.CommentKoi[0].Koi)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentKoi[0].UpdateByNavigation)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -40,15 +36,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UpdateDay)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedByNavigation.FullName)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Koi.KoiId)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateByNavigation.FullName)
-            </td>
+            
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CmtKoiId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.CmtKoiId">Details</a> |

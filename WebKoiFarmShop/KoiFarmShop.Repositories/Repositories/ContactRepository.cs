@@ -66,16 +66,14 @@ namespace KoiFarmShop.Repositories.Repositories
 
         public async Task<List<Contact>> GetAllContact()
         {
-            return await _dbContext.Contacts
-                .Include(c => c.Cate)
-                .Include(c => c.User).ToListAsync();
+            return await _dbContext.Contacts.Include(b => b.User)
+                .ToListAsync();
         }
 
         public async Task<Contact> GetContactById(int id)
         {
-            return await _dbContext.Contacts
-                .Include(c => c.Cate)
-                .Include(c => c.User).FirstOrDefaultAsync(o => o.ContactId == id);
+            return await _dbContext.Contacts.Include(o => o.User)
+                .FirstOrDefaultAsync(o => o.ContactId == id);
         }
 
         public bool UpdateContact(Contact contact)

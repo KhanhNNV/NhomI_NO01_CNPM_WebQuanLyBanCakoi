@@ -1,18 +1,11 @@
 ﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
-    {
-        Layout = parentLayout.ToString();
-    }
-    else
-    {
-        Layout = "/Pages/Shared/_Layout.cshtml";
-    }
+    Layout = "~/Pages/Shared/_LayoutBasic.cshtml";
+    
 }
 
-<h1>Quản lí tài khoản</h1>
 
 <div>
-    <h2>Change your account settings</h2>
+    <h2>Quản lí tài khoản</h2>
     <hr />
     <div class="row">
         <div class="col-md-3">

@@ -19,9 +19,5 @@ public partial class CommentNews
 
     public int? UpdateBy { get; set; }
 
-    public virtual User? CreatedByNavigation { get; set; }
-
     public virtual News? News { get; set; }
-
-    public virtual User? UpdateByNavigation { get; set; }
 }

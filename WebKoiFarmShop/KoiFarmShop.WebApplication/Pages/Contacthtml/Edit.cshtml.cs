@@ -8,20 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFarmShop.Repositories.Entities;
 using KoiFarmShop.Services.InterfaceService;
+using Microsoft.AspNetCore.Identity;
 
 namespace KoiFarmShop.WebApplication.Pages.Contacthtml
 {
     public class EditModel : PageModel
     {
         private readonly IContactService _contactService;
-        private readonly IUserService _userService;
-        private readonly ICategoryService _categoryService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public EditModel(IContactService contactService, IUserService userService, ICategoryService categoryService)
+        public EditModel(IContactService contactService, UserManager<AppUser> userManager)
         {
             _contactService = contactService;
-            _userService = userService;
-            _categoryService = categoryService;
+            _userManager = userManager;
         }
 
         [BindProperty]
@@ -40,10 +39,8 @@ namespace KoiFarmShop.WebApplication.Pages.Contacthtml
                 return NotFound();
             }
             Contact = contact;
-            var cate = await _categoryService.GetAllCategory();
-            var user = await _userService.GetAllUser();
-            ViewData["CateId"] = new SelectList(cate, "CategoryId", "Title");
-            ViewData["UserId"] = new SelectList(user, "UserId", "FullName");
+            var users = _userManager.Users.ToList();
+            ViewData["UserId"] = new SelectList(users, "Id", "UserName");
             return Page();
         }
 
@@ -51,10 +48,7 @@ namespace KoiFarmShop.WebApplication.Pages.Contacthtml
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            
 
             _contactService.UpdateContact(Contact);
 

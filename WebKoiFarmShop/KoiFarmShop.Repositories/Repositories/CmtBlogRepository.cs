@@ -68,16 +68,14 @@ namespace KoiFarmShop.Repositories.Repositories
         {
             return await _dbContext.CommentBlogs
                 .Include(c => c.Blog)
-                .Include(c => c.CreatedByNavigation)
-                .Include(c => c.UpdateByNavigation).ToListAsync();
+                .ToListAsync();
         }
 
         public async Task<CommentBlog> GetCmtBlogById(int Id)
         {
             return await _dbContext.CommentBlogs
                 .Include(c => c.Blog)
-                .Include(c => c.CreatedByNavigation)
-                .Include(c => c.UpdateByNavigation).FirstOrDefaultAsync(o => o.CmtBlogId == Id);
+                .FirstOrDefaultAsync(o => o.CmtBlogId == Id);
         }
 
         public bool UpCmtBlog(CommentBlog cmtBlog)

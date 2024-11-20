@@ -21,7 +21,7 @@ public partial class Koi
 
     public string? Breed { get; set; }
 
-    public int? Gender { get; set; }
+    public string? Gender { get; set; }
 
     public string? Origin { get; set; }
 
@@ -38,4 +38,6 @@ public partial class Koi
     public virtual KoiCategory? KoiCate { get; set; }
 
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

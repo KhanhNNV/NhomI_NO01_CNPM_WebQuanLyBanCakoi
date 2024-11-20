@@ -91,7 +91,7 @@ namespace KoiFarmShop.WebApplication.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("Đã tạo user mới.");
 
-
+                    await _userManager.AddToRoleAsync(user, "Customer");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);

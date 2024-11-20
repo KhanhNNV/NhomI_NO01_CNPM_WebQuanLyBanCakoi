@@ -23,7 +23,7 @@ namespace KoiFarmShop.WebApplication.Pages.Orderhtml
 
         public async Task OnGetAsync()
         {
-            Order = await _orderService.GetOrder();
+            Order = await _orderService.GetAllOrder();
         }
 
 

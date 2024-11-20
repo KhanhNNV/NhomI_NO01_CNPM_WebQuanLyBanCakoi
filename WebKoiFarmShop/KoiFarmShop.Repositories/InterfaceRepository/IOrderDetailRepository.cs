@@ -15,5 +15,6 @@ namespace KoiFarmShop.Repositories.InterfaceRepository
         Boolean UpdateOrderDetail(OrderDetail orderDetail);
         Boolean AddOrderDetail(OrderDetail orderDetail);
         Task<OrderDetail> GetOrderDetailById(int id);
+        Task<IEnumerable<OrderDetail>> GetAllOrderDetailsByOrderId(int orderId);
     }
 }

@@ -19,12 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CommentBlog[0].Blog)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentBlog[0].CreatedByNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentBlog[0].UpdateByNavigation)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -43,12 +38,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Blog.BlogId)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedByNavigation.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateByNavigation.FullName)
-            </td>
+            
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CmtBlogId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.CmtBlogId">Details</a> |

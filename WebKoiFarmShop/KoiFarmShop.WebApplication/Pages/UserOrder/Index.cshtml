@@ -1,0 +1,97 @@
+﻿@page
+@model KoiFarmShop.WebApplication.Pages.UserOrder.IndexModel
+
+<style>
+    .container-p-y{
+        margin-top:90px
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Đơn hàng của bạn</h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].OrderId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].Total)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].ShipAddress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].PaymentMethod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].CreatedDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].UpdateDay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orders[0].User)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Orders)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderId)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Total)
+                            </td>
+
+                            <td>
+                                @(item.Status == 0 ? "Chưa xác nhận" : item.Status == 1 ? "Đã xác nhận" : "Trạng thái không hợp lệ")
+                               
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShipAddress)
+                            </td>
+
+                            <td>
+                                @(item.PaymentMethod == 0 ? "Tiền mặt" : item.PaymentMethod == 1 ? "Chuyển khoản" : "Phương thức không hợp lệ")
+                               
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdateDay)
+                            </td>
+
+                            <td>
+                                <strong>
+                                    @Html.DisplayFor(modelItem => item.User.UserName)
+                                </strong>
+                            </td>
+
+                            <td>
+                               
+                                <button type="button" class="btn btn-info">
+                                    <a asp-page="./Confirm" asp-route-OrderId="@item.OrderId" style="color:white">Chi tiết</a>
+                                </button>
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -66,8 +66,8 @@
                         <input type="hidden" asp-for="Contact.ContactId" />
                         <div class="mb-3">
                             <label asp-for="Contact.CateId" class="control-label"></label>
-                            <select asp-for="Contact.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
-
+                            <input asp-for="Contact.CateId" class="form-control" />
+                            <span asp-validation-for="Contact.CateId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label asp-for="Contact.UserId" class="control-label"></label>
@@ -83,7 +83,10 @@
                         </div>
                         <div class="mb-3">
                             <label asp-for="Contact.Status" class="control-label"></label>
-                            <input asp-for="Contact.Status" class="form-control" />
+                            <select asp-for="Contact.Status" class="form-control">
+                                <option value="0">Chưa xác nhận</option>
+                                <option value="1">Đã xác nhận</option>
+                            </select>
                             <span asp-validation-for="Contact.Status" class="text-danger"></span>
 
                         </div>
