@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace KoiFarmShop.WebApplication.Pages.KoiUser
 {
-    [Authorize]
+    
     public class DetailsModel : PageModel
     {
         private readonly IKoiService _koiService;
