@@ -1,63 +1,75 @@
 ﻿@page
 @model KoiFarmShop.WebApplication.Pages.Newshtml.EditModel
 
-<h4>News</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="News.NewId" />
-            <div class="form-group">
-                <label asp-for="News.CateId" class="control-label"></label>
-                <select asp-for="News.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
-                <span asp-validation-for="News.CateId" class="text-danger"></span>
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Create User</h4>
+    <!-- Basic Layout -->
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Create</h5>
+                </div>
+                <div class="card-body">
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="News.NewId" />
+                        <div class="mb-3">
+                            <label asp-for="News.CateId" class="control-label"></label>
+                            <select asp-for="News.CateId" class="form-control" asp-items="ViewBag.CateId"></select>
+                            <span asp-validation-for="News.CateId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="News.Title" class="control-label"></label>
+                            <input asp-for="News.Title" class="form-control" />
+                            <span asp-validation-for="News.Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="News.Content" class="control-label"></label>
+                            <input asp-for="News.Content" class="form-control" />
+                            <span asp-validation-for="News.Content" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="News.Image" class="control-label"></label>
+                            <input asp-for="News.Image" class="form-control" />
+                            <span asp-validation-for="News.Image" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="News.CreatedBy" class="control-label"></label>
+                            <select asp-for="News.CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+                            <span asp-validation-for="News.CreatedBy" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="News.CreatedDay" class="control-label"></label>
+                            <input asp-for="News.CreatedDay" class="form-control" />
+                            <span asp-validation-for="News.CreatedDay" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="News.UpdateDay" class="control-label"></label>
+                            <input asp-for="News.UpdateDay" class="form-control" />
+                            <span asp-validation-for="News.UpdateDay" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="News.UpdateBy" class="control-label"></label>
+                            <select asp-for="News.UpdateBy" class="form-control" asp-items="ViewBag.UpdateBy"></select>
+                            <span asp-validation-for="News.UpdateBy" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-secondary"><a asp-page="Index" style="color:white">Back to List</a></button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="News.Title" class="control-label"></label>
-                <input asp-for="News.Title" class="form-control" />
-                <span asp-validation-for="News.Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="News.Content" class="control-label"></label>
-                <input asp-for="News.Content" class="form-control" />
-                <span asp-validation-for="News.Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="News.Image" class="control-label"></label>
-                <input asp-for="News.Image" class="form-control" />
-                <span asp-validation-for="News.Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="News.CreatedBy" class="control-label"></label>
-                <select asp-for="News.CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
-                <span asp-validation-for="News.CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="News.CreatedDay" class="control-label"></label>
-                <input asp-for="News.CreatedDay" class="form-control" />
-                <span asp-validation-for="News.CreatedDay" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="News.UpdateDay" class="control-label"></label>
-                <input asp-for="News.UpdateDay" class="form-control" />
-                <span asp-validation-for="News.UpdateDay" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="News.UpdateBy" class="control-label"></label>
-                <select asp-for="News.UpdateBy" class="form-control" asp-items="ViewBag.UpdateBy"></select>
-                <span asp-validation-for="News.UpdateBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
